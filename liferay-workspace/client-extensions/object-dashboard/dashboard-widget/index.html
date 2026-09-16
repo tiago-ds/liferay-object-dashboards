@@ -1,0 +1,21 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Object Dashboard — standalone harness</title>
+    <style>
+      body { margin: 0; padding: 24px; font-family: system-ui, sans-serif; background: #f7f8f9; }
+      object-dashboard { display: block; max-width: 720px; margin: 0 auto 24px; }
+    </style>
+  </head>
+  <body>
+    <!--
+      Dev harness only. Outside Liferay the widget falls back to the mock
+      Objects in src/mock.ts, so the config panel and charts work with no portal.
+    -->
+    <object-dashboard instance-id="harness-1"></object-dashboard>
+    <object-dashboard instance-id="harness-2"></object-dashboard>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>

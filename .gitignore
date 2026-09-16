@@ -1,0 +1,27 @@
+# ---------------------------------------------------------------------------
+# The Liferay workspace lives inside this repo, but almost none of it is source.
+# What matters here is client-extensions/ — that is the code an `rm -rf` of the
+# workspace once destroyed, and the reason this repo exists.
+# ---------------------------------------------------------------------------
+
+# The downloaded DXP bundle: ~3 GB, reproducible with `blade gw initBundle`.
+liferay-workspace/bundles/
+
+# Build output and dependency caches, at any depth.
+node_modules/
+node_modules_cache/
+build/
+dist/
+.gradle/
+
+# Local runtime noise.
+*.log
+.DS_Store
+
+# Local environment: contains an OAuth2 client id that is regenerated on every
+# deploy anyway, so it is never worth committing. Rebuild it with local-env.sh.
+.env
+
+# Python bytecode from the seeder/reset scripts.
+__pycache__/
+*.pyc

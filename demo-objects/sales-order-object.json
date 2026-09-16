@@ -1,0 +1,67 @@
+{
+  "_comment": "Sales Order demo Object for the dashboard CX. POST to /o/object-admin/v1.0/object-definitions, then publish. Dimensions: region/productCategory/channel/status (low-cardinality text) + orderDate (date). Measures: amount (PrecisionDecimal), quantity (Integer), plus Count of records.",
+  "externalReferenceCode": "SALESORDER",
+  "label": { "en_US": "Sales Order" },
+  "pluralLabel": { "en_US": "Sales Orders" },
+  "name": "SalesOrder",
+  "scope": "company",
+  "active": true,
+  "objectFields": [
+    {
+      "name": "orderNumber",
+      "label": { "en_US": "Order Number" },
+      "businessType": "Text",
+      "DBType": "String",
+      "required": true
+    },
+    {
+      "name": "region",
+      "label": { "en_US": "Region" },
+      "businessType": "Text",
+      "DBType": "String",
+      "required": true
+    },
+    {
+      "name": "productCategory",
+      "label": { "en_US": "Product Category" },
+      "businessType": "Text",
+      "DBType": "String",
+      "required": true
+    },
+    {
+      "name": "channel",
+      "label": { "en_US": "Channel" },
+      "businessType": "Text",
+      "DBType": "String",
+      "required": true
+    },
+    {
+      "name": "orderStatus",
+      "label": { "en_US": "Status" },
+      "businessType": "Text",
+      "DBType": "String",
+      "required": true
+    },
+    {
+      "name": "amount",
+      "label": { "en_US": "Amount" },
+      "businessType": "PrecisionDecimal",
+      "DBType": "BigDecimal",
+      "required": true
+    },
+    {
+      "name": "quantity",
+      "label": { "en_US": "Quantity" },
+      "businessType": "Integer",
+      "DBType": "Integer",
+      "required": true
+    },
+    {
+      "name": "orderDate",
+      "label": { "en_US": "Order Date" },
+      "businessType": "Date",
+      "DBType": "Date",
+      "required": true
+    }
+  ]
+}

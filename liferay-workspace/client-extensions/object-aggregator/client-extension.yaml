@@ -1,0 +1,39 @@
+assemble:
+    -   from: dist
+        into: dist
+    -   include:
+            -   package.json
+            -   package-lock.json
+
+# ONE OAuth2 application, deliberately.
+#
+# This service holds no credential of its own: it forwards the caller's token to
+# Liferay, so every read runs with that user's permissions. A headless-server
+# (client_credentials) application would let the service read rows the signed-in
+# user cannot see — a privilege escalation dressed up as a bar chart — so it is
+# not declared at all rather than declared and left unused.
+#
+# SCOPES ARE PER OBJECT AND STATIC, and the name is not what you would guess.
+# A custom Object is stored as "C_<Name>", but its generated entry API registers
+# under ObjectDefinitionImpl.getOSGiJaxRsName(), which is:
+#
+#     StringUtil.toLowerCase(getName())   ->   "c_salesorder"
+#
+# LOWERCASE. A scope naming an application that does not exist is ignored in
+# SILENCE — no warning in the log, no scope grant rows, and the first symptom is
+# a 403 at runtime. (The liferay-dlfoldertemplate-etc-node sample in
+# liferay-portal spells these capitalised; that spelling produced no grants
+# here.)
+#
+# The consequence stands: the server-side strategy only reaches Objects listed
+# here at BUILD time, unlike the client-side strategy, which rides the user's
+# session and works on any Object. Add a line per chartable Object, or point
+# charts at one cube Object.
+object-aggregator-oaua:
+    .serviceAddress: localhost:3002
+    .serviceScheme: http
+    name: Object Aggregator OAuth Application User Agent
+    scopes:
+        -   c_salesorder.everything.read
+        -   c_supportcase.everything.read
+    type: oAuthApplicationUserAgent

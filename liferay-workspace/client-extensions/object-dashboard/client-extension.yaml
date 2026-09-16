@@ -1,0 +1,17 @@
+assemble:
+    - from: dashboard-widget/dist
+      into: static
+
+object-dashboard-custom-element:
+    type: customElement
+    name: Object Dashboard
+    # Drop on any page and configure in place: point it at an Object, pick a
+    # dimension/measure/chart type. Each instance persists its own config, so a
+    # page of these widgets IS the dashboard. Set instance-id (e.g. via a
+    # fragment wrapper) for config that survives reloads.
+    htmlElementName: object-dashboard
+    instanceable: true
+    portletCategoryName: category.client-extensions
+    useESM: true
+    urls:
+        - object-dashboard.js

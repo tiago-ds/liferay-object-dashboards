@@ -1,0 +1,9 @@
+{
+    "private": true,
+    "workspaces": {
+        "packages": [
+            "client-extensions/object-dashboard/dashboard-widget",
+            "client-extensions/object-aggregator"
+        ]
+    }
+}

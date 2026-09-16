@@ -1,0 +1,67 @@
+{
+  "_comment": "Support Ticket demo Object for the dashboard CX. POST to /o/object-admin/v1.0/object-definitions, then publish. Dimensions: priority/status/channel/category (low-cardinality text) + createdDate (date). Measures: resolutionHours (PrecisionDecimal), satisfactionScore (Integer), plus Count of records.",
+  "externalReferenceCode": "SUPPORTTICKET",
+  "label": { "en_US": "Support Case" },
+  "pluralLabel": { "en_US": "Support Cases" },
+  "name": "SupportCase",
+  "scope": "company",
+  "active": true,
+  "objectFields": [
+    {
+      "name": "ticketNumber",
+      "label": { "en_US": "Ticket Number" },
+      "businessType": "Text",
+      "DBType": "String",
+      "required": true
+    },
+    {
+      "name": "priority",
+      "label": { "en_US": "Priority" },
+      "businessType": "Text",
+      "DBType": "String",
+      "required": true
+    },
+    {
+      "name": "ticketStatus",
+      "label": { "en_US": "Status" },
+      "businessType": "Text",
+      "DBType": "String",
+      "required": true
+    },
+    {
+      "name": "channel",
+      "label": { "en_US": "Channel" },
+      "businessType": "Text",
+      "DBType": "String",
+      "required": true
+    },
+    {
+      "name": "category",
+      "label": { "en_US": "Category" },
+      "businessType": "Text",
+      "DBType": "String",
+      "required": true
+    },
+    {
+      "name": "resolutionHours",
+      "label": { "en_US": "Resolution Hours" },
+      "businessType": "PrecisionDecimal",
+      "DBType": "BigDecimal",
+      "required": false
+    },
+    {
+      "name": "satisfactionScore",
+      "label": { "en_US": "Satisfaction Score" },
+      "businessType": "Integer",
+      "DBType": "Integer",
+      "required": false
+    },
+    {
+      "name": "createdDate",
+      "label": { "en_US": "Created Date" },
+      "businessType": "Date",
+      "DBType": "Date",
+      "required": true
+    }
+  ]
+}

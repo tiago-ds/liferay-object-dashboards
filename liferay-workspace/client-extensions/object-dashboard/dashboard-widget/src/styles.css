@@ -1,0 +1,66 @@
+/* REWRITTEN after the original was lost. Class names are the ones the
+   components actually use; the visual details are a reconstruction. */
+
+.od-root {
+  background: #fff;
+  border: 1px solid #e7e7ed;
+  border-radius: 4px;
+  display: flex;
+  flex-direction: column;
+  padding: 16px;
+}
+
+.od-header {
+  align-items: flex-start;
+  display: flex;
+  gap: 12px;
+  justify-content: space-between;
+  margin-bottom: 12px;
+}
+
+.od-title {
+  font-size: 1rem;
+  font-weight: 600;
+  margin: 0;
+}
+
+.od-subtitle {
+  color: #6b6c7e;
+  font-size: 0.875rem;
+  margin: 2px 0 0;
+}
+
+/* The chart needs an explicit height: Recharts' ResponsiveContainer measures
+   its parent, and a flex child with no height would collapse to zero. */
+.od-chart {
+  height: 320px;
+  width: 100%;
+}
+
+.od-state {
+  color: #6b6c7e;
+  padding: 32px 0;
+  text-align: center;
+}
+
+/* Footnote under a server-aggregated chart: how many rows never reached the
+   browser. Deliberately visible — it is the evidence for the whole strategy. */
+.od-meta {
+  color: #6b6c7e;
+  font-size: 0.75rem;
+  margin: 0.25rem 0 0;
+}
+
+/* Inline explanation under the aggregation-strategy select. */
+.od-help {
+  color: #6b6c7e;
+  font-size: 0.75rem;
+  margin: 0.25rem 0 0;
+}
+
+/* The coverage warning is a correctness notice, not a statistic — it must not
+   read as quiet footnote text like .od-meta does. */
+.od-coverage {
+  font-size: 0.8125rem;
+  margin: 0.5rem 0 0;
+}

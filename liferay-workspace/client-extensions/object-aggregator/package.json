@@ -1,0 +1,33 @@
+{
+	"dependencies": {
+		"@rotty3000/config-node": "^0.3.5",
+		"cors": "^2.8.5",
+		"express": "^4.18.2",
+		"jsonwebtoken": "9.0.0",
+		"jwk-to-pem": "2.0.5",
+		"memory-cache": "^0.2.0",
+		"node-fetch": "2.6.9"
+	},
+	"devDependencies": {
+		"@types/cors": "^2.8.17",
+		"@types/express": "^4.17.21",
+		"@types/jsonwebtoken": "^9.0.6",
+		"@types/jwk-to-pem": "^2.0.3",
+		"@types/memory-cache": "^0.2.6",
+		"@types/node": "^20.11.0",
+		"@types/node-fetch": "^2.6.11",
+		"typescript": "^5.4.0"
+	},
+	"license": "LGPL",
+	"main": "dist/server.js",
+	"name": "@liferay/object-aggregator",
+	"scripts": {
+		"build": "tsc",
+		"check:parity": "node scripts/check-parity.mjs",
+		"prebuild": "npm run check:parity",
+		"start": "node dist/server.js",
+		"test": "npm run build && node --test \"dist/**/*.test.js\""
+	},
+	"type": "module",
+	"version": "0.0.0"
+}

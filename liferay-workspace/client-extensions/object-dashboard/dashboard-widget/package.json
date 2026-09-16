@@ -1,0 +1,30 @@
+{
+  "name": "object-dashboard-widget",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "React custom-element client extension: schema-driven data visualization over any Liferay Object. Point it at an Object, pick a dimension/measure/chart type, get an interactive chart.",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc --noEmit && vite build",
+    "preview": "vite preview",
+    "test": "vitest run"
+  },
+  "dependencies": {
+    "@clayui/alert": "^3.165.0",
+    "@clayui/button": "^3.165.0",
+    "@clayui/form": "^3.165.0",
+    "@clayui/icon": "^3.165.0",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "recharts": "2.12.7"
+  },
+  "devDependencies": {
+    "@types/react": "^18.3.12",
+    "@types/react-dom": "^18.3.1",
+    "@vitejs/plugin-react": "^4.3.4",
+    "typescript": "^5.6.0",
+    "vite": "^6.0.0",
+    "vitest": "^2.1.0"
+  }
+}
