@@ -1,0 +1,379 @@
+{
+	"pageElement": {
+		"id": "584d1cc6-840c-469d-b353-34fcee74d09d",
+		"type": "Root",
+		"pageElements": [
+			{
+				"definition": {
+					"gutters": true,
+					"indexed": true,
+					"modulesPerRow": 2,
+					"numberOfColumns": 2,
+					"reverseOrder": false,
+					"rowViewports": [
+						{
+							"id": "landscapeMobile",
+							"rowViewportDefinition": {
+								"modulesPerRow": 1
+							}
+						},
+						{
+							"id": "portraitMobile",
+							"rowViewportDefinition": {}
+						},
+						{
+							"id": "tablet",
+							"rowViewportDefinition": {}
+						}
+					],
+					"verticalAlignment": "top"
+				},
+				"id": "e546b6b7-636b-45d8-bae2-8621715876d6",
+				"type": "Row",
+				"pageElements": [
+					{
+						"definition": {
+							"columnViewports": [
+								{
+									"columnViewportDefinition": {
+										"size": 12
+									},
+									"id": "landscapeMobile"
+								},
+								{
+									"columnViewportDefinition": {},
+									"id": "portraitMobile"
+								},
+								{
+									"columnViewportDefinition": {},
+									"id": "tablet"
+								}
+							],
+							"size": 6
+						},
+						"id": "3069a954-bedd-4946-83cc-508c254c593d",
+						"type": "Column",
+						"pageElements": [
+							{
+								"definition": {
+									"widgetInstance": {
+										"widgetConfig": {},
+										"widgetName": "com_liferay_client_extension_web_internal_portlet_ClientExtensionEntryPortlet_20814320218988_LXC_object_dashboard_custom_element"
+									}
+								},
+								"id": "1a5bcbec-80a3-49a8-9f53-217abb5a9dfd",
+								"type": "Widget"
+							}
+						]
+					},
+					{
+						"definition": {
+							"columnViewports": [
+								{
+									"columnViewportDefinition": {
+										"size": 12
+									},
+									"id": "landscapeMobile"
+								},
+								{
+									"columnViewportDefinition": {},
+									"id": "portraitMobile"
+								},
+								{
+									"columnViewportDefinition": {},
+									"id": "tablet"
+								}
+							],
+							"size": 6
+						},
+						"id": "4dcc591c-4051-464d-9a19-072a32602f24",
+						"type": "Column",
+						"pageElements": [
+							{
+								"definition": {
+									"widgetInstance": {
+										"widgetConfig": {},
+										"widgetName": "com_liferay_client_extension_web_internal_portlet_ClientExtensionEntryPortlet_20814320218988_LXC_object_dashboard_custom_element"
+									}
+								},
+								"id": "d9f606e1-62b1-4aaa-a9c5-224cce375e64",
+								"type": "Widget"
+							}
+						]
+					}
+				]
+			},
+			{
+				"definition": {
+					"gutters": true,
+					"indexed": true,
+					"modulesPerRow": 3,
+					"numberOfColumns": 3,
+					"reverseOrder": false,
+					"rowViewports": [
+						{
+							"id": "landscapeMobile",
+							"rowViewportDefinition": {
+								"modulesPerRow": 1
+							}
+						},
+						{
+							"id": "portraitMobile",
+							"rowViewportDefinition": {}
+						},
+						{
+							"id": "tablet",
+							"rowViewportDefinition": {}
+						}
+					],
+					"verticalAlignment": "top"
+				},
+				"id": "bcfa54d3-d2fd-40de-8c17-cac0ff5b17a5",
+				"type": "Row",
+				"pageElements": [
+					{
+						"definition": {
+							"columnViewports": [
+								{
+									"columnViewportDefinition": {
+										"size": 12
+									},
+									"id": "landscapeMobile"
+								},
+								{
+									"columnViewportDefinition": {},
+									"id": "portraitMobile"
+								},
+								{
+									"columnViewportDefinition": {},
+									"id": "tablet"
+								}
+							],
+							"size": 4
+						},
+						"id": "fe76354a-8f20-4495-af48-11ed843c462c",
+						"type": "Column",
+						"pageElements": [
+							{
+								"definition": {
+									"widgetInstance": {
+										"widgetConfig": {},
+										"widgetName": "com_liferay_client_extension_web_internal_portlet_ClientExtensionEntryPortlet_20814320218988_LXC_object_dashboard_custom_element"
+									}
+								},
+								"id": "9758641d-85c5-4403-aa1d-60cffe074aab",
+								"type": "Widget"
+							}
+						]
+					},
+					{
+						"definition": {
+							"columnViewports": [
+								{
+									"columnViewportDefinition": {
+										"size": 12
+									},
+									"id": "landscapeMobile"
+								},
+								{
+									"columnViewportDefinition": {},
+									"id": "portraitMobile"
+								},
+								{
+									"columnViewportDefinition": {},
+									"id": "tablet"
+								}
+							],
+							"size": 4
+						},
+						"id": "fc818f36-0cb0-4199-8ce1-ab78a28556eb",
+						"type": "Column",
+						"pageElements": [
+							{
+								"definition": {
+									"widgetInstance": {
+										"widgetConfig": {},
+										"widgetName": "com_liferay_client_extension_web_internal_portlet_ClientExtensionEntryPortlet_20814320218988_LXC_object_dashboard_custom_element"
+									}
+								},
+								"id": "2413a5b6-a5dd-40f7-b7aa-7f34343c25e0",
+								"type": "Widget"
+							}
+						]
+					},
+					{
+						"definition": {
+							"columnViewports": [
+								{
+									"columnViewportDefinition": {
+										"size": 12
+									},
+									"id": "landscapeMobile"
+								},
+								{
+									"columnViewportDefinition": {},
+									"id": "portraitMobile"
+								},
+								{
+									"columnViewportDefinition": {},
+									"id": "tablet"
+								}
+							],
+							"size": 4
+						},
+						"id": "e41584db-5b24-4951-93ba-11514a7074ba",
+						"type": "Column",
+						"pageElements": [
+							{
+								"definition": {
+									"widgetInstance": {
+										"widgetConfig": {},
+										"widgetName": "com_liferay_client_extension_web_internal_portlet_ClientExtensionEntryPortlet_20814320218988_LXC_object_dashboard_custom_element"
+									}
+								},
+								"id": "a37c2048-a930-4537-aaca-a070c9960c04",
+								"type": "Widget"
+							}
+						]
+					}
+				]
+			},
+			{
+				"definition": {
+					"gutters": true,
+					"indexed": true,
+					"modulesPerRow": 3,
+					"numberOfColumns": 3,
+					"reverseOrder": false,
+					"rowViewports": [
+						{
+							"id": "landscapeMobile",
+							"rowViewportDefinition": {
+								"modulesPerRow": 1
+							}
+						},
+						{
+							"id": "portraitMobile",
+							"rowViewportDefinition": {}
+						},
+						{
+							"id": "tablet",
+							"rowViewportDefinition": {}
+						}
+					],
+					"verticalAlignment": "top"
+				},
+				"id": "07e46832-0351-4a5b-bbb9-23b39850fa16",
+				"type": "Row",
+				"pageElements": [
+					{
+						"definition": {
+							"columnViewports": [
+								{
+									"columnViewportDefinition": {
+										"size": 12
+									},
+									"id": "landscapeMobile"
+								},
+								{
+									"columnViewportDefinition": {},
+									"id": "portraitMobile"
+								},
+								{
+									"columnViewportDefinition": {},
+									"id": "tablet"
+								}
+							],
+							"size": 4
+						},
+						"id": "44e7d369-9211-4059-9125-48562a817de7",
+						"type": "Column",
+						"pageElements": [
+							{
+								"definition": {
+									"widgetInstance": {
+										"widgetConfig": {},
+										"widgetName": "com_liferay_client_extension_web_internal_portlet_ClientExtensionEntryPortlet_20814320218988_LXC_object_dashboard_custom_element"
+									}
+								},
+								"id": "a2715f7d-a754-46b4-a9b8-32d1f883d89b",
+								"type": "Widget"
+							}
+						]
+					},
+					{
+						"definition": {
+							"columnViewports": [
+								{
+									"columnViewportDefinition": {
+										"size": 12
+									},
+									"id": "landscapeMobile"
+								},
+								{
+									"columnViewportDefinition": {},
+									"id": "portraitMobile"
+								},
+								{
+									"columnViewportDefinition": {},
+									"id": "tablet"
+								}
+							],
+							"size": 4
+						},
+						"id": "da4ec6e8-5845-4b5e-b241-30a3111d43fd",
+						"type": "Column",
+						"pageElements": [
+							{
+								"definition": {
+									"widgetInstance": {
+										"widgetConfig": {},
+										"widgetName": "com_liferay_client_extension_web_internal_portlet_ClientExtensionEntryPortlet_20814320218988_LXC_object_dashboard_custom_element"
+									}
+								},
+								"id": "1fe7dc77-9123-4678-b618-22a1ebfb1972",
+								"type": "Widget"
+							}
+						]
+					},
+					{
+						"definition": {
+							"columnViewports": [
+								{
+									"columnViewportDefinition": {
+										"size": 12
+									},
+									"id": "landscapeMobile"
+								},
+								{
+									"columnViewportDefinition": {},
+									"id": "portraitMobile"
+								},
+								{
+									"columnViewportDefinition": {},
+									"id": "tablet"
+								}
+							],
+							"size": 4
+						},
+						"id": "e310b9f3-5fe3-4340-968a-f29185d78e6f",
+						"type": "Column",
+						"pageElements": [
+							{
+								"definition": {
+									"widgetInstance": {
+										"widgetConfig": {},
+										"widgetName": "com_liferay_client_extension_web_internal_portlet_ClientExtensionEntryPortlet_20814320218988_LXC_object_dashboard_custom_element"
+									}
+								},
+								"id": "37fe5677-8738-4c63-ade6-3d7ee035ef60",
+								"type": "Widget"
+							}
+						]
+					}
+				]
+			}
+		]
+	},
+	"settings": {}
+}

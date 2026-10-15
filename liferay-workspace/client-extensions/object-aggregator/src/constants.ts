@@ -35,7 +35,16 @@ export const PAGE_CONCURRENCY = 8;
 export const MAX_ROWS = 100_000;
 
 // How long an aggregated result stays fresh. Dashboards are read-heavy and
-// tolerate slightly stale numbers; this is what turns a 200-request scan into
-// a once-a-minute cost. Note the cache is per user (reads run as the caller),
-// so it is not shared across a team.
-export const CACHE_TTL_MS = 60_000;
+// tolerate stale numbers; this is what turns a 200-request scan into an
+// occasional cost rather than a per-view one. The cache is per user (reads run
+// as the caller), so it is not shared across a team.
+//
+// Measured, and the reason this is not 60s: a page of five server-side charts
+// over one 48k Object runs FIVE separate scans — the cache is keyed by config,
+// so charts of the same Object share nothing. Under that contention a scan
+// takes ~28s against ~9.4s alone, so the page takes over a minute and a 60s TTL
+// expires the first chart before the last one finishes. Every reload then paid
+// full price again.
+//
+// The real fix is to scan once and aggregate many ways; see FOLLOW-UPS.
+export const CACHE_TTL_MS = 600_000;

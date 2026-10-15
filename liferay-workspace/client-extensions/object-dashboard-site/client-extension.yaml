@@ -1,0 +1,21 @@
+# The demo site, delivered as a Client Extension rather than clicked together.
+#
+# Why this and not the page editor: a site initializer is reproducible, lives in
+# the repo as reviewable text, and rebuilds the whole site on deploy. It is also
+# the only route that worked — headless-delivery declares POST on /site-pages in
+# its OpenAPI but the implementation throws UnsupportedOperationException, even
+# for an empty page, so pages cannot be created over REST on 2026.q2.
+object-dashboard-site:
+    name: Object Dashboards Demo Site
+    oAuthApplicationHeadlessServer: object-dashboard-site-oahs
+    siteExternalReferenceCode: OBJECT_DASHBOARDS_DEMO
+    siteName: Object Dashboards
+    type: siteInitializer
+
+object-dashboard-site-oahs:
+    .serviceAddress: localhost:8080
+    .serviceScheme: http
+    name: Object Dashboards Demo Site OAuth Application Headless Server
+    scopes:
+        -   Liferay.Headless.Site.everything
+    type: oAuthApplicationHeadlessServer
