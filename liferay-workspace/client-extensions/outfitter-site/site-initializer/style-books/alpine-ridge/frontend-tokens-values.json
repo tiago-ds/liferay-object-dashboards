@@ -1,0 +1,190 @@
+{
+	"colorBrandPrimary": {
+		"cssVariableMapping": "color-brand-primary",
+		"value": "#2460b7"
+	},
+	"colorBrandPrimaryDarken1": {
+		"cssVariableMapping": "color-brand-primary-darken-1",
+		"value": "#03459a"
+	},
+	"colorBrandPrimaryDarken2": {
+		"cssVariableMapping": "color-brand-primary-darken-2",
+		"value": "#002c76"
+	},
+	"colorBrandPrimaryDarken3": {
+		"cssVariableMapping": "color-brand-primary-darken-3",
+		"value": "#001553"
+	},
+	"colorBrandPrimaryDarken4": {
+		"cssVariableMapping": "color-brand-primary-darken-4",
+		"value": "#000033"
+	},
+	"colorBrandPrimaryDarken5": {
+		"cssVariableMapping": "color-brand-primary-darken-5",
+		"value": "#000008"
+	},
+	"colorBrandPrimaryLighten1": {
+		"cssVariableMapping": "color-brand-primary-lighten-1",
+		"value": "#3c78d2"
+	},
+	"colorBrandPrimaryLighten2": {
+		"cssVariableMapping": "color-brand-primary-lighten-2",
+		"value": "#5e92e1"
+	},
+	"colorBrandPrimaryLighten3": {
+		"cssVariableMapping": "color-brand-primary-lighten-3",
+		"value": "#7eacf1"
+	},
+	"colorBrandPrimaryLighten4": {
+		"cssVariableMapping": "color-brand-primary-lighten-4",
+		"value": "#9ec4fe"
+	},
+	"colorBrandPrimaryLighten5": {
+		"cssVariableMapping": "color-brand-primary-lighten-5",
+		"value": "#bddcff"
+	},
+	"colorBrandPrimaryLighten6": {
+		"cssVariableMapping": "color-brand-primary-lighten-6",
+		"value": "#dcf3ff"
+	},
+	"colorBrandSecondary": {
+		"cssVariableMapping": "color-brand-secondary",
+		"value": "#c28914"
+	},
+	"colorBrandSecondaryDarken1": {
+		"cssVariableMapping": "color-brand-secondary-darken-1",
+		"value": "#9b6500"
+	},
+	"colorBrandSecondaryDarken2": {
+		"cssVariableMapping": "color-brand-secondary-darken-2",
+		"value": "#734400"
+	},
+	"colorBrandSecondaryDarken3": {
+		"cssVariableMapping": "color-brand-secondary-darken-3",
+		"value": "#4c2500"
+	},
+	"colorBrandSecondaryDarken4": {
+		"cssVariableMapping": "color-brand-secondary-darken-4",
+		"value": "#280800"
+	},
+	"colorBrandSecondaryDarken5": {
+		"cssVariableMapping": "color-brand-secondary-darken-5",
+		"value": "#060000"
+	},
+	"colorBrandSecondaryLighten1": {
+		"cssVariableMapping": "color-brand-secondary-lighten-1",
+		"value": "#e5ab44"
+	},
+	"colorBrandSecondaryLighten2": {
+		"cssVariableMapping": "color-brand-secondary-lighten-2",
+		"value": "#ffcf7c"
+	},
+	"colorBrandSecondaryLighten3": {
+		"cssVariableMapping": "color-brand-secondary-lighten-3",
+		"value": "#fff9d8"
+	},
+	"colorBrandSecondaryLighten4": {
+		"cssVariableMapping": "color-brand-secondary-lighten-4",
+		"value": "#fff9d9"
+	},
+	"colorBrandSecondaryLighten5": {
+		"cssVariableMapping": "color-brand-secondary-lighten-5",
+		"value": "#fff9d8"
+	},
+	"colorBrandSecondaryLighten6": {
+		"cssVariableMapping": "color-brand-secondary-lighten-6",
+		"value": "#fff9d9"
+	},
+	"colorActionPrimaryDefault": {
+		"cssVariableMapping": "color-action-primary-default",
+		"value": "#2460b7"
+	},
+	"colorActionPrimaryHover": {
+		"cssVariableMapping": "color-action-primary-hover",
+		"value": "#03459a"
+	},
+	"colorActionPrimaryActive": {
+		"cssVariableMapping": "color-action-primary-active",
+		"value": "#002c76"
+	},
+	"colorActionPrimaryDisabled": {
+		"cssVariableMapping": "color-action-primary-disabled",
+		"value": "#7eacf1"
+	},
+	"colorActionPrimaryHoverLighten": {
+		"cssVariableMapping": "color-action-primary-hover-lighten",
+		"value": "#dcf3ff"
+	},
+	"colorActionPrimaryActiveLighten": {
+		"cssVariableMapping": "color-action-primary-active-lighten",
+		"value": "#bddcff"
+	},
+	"colorActionSecondaryDefault": {
+		"cssVariableMapping": "color-action-secondary-default",
+		"value": "#c28914"
+	},
+	"colorActionSecondaryHover": {
+		"cssVariableMapping": "color-action-secondary-hover",
+		"value": "#9b6500"
+	},
+	"colorActionSecondaryActive": {
+		"cssVariableMapping": "color-action-secondary-active",
+		"value": "#734400"
+	},
+	"colorActionSecondaryDisabled": {
+		"cssVariableMapping": "color-action-secondary-disabled",
+		"value": "#fff9d8"
+	},
+	"colorActionSecondaryHoverLighten": {
+		"cssVariableMapping": "color-action-secondary-hover-lighten",
+		"value": "#fff9d9"
+	},
+	"colorActionSecondaryActiveLighten": {
+		"cssVariableMapping": "color-action-secondary-active-lighten",
+		"value": "#fff9d8"
+	},
+	"linkVisitedColor": {
+		"cssVariableMapping": "link-visited-color",
+		"value": "#002c76"
+	},
+	"colorChart0": {
+		"cssVariableMapping": "color-chart-0",
+		"value": "#2460b7"
+	},
+	"colorChart1": {
+		"cssVariableMapping": "color-chart-1",
+		"value": "#c28914"
+	},
+	"colorChart2": {
+		"cssVariableMapping": "color-chart-2",
+		"value": "#8b291d"
+	},
+	"colorChart3": {
+		"cssVariableMapping": "color-chart-3",
+		"value": "#758fe8"
+	},
+	"colorChart4": {
+		"cssVariableMapping": "color-chart-4",
+		"value": "#bc5365"
+	},
+	"colorChart5": {
+		"cssVariableMapping": "color-chart-5",
+		"value": "#796a00"
+	},
+	"colorChart6": {
+		"cssVariableMapping": "color-chart-6",
+		"value": "#008e9b"
+	},
+	"colorChart7": {
+		"cssVariableMapping": "color-chart-7",
+		"value": "#6a377a"
+	},
+	"fontFamilyBase": {
+		"cssVariableMapping": "font-family-base",
+		"value": "'Source Sans 3', system-ui, -apple-system, 'Segoe UI', Roboto, Arial, sans-serif"
+	},
+	"fontFamilySansSerif": {
+		"cssVariableMapping": "font-family-sans-serif",
+		"value": "'Source Sans 3', system-ui, -apple-system, 'Segoe UI', Roboto, Arial, sans-serif"
+	}
+}

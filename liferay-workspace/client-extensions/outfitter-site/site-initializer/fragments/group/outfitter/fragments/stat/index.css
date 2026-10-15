@@ -1,0 +1,22 @@
+.of-stat { padding: 0.5rem 0; }
+
+.of-stat-value {
+	font-size: clamp(2.5rem, 5vw, 3.5rem);
+	font-weight: 700;
+	line-height: 1;
+	margin: 0;
+	/* Tabular figures so a row of stats does not jitter between brands. */
+	font-variant-numeric: tabular-nums;
+}
+
+.of-stat-label {
+	font-size: 1rem;
+	font-weight: 600;
+	margin: 0.5rem 0 0;
+}
+
+.of-stat-note {
+	color: var(--color-neutral-6, #716c7f);
+	font-size: 0.875rem;
+	margin: 0.25rem 0 0;
+}

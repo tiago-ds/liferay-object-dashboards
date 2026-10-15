@@ -1,0 +1,1828 @@
+{
+	"pageElement": {
+		"id": "12e937ad-26b2-5710-8a6f-e3819e6e5ab5",
+		"pageElements": [
+			{
+				"definition": {
+					"fragment": {
+						"key": "hero",
+						"siteKey": "[$GROUP_KEY$]"
+					},
+					"fragmentConfig": {
+						"height": "tall",
+						"align": "left",
+						"showEyebrow": true,
+						"showSecondaryCta": true
+					},
+					"fragmentFields": [
+						{
+							"id": "backgroundImage",
+							"value": {
+								"backgroundFragmentImage": {
+									"url": {
+										"mapping": {
+											"fieldKey": "FileEntry_previewImage",
+											"itemReference": {
+												"className": "com.liferay.portal.kernel.repository.model.FileEntry",
+												"classPK": "[#DOCUMENT_FILE_ENTRY_ID:/site-initializer/documents/group/hero-alpine.jpg#]"
+											}
+										}
+									}
+								}
+							}
+						},
+						{
+							"id": "eyebrow",
+							"value": {
+								"text": {
+									"value_i18n": {
+										"en_US": "Alpine & coastal hire"
+									}
+								}
+							}
+						},
+						{
+							"id": "title",
+							"value": {
+								"text": {
+									"value_i18n": {
+										"en_US": "Gear that has already been where you are going"
+									}
+								}
+							}
+						},
+						{
+							"id": "lead",
+							"value": {
+								"text": {
+									"value_i18n": {
+										"en_US": "Forty-eight items, four depots, checked between every hire. Book by the day; collect on your way out."
+									}
+								}
+							}
+						},
+						{
+							"id": "cta-primary",
+							"value": {
+								"fragmentLink": {
+									"value": {
+										"href": {
+											"value": "/web/outfitter/catalogue"
+										}
+									}
+								},
+								"text": {
+									"value_i18n": {
+										"en_US": "Browse the gear"
+									}
+								}
+							}
+						},
+						{
+							"id": "cta-secondary",
+							"value": {
+								"fragmentLink": {
+									"value": {
+										"href": {
+											"value": "/web/outfitter/how-it-works"
+										}
+									}
+								},
+								"text": {
+									"value_i18n": {
+										"en_US": "How hiring works"
+									}
+								}
+							}
+						}
+					],
+					"fragmentStyle": {},
+					"indexed": true
+				},
+				"id": "b108fbba-cbca-53b9-8324-2a7e60eb9977",
+				"type": "Fragment"
+			},
+			{
+				"definition": {
+					"indexed": true,
+					"layout": {
+						"contentDisplay": "Block",
+						"widthType": "Fixed"
+					},
+					"fragmentStyle": {
+						"paddingBottom": "7",
+						"paddingTop": "7"
+					}
+				},
+				"id": "eb30c10a-dc98-54a0-ac00-a66ca28059bc",
+				"pageElements": [
+					{
+						"definition": {
+							"fragment": {
+								"key": "section-intro",
+								"siteKey": "[$GROUP_KEY$]"
+							},
+							"fragmentConfig": {
+								"align": "left",
+								"spacing": "normal",
+								"showEyebrow": true,
+								"showLead": true
+							},
+							"fragmentFields": [
+								{
+									"id": "title",
+									"value": {
+										"text": {
+											"value_i18n": {
+												"en_US": "Owning the kit is the expensive part of going outside"
+											}
+										}
+									}
+								},
+								{
+									"id": "eyebrow",
+									"value": {
+										"text": {
+											"value_i18n": {
+												"en_US": "Why hire"
+											}
+										}
+									}
+								},
+								{
+									"id": "lead",
+									"value": {
+										"text": {
+											"value_i18n": {
+												"en_US": "You need a four-season tent twice a year. We keep it serviced the other three hundred and sixty-three days."
+											}
+										}
+									}
+								}
+							],
+							"fragmentStyle": {},
+							"indexed": true
+						},
+						"id": "1d48ddc7-fb2a-5a1e-947b-1527bc96e881",
+						"type": "Fragment"
+					},
+					{
+						"definition": {
+							"gutters": true,
+							"indexed": true,
+							"modulesPerRow": 3,
+							"numberOfColumns": 3,
+							"reverseOrder": false,
+							"rowViewports": [
+								{
+									"id": "landscapeMobile",
+									"rowViewportDefinition": {
+										"modulesPerRow": 1
+									}
+								},
+								{
+									"id": "portraitMobile",
+									"rowViewportDefinition": {
+										"modulesPerRow": 1
+									}
+								},
+								{
+									"id": "tablet",
+									"rowViewportDefinition": {}
+								}
+							],
+							"verticalAlignment": "top"
+						},
+						"id": "6eb69788-3d58-5208-8696-20fdb6e2ea7f",
+						"type": "Row",
+						"pageElements": [
+							{
+								"definition": {
+									"columnViewports": [
+										{
+											"id": "landscapeMobile",
+											"columnViewportDefinition": {
+												"size": 12
+											}
+										},
+										{
+											"id": "portraitMobile",
+											"columnViewportDefinition": {
+												"size": 12
+											}
+										},
+										{
+											"id": "tablet",
+											"columnViewportDefinition": {
+												"size": 12
+											}
+										}
+									],
+									"size": 4
+								},
+								"id": "81379a3d-4d29-5850-9266-2d1fdd63d35c",
+								"pageElements": [
+									{
+										"definition": {
+											"fragment": {
+												"key": "feature-card",
+												"siteKey": "[$GROUP_KEY$]"
+											},
+											"fragmentConfig": {
+												"icon": "shield-check",
+												"tone": "card"
+											},
+											"fragmentFields": [
+												{
+													"id": "title",
+													"value": {
+														"text": {
+															"value_i18n": {
+																"en_US": "Checked between hires"
+															}
+														}
+													}
+												},
+												{
+													"id": "body",
+													"value": {
+														"text": {
+															"value_i18n": {
+																"en_US": "Every item comes back to a depot, gets inspected, and is logged out of service if anything is wrong."
+															}
+														}
+													}
+												}
+											],
+											"fragmentStyle": {},
+											"indexed": true
+										},
+										"id": "392e6ad8-c8db-5c60-909f-2c6f62e71d35",
+										"type": "Fragment"
+									}
+								],
+								"type": "Column"
+							},
+							{
+								"definition": {
+									"columnViewports": [
+										{
+											"id": "landscapeMobile",
+											"columnViewportDefinition": {
+												"size": 12
+											}
+										},
+										{
+											"id": "portraitMobile",
+											"columnViewportDefinition": {
+												"size": 12
+											}
+										},
+										{
+											"id": "tablet",
+											"columnViewportDefinition": {
+												"size": 12
+											}
+										}
+									],
+									"size": 4
+								},
+								"id": "1e40ec66-c5f9-5e1f-8217-82c8a347b802",
+								"pageElements": [
+									{
+										"definition": {
+											"fragment": {
+												"key": "feature-card",
+												"siteKey": "[$GROUP_KEY$]"
+											},
+											"fragmentConfig": {
+												"icon": "map-marker",
+												"tone": "card"
+											},
+											"fragmentFields": [
+												{
+													"id": "title",
+													"value": {
+														"text": {
+															"value_i18n": {
+																"en_US": "Four depots"
+															}
+														}
+													}
+												},
+												{
+													"id": "body",
+													"value": {
+														"text": {
+															"value_i18n": {
+																"en_US": "Collect from whichever one is on your route. Return to any of them \u2014 we move stock between depots ourselves."
+															}
+														}
+													}
+												}
+											],
+											"fragmentStyle": {},
+											"indexed": true
+										},
+										"id": "a5a0d472-810b-5131-b79a-4ce9733af20f",
+										"type": "Fragment"
+									}
+								],
+								"type": "Column"
+							},
+							{
+								"definition": {
+									"columnViewports": [
+										{
+											"id": "landscapeMobile",
+											"columnViewportDefinition": {
+												"size": 12
+											}
+										},
+										{
+											"id": "portraitMobile",
+											"columnViewportDefinition": {
+												"size": 12
+											}
+										},
+										{
+											"id": "tablet",
+											"columnViewportDefinition": {
+												"size": 12
+											}
+										}
+									],
+									"size": 4
+								},
+								"id": "dd58b809-eef9-5129-9f31-7e0f29f138ce",
+								"pageElements": [
+									{
+										"definition": {
+											"fragment": {
+												"key": "feature-card",
+												"siteKey": "[$GROUP_KEY$]"
+											},
+											"fragmentConfig": {
+												"icon": "time",
+												"tone": "card"
+											},
+											"fragmentFields": [
+												{
+													"id": "title",
+													"value": {
+														"text": {
+															"value_i18n": {
+																"en_US": "Priced by the day"
+															}
+														}
+													}
+												},
+												{
+													"id": "body",
+													"value": {
+														"text": {
+															"value_i18n": {
+																"en_US": "No weekly minimum. The rate drops from the fourth day, which is when most trips actually start costing money."
+															}
+														}
+													}
+												}
+											],
+											"fragmentStyle": {},
+											"indexed": true
+										},
+										"id": "0caa7489-55ee-5ebe-b4f3-cb97915c2a33",
+										"type": "Fragment"
+									}
+								],
+								"type": "Column"
+							}
+						]
+					}
+				],
+				"type": "Section"
+			},
+			{
+				"definition": {
+					"indexed": true,
+					"layout": {
+						"contentDisplay": "Block",
+						"widthType": "Fixed"
+					},
+					"fragmentStyle": {
+						"paddingBottom": "7"
+					}
+				},
+				"id": "4b0eac6b-e695-5e6b-820f-46316c9facca",
+				"pageElements": [
+					{
+						"definition": {
+							"fragment": {
+								"key": "section-intro",
+								"siteKey": "[$GROUP_KEY$]"
+							},
+							"fragmentConfig": {
+								"align": "left",
+								"spacing": "normal",
+								"showEyebrow": true,
+								"showLead": true
+							},
+							"fragmentFields": [
+								{
+									"id": "title",
+									"value": {
+										"text": {
+											"value_i18n": {
+												"en_US": "Six things to hire"
+											}
+										}
+									}
+								},
+								{
+									"id": "eyebrow",
+									"value": {
+										"text": {
+											"value_i18n": {
+												"en_US": "The fleet"
+											}
+										}
+									}
+								},
+								{
+									"id": "lead",
+									"value": {
+										"text": {
+											"value_i18n": {
+												"en_US": "Browse by what you are doing, not by what it is called."
+											}
+										}
+									}
+								}
+							],
+							"fragmentStyle": {},
+							"indexed": true
+						},
+						"id": "1d9b1b3d-975f-5d4a-9509-f23c867dc074",
+						"type": "Fragment"
+					},
+					{
+						"definition": {
+							"gutters": true,
+							"indexed": true,
+							"modulesPerRow": 3,
+							"numberOfColumns": 3,
+							"reverseOrder": false,
+							"rowViewports": [
+								{
+									"id": "landscapeMobile",
+									"rowViewportDefinition": {
+										"modulesPerRow": 1
+									}
+								},
+								{
+									"id": "portraitMobile",
+									"rowViewportDefinition": {
+										"modulesPerRow": 1
+									}
+								},
+								{
+									"id": "tablet",
+									"rowViewportDefinition": {}
+								}
+							],
+							"verticalAlignment": "top"
+						},
+						"id": "f903e843-e9a8-537a-96eb-4d2ca1a4e03f",
+						"type": "Row",
+						"pageElements": [
+							{
+								"definition": {
+									"columnViewports": [
+										{
+											"id": "landscapeMobile",
+											"columnViewportDefinition": {
+												"size": 12
+											}
+										},
+										{
+											"id": "portraitMobile",
+											"columnViewportDefinition": {
+												"size": 12
+											}
+										},
+										{
+											"id": "tablet",
+											"columnViewportDefinition": {
+												"size": 12
+											}
+										}
+									],
+									"size": 4
+								},
+								"id": "d34f93ca-07f4-5cc3-a8b0-749cd6da8366",
+								"pageElements": [
+									{
+										"definition": {
+											"fragment": {
+												"key": "category-card",
+												"siteKey": "[$GROUP_KEY$]"
+											},
+											"fragmentConfig": {},
+											"fragmentFields": [
+												{
+													"id": "backgroundImage",
+													"value": {
+														"backgroundFragmentImage": {
+															"url": {
+																"mapping": {
+																	"fieldKey": "FileEntry_previewImage",
+																	"itemReference": {
+																		"className": "com.liferay.portal.kernel.repository.model.FileEntry",
+																		"classPK": "[#DOCUMENT_FILE_ENTRY_ID:/site-initializer/documents/group/cat-shelter.jpg#]"
+																	}
+																}
+															}
+														}
+													}
+												},
+												{
+													"id": "title",
+													"value": {
+														"text": {
+															"value_i18n": {
+																"en_US": "Shelter"
+															}
+														}
+													}
+												},
+												{
+													"id": "meta",
+													"value": {
+														"text": {
+															"value_i18n": {
+																"en_US": "Tents, tarps and bivvies"
+															}
+														}
+													}
+												}
+											],
+											"fragmentStyle": {},
+											"indexed": true,
+											"fragmentLink": {
+												"value": {
+													"href": {
+														"value": "/web/outfitter/catalogue"
+													}
+												}
+											}
+										},
+										"id": "4cffdf6e-7d81-5a49-b0e4-30137774d6c9",
+										"type": "Fragment"
+									}
+								],
+								"type": "Column"
+							},
+							{
+								"definition": {
+									"columnViewports": [
+										{
+											"id": "landscapeMobile",
+											"columnViewportDefinition": {
+												"size": 12
+											}
+										},
+										{
+											"id": "portraitMobile",
+											"columnViewportDefinition": {
+												"size": 12
+											}
+										},
+										{
+											"id": "tablet",
+											"columnViewportDefinition": {
+												"size": 12
+											}
+										}
+									],
+									"size": 4
+								},
+								"id": "04b239a5-8287-5656-a9f2-36f2153213c1",
+								"pageElements": [
+									{
+										"definition": {
+											"fragment": {
+												"key": "category-card",
+												"siteKey": "[$GROUP_KEY$]"
+											},
+											"fragmentConfig": {},
+											"fragmentFields": [
+												{
+													"id": "backgroundImage",
+													"value": {
+														"backgroundFragmentImage": {
+															"url": {
+																"mapping": {
+																	"fieldKey": "FileEntry_previewImage",
+																	"itemReference": {
+																		"className": "com.liferay.portal.kernel.repository.model.FileEntry",
+																		"classPK": "[#DOCUMENT_FILE_ENTRY_ID:/site-initializer/documents/group/cat-paddle.jpg#]"
+																	}
+																}
+															}
+														}
+													}
+												},
+												{
+													"id": "title",
+													"value": {
+														"text": {
+															"value_i18n": {
+																"en_US": "Paddle"
+															}
+														}
+													}
+												},
+												{
+													"id": "meta",
+													"value": {
+														"text": {
+															"value_i18n": {
+																"en_US": "Kayaks, packrafts, paddles"
+															}
+														}
+													}
+												}
+											],
+											"fragmentStyle": {},
+											"indexed": true,
+											"fragmentLink": {
+												"value": {
+													"href": {
+														"value": "/web/outfitter/catalogue"
+													}
+												}
+											}
+										},
+										"id": "6ee3bd10-b27a-594d-a674-97b5cee7879d",
+										"type": "Fragment"
+									}
+								],
+								"type": "Column"
+							},
+							{
+								"definition": {
+									"columnViewports": [
+										{
+											"id": "landscapeMobile",
+											"columnViewportDefinition": {
+												"size": 12
+											}
+										},
+										{
+											"id": "portraitMobile",
+											"columnViewportDefinition": {
+												"size": 12
+											}
+										},
+										{
+											"id": "tablet",
+											"columnViewportDefinition": {
+												"size": 12
+											}
+										}
+									],
+									"size": 4
+								},
+								"id": "f269ff6e-3182-58f2-84d5-e9fc7f18ecb3",
+								"pageElements": [
+									{
+										"definition": {
+											"fragment": {
+												"key": "category-card",
+												"siteKey": "[$GROUP_KEY$]"
+											},
+											"fragmentConfig": {},
+											"fragmentFields": [
+												{
+													"id": "backgroundImage",
+													"value": {
+														"backgroundFragmentImage": {
+															"url": {
+																"mapping": {
+																	"fieldKey": "FileEntry_previewImage",
+																	"itemReference": {
+																		"className": "com.liferay.portal.kernel.repository.model.FileEntry",
+																		"classPK": "[#DOCUMENT_FILE_ENTRY_ID:/site-initializer/documents/group/cat-climb.jpg#]"
+																	}
+																}
+															}
+														}
+													}
+												},
+												{
+													"id": "title",
+													"value": {
+														"text": {
+															"value_i18n": {
+																"en_US": "Climb"
+															}
+														}
+													}
+												},
+												{
+													"id": "meta",
+													"value": {
+														"text": {
+															"value_i18n": {
+																"en_US": "Racks, ropes, axes, harnesses"
+															}
+														}
+													}
+												}
+											],
+											"fragmentStyle": {},
+											"indexed": true,
+											"fragmentLink": {
+												"value": {
+													"href": {
+														"value": "/web/outfitter/catalogue"
+													}
+												}
+											}
+										},
+										"id": "4b560cd0-5ff0-5d90-a6a2-a6166faa2e12",
+										"type": "Fragment"
+									}
+								],
+								"type": "Column"
+							}
+						]
+					},
+					{
+						"definition": {
+							"gutters": true,
+							"indexed": true,
+							"modulesPerRow": 3,
+							"numberOfColumns": 3,
+							"reverseOrder": false,
+							"rowViewports": [
+								{
+									"id": "landscapeMobile",
+									"rowViewportDefinition": {
+										"modulesPerRow": 1
+									}
+								},
+								{
+									"id": "portraitMobile",
+									"rowViewportDefinition": {
+										"modulesPerRow": 1
+									}
+								},
+								{
+									"id": "tablet",
+									"rowViewportDefinition": {}
+								}
+							],
+							"verticalAlignment": "top"
+						},
+						"id": "01bd8388-df8a-5e21-b99a-f345e6c7d5d4",
+						"type": "Row",
+						"pageElements": [
+							{
+								"definition": {
+									"columnViewports": [
+										{
+											"id": "landscapeMobile",
+											"columnViewportDefinition": {
+												"size": 12
+											}
+										},
+										{
+											"id": "portraitMobile",
+											"columnViewportDefinition": {
+												"size": 12
+											}
+										},
+										{
+											"id": "tablet",
+											"columnViewportDefinition": {
+												"size": 12
+											}
+										}
+									],
+									"size": 4
+								},
+								"id": "ad100f11-0c4e-5a6e-ae00-68e4db598b14",
+								"pageElements": [
+									{
+										"definition": {
+											"fragment": {
+												"key": "category-card",
+												"siteKey": "[$GROUP_KEY$]"
+											},
+											"fragmentConfig": {},
+											"fragmentFields": [
+												{
+													"id": "backgroundImage",
+													"value": {
+														"backgroundFragmentImage": {
+															"url": {
+																"mapping": {
+																	"fieldKey": "FileEntry_previewImage",
+																	"itemReference": {
+																		"className": "com.liferay.portal.kernel.repository.model.FileEntry",
+																		"classPK": "[#DOCUMENT_FILE_ENTRY_ID:/site-initializer/documents/group/cat-navigation.jpg#]"
+																	}
+																}
+															}
+														}
+													}
+												},
+												{
+													"id": "title",
+													"value": {
+														"text": {
+															"value_i18n": {
+																"en_US": "Navigation"
+															}
+														}
+													}
+												},
+												{
+													"id": "meta",
+													"value": {
+														"text": {
+															"value_i18n": {
+																"en_US": "Satellite, VHF, GPS, charts"
+															}
+														}
+													}
+												}
+											],
+											"fragmentStyle": {},
+											"indexed": true,
+											"fragmentLink": {
+												"value": {
+													"href": {
+														"value": "/web/outfitter/catalogue"
+													}
+												}
+											}
+										},
+										"id": "edc41409-269b-5c70-be14-a405ee2873c0",
+										"type": "Fragment"
+									}
+								],
+								"type": "Column"
+							},
+							{
+								"definition": {
+									"columnViewports": [
+										{
+											"id": "landscapeMobile",
+											"columnViewportDefinition": {
+												"size": 12
+											}
+										},
+										{
+											"id": "portraitMobile",
+											"columnViewportDefinition": {
+												"size": 12
+											}
+										},
+										{
+											"id": "tablet",
+											"columnViewportDefinition": {
+												"size": 12
+											}
+										}
+									],
+									"size": 4
+								},
+								"id": "340733cd-6b4c-5db2-8cde-23364195aa11",
+								"pageElements": [
+									{
+										"definition": {
+											"fragment": {
+												"key": "category-card",
+												"siteKey": "[$GROUP_KEY$]"
+											},
+											"fragmentConfig": {},
+											"fragmentFields": [
+												{
+													"id": "backgroundImage",
+													"value": {
+														"backgroundFragmentImage": {
+															"url": {
+																"mapping": {
+																	"fieldKey": "FileEntry_previewImage",
+																	"itemReference": {
+																		"className": "com.liferay.portal.kernel.repository.model.FileEntry",
+																		"classPK": "[#DOCUMENT_FILE_ENTRY_ID:/site-initializer/documents/group/cat-sleep.jpg#]"
+																	}
+																}
+															}
+														}
+													}
+												},
+												{
+													"id": "title",
+													"value": {
+														"text": {
+															"value_i18n": {
+																"en_US": "Sleep"
+															}
+														}
+													}
+												},
+												{
+													"id": "meta",
+													"value": {
+														"text": {
+															"value_i18n": {
+																"en_US": "Bags, quilts, mats, stoves"
+															}
+														}
+													}
+												}
+											],
+											"fragmentStyle": {},
+											"indexed": true,
+											"fragmentLink": {
+												"value": {
+													"href": {
+														"value": "/web/outfitter/catalogue"
+													}
+												}
+											}
+										},
+										"id": "71c9779e-d21e-5844-af20-9656466907eb",
+										"type": "Fragment"
+									}
+								],
+								"type": "Column"
+							},
+							{
+								"definition": {
+									"columnViewports": [
+										{
+											"id": "landscapeMobile",
+											"columnViewportDefinition": {
+												"size": 12
+											}
+										},
+										{
+											"id": "portraitMobile",
+											"columnViewportDefinition": {
+												"size": 12
+											}
+										},
+										{
+											"id": "tablet",
+											"columnViewportDefinition": {
+												"size": 12
+											}
+										}
+									],
+									"size": 4
+								},
+								"id": "bd865f2e-4da8-54a6-9ff8-13eef2eee851",
+								"pageElements": [
+									{
+										"definition": {
+											"fragment": {
+												"key": "category-card",
+												"siteKey": "[$GROUP_KEY$]"
+											},
+											"fragmentConfig": {},
+											"fragmentFields": [
+												{
+													"id": "backgroundImage",
+													"value": {
+														"backgroundFragmentImage": {
+															"url": {
+																"mapping": {
+																	"fieldKey": "FileEntry_previewImage",
+																	"itemReference": {
+																		"className": "com.liferay.portal.kernel.repository.model.FileEntry",
+																		"classPK": "[#DOCUMENT_FILE_ENTRY_ID:/site-initializer/documents/group/cat-pack.jpg#]"
+																	}
+																}
+															}
+														}
+													}
+												},
+												{
+													"id": "title",
+													"value": {
+														"text": {
+															"value_i18n": {
+																"en_US": "Pack"
+															}
+														}
+													}
+												},
+												{
+													"id": "meta",
+													"value": {
+														"text": {
+															"value_i18n": {
+																"en_US": "Haul bags, dry barrels, day packs"
+															}
+														}
+													}
+												}
+											],
+											"fragmentStyle": {},
+											"indexed": true,
+											"fragmentLink": {
+												"value": {
+													"href": {
+														"value": "/web/outfitter/catalogue"
+													}
+												}
+											}
+										},
+										"id": "9a823a29-66ea-50cc-958b-349a7947a1f9",
+										"type": "Fragment"
+									}
+								],
+								"type": "Column"
+							}
+						]
+					}
+				],
+				"type": "Section"
+			},
+			{
+				"definition": {
+					"fragment": {
+						"key": "media-band",
+						"siteKey": "[$GROUP_KEY$]"
+					},
+					"fragmentConfig": {
+						"height": "tall",
+						"align": "left",
+						"scrim": "medium",
+						"showCta": true
+					},
+					"fragmentFields": [
+						{
+							"id": "backgroundImage",
+							"value": {
+								"backgroundFragmentImage": {
+									"url": {
+										"mapping": {
+											"fieldKey": "FileEntry_previewImage",
+											"itemReference": {
+												"className": "com.liferay.portal.kernel.repository.model.FileEntry",
+												"classPK": "[#DOCUMENT_FILE_ENTRY_ID:/site-initializer/documents/group/band-fjord.jpg#]"
+											}
+										}
+									}
+								}
+							}
+						},
+						{
+							"id": "title",
+							"value": {
+								"text": {
+									"value_i18n": {
+										"en_US": "Three days of water, one bag of kit"
+									}
+								}
+							}
+						},
+						{
+							"id": "lead",
+							"value": {
+								"text": {
+									"value_i18n": {
+										"en_US": "Sea kayaks, dry barrels and a satellite messenger, from the Fjordside depot."
+									}
+								}
+							}
+						},
+						{
+							"id": "cta",
+							"value": {
+								"fragmentLink": {
+									"value": {
+										"href": {
+											"value": "/web/outfitter/catalogue"
+										}
+									}
+								},
+								"text": {
+									"value_i18n": {
+										"en_US": "See the coastal range"
+									}
+								}
+							}
+						}
+					],
+					"fragmentStyle": {},
+					"indexed": true
+				},
+				"id": "d3657fca-b93b-5f2e-8df8-b8f74c04ae65",
+				"type": "Fragment"
+			},
+			{
+				"definition": {
+					"indexed": true,
+					"layout": {
+						"contentDisplay": "Block",
+						"widthType": "Fixed"
+					},
+					"fragmentStyle": {
+						"paddingBottom": "7",
+						"paddingTop": "7"
+					}
+				},
+				"id": "a8c826b8-a3a8-5c53-b9f8-59ffff292bac",
+				"pageElements": [
+					{
+						"definition": {
+							"gutters": true,
+							"indexed": true,
+							"modulesPerRow": 4,
+							"numberOfColumns": 4,
+							"reverseOrder": false,
+							"rowViewports": [
+								{
+									"id": "landscapeMobile",
+									"rowViewportDefinition": {
+										"modulesPerRow": 2
+									}
+								},
+								{
+									"id": "portraitMobile",
+									"rowViewportDefinition": {
+										"modulesPerRow": 2
+									}
+								},
+								{
+									"id": "tablet",
+									"rowViewportDefinition": {}
+								}
+							],
+							"verticalAlignment": "top"
+						},
+						"id": "abc2dd15-baf1-5400-8c43-035c5520c398",
+						"type": "Row",
+						"pageElements": [
+							{
+								"definition": {
+									"columnViewports": [
+										{
+											"id": "landscapeMobile",
+											"columnViewportDefinition": {
+												"size": 12
+											}
+										},
+										{
+											"id": "portraitMobile",
+											"columnViewportDefinition": {
+												"size": 12
+											}
+										},
+										{
+											"id": "tablet",
+											"columnViewportDefinition": {
+												"size": 12
+											}
+										}
+									],
+									"size": 3
+								},
+								"id": "ce09206b-a6d9-5db7-a058-87d02be5a940",
+								"pageElements": [
+									{
+										"definition": {
+											"fragment": {
+												"key": "stat",
+												"siteKey": "[$GROUP_KEY$]"
+											},
+											"fragmentConfig": {
+												"align": "left",
+												"showNote": true
+											},
+											"fragmentFields": [
+												{
+													"id": "value",
+													"value": {
+														"text": {
+															"value_i18n": {
+																"en_US": "48"
+															}
+														}
+													}
+												},
+												{
+													"id": "label",
+													"value": {
+														"text": {
+															"value_i18n": {
+																"en_US": "Items in the fleet"
+															}
+														}
+													}
+												},
+												{
+													"id": "note",
+													"value": {
+														"text": {
+															"value_i18n": {
+																"en_US": "Counted at the last stock check"
+															}
+														}
+													}
+												}
+											],
+											"fragmentStyle": {},
+											"indexed": true
+										},
+										"id": "238bce45-9713-5443-a9ad-a1c85021dd1d",
+										"type": "Fragment"
+									}
+								],
+								"type": "Column"
+							},
+							{
+								"definition": {
+									"columnViewports": [
+										{
+											"id": "landscapeMobile",
+											"columnViewportDefinition": {
+												"size": 12
+											}
+										},
+										{
+											"id": "portraitMobile",
+											"columnViewportDefinition": {
+												"size": 12
+											}
+										},
+										{
+											"id": "tablet",
+											"columnViewportDefinition": {
+												"size": 12
+											}
+										}
+									],
+									"size": 3
+								},
+								"id": "a790c224-9822-5441-99ec-625627250a63",
+								"pageElements": [
+									{
+										"definition": {
+											"fragment": {
+												"key": "stat",
+												"siteKey": "[$GROUP_KEY$]"
+											},
+											"fragmentConfig": {
+												"align": "left",
+												"showNote": true
+											},
+											"fragmentFields": [
+												{
+													"id": "value",
+													"value": {
+														"text": {
+															"value_i18n": {
+																"en_US": "4"
+															}
+														}
+													}
+												},
+												{
+													"id": "label",
+													"value": {
+														"text": {
+															"value_i18n": {
+																"en_US": "Depots"
+															}
+														}
+													}
+												},
+												{
+													"id": "note",
+													"value": {
+														"text": {
+															"value_i18n": {
+																"en_US": "Collect at one, return to any"
+															}
+														}
+													}
+												}
+											],
+											"fragmentStyle": {},
+											"indexed": true
+										},
+										"id": "147c3561-ecc3-59de-aa65-95a4c95ecba8",
+										"type": "Fragment"
+									}
+								],
+								"type": "Column"
+							},
+							{
+								"definition": {
+									"columnViewports": [
+										{
+											"id": "landscapeMobile",
+											"columnViewportDefinition": {
+												"size": 12
+											}
+										},
+										{
+											"id": "portraitMobile",
+											"columnViewportDefinition": {
+												"size": 12
+											}
+										},
+										{
+											"id": "tablet",
+											"columnViewportDefinition": {
+												"size": 12
+											}
+										}
+									],
+									"size": 3
+								},
+								"id": "04a7d8e4-4fbf-5737-8b57-65cfad6459e9",
+								"pageElements": [
+									{
+										"definition": {
+											"fragment": {
+												"key": "stat",
+												"siteKey": "[$GROUP_KEY$]"
+											},
+											"fragmentConfig": {
+												"align": "left",
+												"showNote": true
+											},
+											"fragmentFields": [
+												{
+													"id": "value",
+													"value": {
+														"text": {
+															"value_i18n": {
+																"en_US": "9,000"
+															}
+														}
+													}
+												},
+												{
+													"id": "label",
+													"value": {
+														"text": {
+															"value_i18n": {
+																"en_US": "Hires logged"
+															}
+														}
+													}
+												},
+												{
+													"id": "note",
+													"value": {
+														"text": {
+															"value_i18n": {
+																"en_US": "Since the Objects behind this site were seeded"
+															}
+														}
+													}
+												}
+											],
+											"fragmentStyle": {},
+											"indexed": true
+										},
+										"id": "511966fb-dd1b-5ef1-90ee-a5a274685ab5",
+										"type": "Fragment"
+									}
+								],
+								"type": "Column"
+							},
+							{
+								"definition": {
+									"columnViewports": [
+										{
+											"id": "landscapeMobile",
+											"columnViewportDefinition": {
+												"size": 12
+											}
+										},
+										{
+											"id": "portraitMobile",
+											"columnViewportDefinition": {
+												"size": 12
+											}
+										},
+										{
+											"id": "tablet",
+											"columnViewportDefinition": {
+												"size": 12
+											}
+										}
+									],
+									"size": 3
+								},
+								"id": "275519cd-e310-5f54-9448-00e839e75503",
+								"pageElements": [
+									{
+										"definition": {
+											"fragment": {
+												"key": "stat",
+												"siteKey": "[$GROUP_KEY$]"
+											},
+											"fragmentConfig": {
+												"align": "left",
+												"showNote": true
+											},
+											"fragmentFields": [
+												{
+													"id": "value",
+													"value": {
+														"text": {
+															"value_i18n": {
+																"en_US": "2"
+															}
+														}
+													}
+												},
+												{
+													"id": "label",
+													"value": {
+														"text": {
+															"value_i18n": {
+																"en_US": "Brands on one portal"
+															}
+														}
+													}
+												},
+												{
+													"id": "note",
+													"value": {
+														"text": {
+															"value_i18n": {
+																"en_US": "Same platform, same data, two style books"
+															}
+														}
+													}
+												}
+											],
+											"fragmentStyle": {},
+											"indexed": true
+										},
+										"id": "38db4840-16c4-5245-8c0f-b5d0de86c8b8",
+										"type": "Fragment"
+									}
+								],
+								"type": "Column"
+							}
+						]
+					}
+				],
+				"type": "Section"
+			},
+			{
+				"definition": {
+					"indexed": true,
+					"layout": {
+						"contentDisplay": "Block",
+						"widthType": "Fixed"
+					},
+					"fragmentStyle": {
+						"paddingBottom": "7"
+					}
+				},
+				"id": "6c03f77a-f0eb-5fdb-a7ca-05c79228d0f8",
+				"pageElements": [
+					{
+						"definition": {
+							"fragment": {
+								"key": "section-intro",
+								"siteKey": "[$GROUP_KEY$]"
+							},
+							"fragmentConfig": {
+								"align": "left",
+								"spacing": "normal",
+								"showEyebrow": true,
+								"showLead": true
+							},
+							"fragmentFields": [
+								{
+									"id": "title",
+									"value": {
+										"text": {
+											"value_i18n": {
+												"en_US": "Recently returned, ready to go"
+											}
+										}
+									}
+								},
+								{
+									"id": "eyebrow",
+									"value": {
+										"text": {
+											"value_i18n": {
+												"en_US": "Just back in"
+											}
+										}
+									}
+								},
+								{
+									"id": "lead",
+									"value": {
+										"text": {
+											"value_i18n": {
+												"en_US": "Pulled live from the Gear Object \u2014 this list is not authored."
+											}
+										}
+									}
+								}
+							],
+							"fragmentStyle": {},
+							"indexed": true
+						},
+						"id": "186ceaa2-c95b-53cb-ad79-a7f429cf1ac2",
+						"type": "Fragment"
+					},
+					{
+						"definition": {
+							"collectionConfig": {
+								"collectionReference": {
+									"className": "com.liferay.asset.list.model.AssetListEntry",
+									"classPK": "[$ASSET_LIST_ENTRY_ID:GEAR-CATALOGUE$]"
+								},
+								"collectionType": "Collection"
+							},
+							"collectionViewports": [
+								{
+									"id": "landscapeMobile",
+									"collectionViewportDefinition": {
+										"numberOfColumns": 1
+									}
+								},
+								{
+									"id": "portraitMobile",
+									"collectionViewportDefinition": {
+										"numberOfColumns": 1
+									}
+								},
+								{
+									"id": "tablet",
+									"collectionViewportDefinition": {
+										"numberOfColumns": 1
+									}
+								}
+							],
+							"displayAllItems": false,
+							"displayAllPages": false,
+							"emptyCollectionConfig": {
+								"displayMessage": true
+							},
+							"listItemStyle": "",
+							"listStyle": "",
+							"numberOfColumns": 3,
+							"numberOfItems": 6,
+							"numberOfItemsPerPage": 6,
+							"numberOfPages": 4,
+							"paginationType": "None",
+							"showAllItems": false,
+							"templateKey": ""
+						},
+						"id": "40b6ce1a-788b-5cdb-bb33-8018f1fa966f",
+						"pageElements": [
+							{
+								"definition": {
+									"collectionItemConfig": {}
+								},
+								"id": "e8f76db7-7cb8-53bd-a538-27aae87cd177",
+								"pageElements": [
+									{
+										"definition": {
+											"indexed": true,
+											"layout": {
+												"contentDisplay": "Block",
+												"widthType": "Fixed"
+											},
+											"customCSS": ".[$FRAGMENT_CLASS$] {\n\tbackground: var(--color-neutral-1, #f7f6f9);\n\tborder-radius: var(--border-radius-lg, 0.75rem);\n\theight: 100%;\n\tmargin-bottom: 1.5rem;\n\tpadding: 1.5rem;\n}"
+										},
+										"id": "ea968d15-2984-51e0-8311-b7aef7d24d11",
+										"pageElements": [
+											{
+												"definition": {
+													"fragment": {
+														"key": "BASIC_COMPONENT-paragraph"
+													},
+													"fragmentConfig": {},
+													"fragmentFields": [
+														{
+															"id": "element-text",
+															"value": {
+																"text": {
+																	"mapping": {
+																		"fieldKey": "category",
+																		"itemReference": {
+																			"contextSource": "CollectionItem"
+																		}
+																	}
+																}
+															}
+														}
+													],
+													"fragmentStyle": {},
+													"indexed": true,
+													"customCSS": ".[$FRAGMENT_CLASS$] {\n\tcolor: var(--color-brand-primary);\n\tfont-size: .75rem;\n\tfont-weight: 600;\n\tletter-spacing: .12em;\n\tmargin: 0;\n\ttext-transform: uppercase;\n}"
+												},
+												"id": "966b40d3-19ae-5bbe-9319-ff2735c00a43",
+												"type": "Fragment"
+											},
+											{
+												"definition": {
+													"fragment": {
+														"key": "BASIC_COMPONENT-heading"
+													},
+													"fragmentConfig": {
+														"headingLevel": "h3"
+													},
+													"fragmentFields": [
+														{
+															"id": "element-text",
+															"value": {
+																"text": {
+																	"mapping": {
+																		"fieldKey": "gearName",
+																		"itemReference": {
+																			"contextSource": "CollectionItem"
+																		}
+																	}
+																}
+															}
+														}
+													],
+													"fragmentStyle": {},
+													"indexed": true
+												},
+												"id": "5b2bb44e-0287-568d-b315-7f7453f595c1",
+												"type": "Fragment"
+											},
+											{
+												"definition": {
+													"fragment": {
+														"key": "BASIC_COMPONENT-paragraph"
+													},
+													"fragmentConfig": {},
+													"fragmentFields": [
+														{
+															"id": "element-text",
+															"value": {
+																"text": {
+																	"mapping": {
+																		"fieldKey": "summary",
+																		"itemReference": {
+																			"contextSource": "CollectionItem"
+																		}
+																	}
+																}
+															}
+														}
+													],
+													"fragmentStyle": {},
+													"indexed": true,
+													"customCSS": ".[$FRAGMENT_CLASS$] {\n\tcolor: var(--color-neutral-7);\n\tfont-size: .9375rem;\n}"
+												},
+												"id": "ed25eeb2-ae8b-5859-8e2c-7cbe35ed109b",
+												"type": "Fragment"
+											}
+										],
+										"type": "Section"
+									}
+								],
+								"type": "CollectionItem"
+							}
+						],
+						"type": "Collection"
+					},
+					{
+						"definition": {
+							"fragment": {
+								"key": "BASIC_COMPONENT-button"
+							},
+							"fragmentConfig": {
+								"buttonSize": "regular",
+								"displayType": "secondary"
+							},
+							"fragmentFields": [
+								{
+									"id": "link",
+									"value": {
+										"fragmentLink": {
+											"value": {
+												"href": {
+													"value": "/web/outfitter/catalogue"
+												}
+											}
+										},
+										"text": {
+											"value_i18n": {
+												"en_US": "See all forty-eight"
+											}
+										}
+									}
+								}
+							],
+							"fragmentStyle": {},
+							"indexed": true
+						},
+						"id": "2b04beb3-bc5a-5886-9f3a-eb56bd91d8ad",
+						"type": "Fragment"
+					}
+				],
+				"type": "Section"
+			},
+			{
+				"definition": {
+					"fragment": {
+						"key": "media-band",
+						"siteKey": "[$GROUP_KEY$]"
+					},
+					"fragmentConfig": {
+						"height": "short",
+						"align": "center",
+						"scrim": "heavy",
+						"showCta": true
+					},
+					"fragmentFields": [
+						{
+							"id": "backgroundImage",
+							"value": {
+								"backgroundFragmentImage": {
+									"url": {
+										"mapping": {
+											"fieldKey": "FileEntry_previewImage",
+											"itemReference": {
+												"className": "com.liferay.portal.kernel.repository.model.FileEntry",
+												"classPK": "[#DOCUMENT_FILE_ENTRY_ID:/site-initializer/documents/group/band-trail.jpg#]"
+											}
+										}
+									}
+								}
+							}
+						},
+						{
+							"id": "title",
+							"value": {
+								"text": {
+									"value_i18n": {
+										"en_US": "Tell us the trip, not the kit list"
+									}
+								}
+							}
+						},
+						{
+							"id": "lead",
+							"value": {
+								"text": {
+									"value_i18n": {
+										"en_US": "Send us where you are going and when. We will put the bag together."
+									}
+								}
+							}
+						},
+						{
+							"id": "cta",
+							"value": {
+								"fragmentLink": {
+									"value": {
+										"href": {
+											"value": "/web/outfitter/contact"
+										}
+									}
+								},
+								"text": {
+									"value_i18n": {
+										"en_US": "Get in touch"
+									}
+								}
+							}
+						}
+					],
+					"fragmentStyle": {},
+					"indexed": true
+				},
+				"id": "7b62c7a7-9158-50dc-b424-8f537505e589",
+				"type": "Fragment"
+			}
+		],
+		"type": "Root"
+	},
+	"masterPage": {
+		"key": "outfitter"
+	},
+	"settings": {
+		"masterPage": {
+			"key": "outfitter"
+		}
+	}
+}

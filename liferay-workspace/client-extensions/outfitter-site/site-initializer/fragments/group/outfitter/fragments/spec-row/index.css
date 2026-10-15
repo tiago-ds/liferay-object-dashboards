@@ -1,0 +1,17 @@
+.of-spec {
+	border-bottom: 1px solid var(--color-neutral-3, #dcd9e2);
+	display: flex;
+	gap: 1rem;
+	justify-content: space-between;
+	padding: 0.6rem 0;
+}
+
+.of-spec-label {
+	color: var(--color-neutral-6, #716c7f);
+}
+
+.of-spec-value {
+	font-variant-numeric: tabular-nums;
+	font-weight: 600;
+	text-align: right;
+}

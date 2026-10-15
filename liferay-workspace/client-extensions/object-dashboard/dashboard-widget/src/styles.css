@@ -6,7 +6,7 @@
 
 .od-root {
   background: var(--body-bg, #fff);
-  border: 1px solid var(--border-color, #e7e7ed);
+  border: 1px solid var(--border-color, var(--gray-300, #e7e7ed));
   border-radius: var(--border-radius, 4px);
   color: var(--body-color, #10131a);
   display: flex;

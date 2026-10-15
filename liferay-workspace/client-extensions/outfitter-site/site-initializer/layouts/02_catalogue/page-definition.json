@@ -1,0 +1,349 @@
+{
+	"pageElement": {
+		"id": "5f2304e8-86ee-5b49-92de-aabfdb00da81",
+		"pageElements": [
+			{
+				"definition": {
+					"fragment": {
+						"key": "hero",
+						"siteKey": "[$GROUP_KEY$]"
+					},
+					"fragmentConfig": {
+						"height": "short",
+						"align": "left",
+						"showEyebrow": true,
+						"showSecondaryCta": false
+					},
+					"fragmentFields": [
+						{
+							"id": "backgroundImage",
+							"value": {
+								"backgroundFragmentImage": {
+									"url": {
+										"mapping": {
+											"fieldKey": "FileEntry_previewImage",
+											"itemReference": {
+												"className": "com.liferay.portal.kernel.repository.model.FileEntry",
+												"classPK": "[#DOCUMENT_FILE_ENTRY_ID:/site-initializer/documents/group/cat-pack.jpg#]"
+											}
+										}
+									}
+								}
+							}
+						},
+						{
+							"id": "eyebrow",
+							"value": {
+								"text": {
+									"value_i18n": {
+										"en_US": "The catalogue"
+									}
+								}
+							}
+						},
+						{
+							"id": "title",
+							"value": {
+								"text": {
+									"value_i18n": {
+										"en_US": "Everything we hire"
+									}
+								}
+							}
+						},
+						{
+							"id": "lead",
+							"value": {
+								"text": {
+									"value_i18n": {
+										"en_US": "Forty-eight items across six categories, held at four depots."
+									}
+								}
+							}
+						},
+						{
+							"id": "cta-primary",
+							"value": {
+								"fragmentLink": {
+									"value": {
+										"href": {
+											"value": "/web/outfitter/how-it-works"
+										}
+									}
+								},
+								"text": {
+									"value_i18n": {
+										"en_US": "How hiring works"
+									}
+								}
+							}
+						}
+					],
+					"fragmentStyle": {},
+					"indexed": true
+				},
+				"id": "bd40ec13-b470-5141-89d8-478934ae9377",
+				"type": "Fragment"
+			},
+			{
+				"definition": {
+					"indexed": true,
+					"layout": {
+						"contentDisplay": "Block",
+						"widthType": "Fixed"
+					},
+					"fragmentStyle": {
+						"paddingBottom": "7",
+						"paddingTop": "7"
+					}
+				},
+				"id": "5dbe9fdf-f6d9-5c17-bfc3-3c80c569ba2b",
+				"pageElements": [
+					{
+						"definition": {
+							"collectionConfig": {
+								"collectionReference": {
+									"className": "com.liferay.asset.list.model.AssetListEntry",
+									"classPK": "[$ASSET_LIST_ENTRY_ID:GEAR-CATALOGUE$]"
+								},
+								"collectionType": "Collection"
+							},
+							"collectionViewports": [
+								{
+									"id": "landscapeMobile",
+									"collectionViewportDefinition": {
+										"numberOfColumns": 1
+									}
+								},
+								{
+									"id": "portraitMobile",
+									"collectionViewportDefinition": {
+										"numberOfColumns": 1
+									}
+								},
+								{
+									"id": "tablet",
+									"collectionViewportDefinition": {
+										"numberOfColumns": 1
+									}
+								}
+							],
+							"displayAllItems": false,
+							"displayAllPages": false,
+							"emptyCollectionConfig": {
+								"displayMessage": true
+							},
+							"listItemStyle": "",
+							"listStyle": "",
+							"numberOfColumns": 3,
+							"numberOfItems": 48,
+							"numberOfItemsPerPage": 12,
+							"numberOfPages": 4,
+							"paginationType": "Numeric",
+							"showAllItems": false,
+							"templateKey": ""
+						},
+						"id": "f2af302f-5edb-5186-8a5a-1ed471737ee4",
+						"pageElements": [
+							{
+								"definition": {
+									"collectionItemConfig": {}
+								},
+								"id": "0feb775e-9a83-5b21-b163-0c58bf2b3529",
+								"pageElements": [
+									{
+										"definition": {
+											"indexed": true,
+											"layout": {
+												"contentDisplay": "Block",
+												"widthType": "Fixed"
+											},
+											"customCSS": ".[$FRAGMENT_CLASS$] {\n\tbackground: var(--color-neutral-1, #f7f6f9);\n\tborder-radius: var(--border-radius-lg, 0.75rem);\n\theight: 100%;\n\tmargin-bottom: 1.5rem;\n\tpadding: 1.5rem;\n}"
+										},
+										"id": "0b03a37a-2976-5b8c-be11-1f411b7ae1e5",
+										"pageElements": [
+											{
+												"definition": {
+													"fragment": {
+														"key": "BASIC_COMPONENT-paragraph"
+													},
+													"fragmentConfig": {},
+													"fragmentFields": [
+														{
+															"id": "element-text",
+															"value": {
+																"text": {
+																	"mapping": {
+																		"fieldKey": "category",
+																		"itemReference": {
+																			"contextSource": "CollectionItem"
+																		}
+																	}
+																}
+															}
+														}
+													],
+													"fragmentStyle": {},
+													"indexed": true,
+													"customCSS": ".[$FRAGMENT_CLASS$] {\n\tcolor: var(--color-brand-primary);\n\tfont-size: .75rem;\n\tfont-weight: 600;\n\tletter-spacing: .12em;\n\tmargin: 0 0 .25rem;\n\ttext-transform: uppercase;\n}"
+												},
+												"id": "4b814e71-665a-50fb-816a-e4f023f0f43d",
+												"type": "Fragment"
+											},
+											{
+												"definition": {
+													"fragment": {
+														"key": "BASIC_COMPONENT-heading"
+													},
+													"fragmentConfig": {
+														"headingLevel": "h3"
+													},
+													"fragmentFields": [
+														{
+															"id": "element-text",
+															"value": {
+																"text": {
+																	"mapping": {
+																		"fieldKey": "gearName",
+																		"itemReference": {
+																			"contextSource": "CollectionItem"
+																		}
+																	}
+																}
+															}
+														}
+													],
+													"fragmentStyle": {},
+													"indexed": true
+												},
+												"id": "cf2a655f-557d-5830-bb71-5e30e0d60a8a",
+												"type": "Fragment"
+											},
+											{
+												"definition": {
+													"fragment": {
+														"key": "BASIC_COMPONENT-paragraph"
+													},
+													"fragmentConfig": {},
+													"fragmentFields": [
+														{
+															"id": "element-text",
+															"value": {
+																"text": {
+																	"mapping": {
+																		"fieldKey": "summary",
+																		"itemReference": {
+																			"contextSource": "CollectionItem"
+																		}
+																	}
+																}
+															}
+														}
+													],
+													"fragmentStyle": {},
+													"indexed": true,
+													"customCSS": ".[$FRAGMENT_CLASS$] {\n\tcolor: var(--color-neutral-7);\n\tfont-size: .9375rem;\n\tmin-height: 3rem;\n}"
+												},
+												"id": "5ec08150-4ce0-584f-bf54-7e58d77750e7",
+												"type": "Fragment"
+											},
+											{
+												"definition": {
+													"fragment": {
+														"key": "spec-row",
+														"siteKey": "[$GROUP_KEY$]"
+													},
+													"fragmentConfig": {},
+													"fragmentFields": [
+														{
+															"id": "label",
+															"value": {
+																"text": {
+																	"value_i18n": {
+																		"en_US": "Depot"
+																	}
+																}
+															}
+														},
+														{
+															"id": "value",
+															"value": {
+																"text": {
+																	"mapping": {
+																		"fieldKey": "depot",
+																		"itemReference": {
+																			"contextSource": "CollectionItem"
+																		}
+																	}
+																}
+															}
+														}
+													],
+													"fragmentStyle": {},
+													"indexed": true
+												},
+												"id": "3419be17-bc94-5fdf-99e3-b0eadd873b31",
+												"type": "Fragment"
+											},
+											{
+												"definition": {
+													"fragment": {
+														"key": "spec-row",
+														"siteKey": "[$GROUP_KEY$]"
+													},
+													"fragmentConfig": {},
+													"fragmentFields": [
+														{
+															"id": "label",
+															"value": {
+																"text": {
+																	"value_i18n": {
+																		"en_US": "Per day (\u20ac)"
+																	}
+																}
+															}
+														},
+														{
+															"id": "value",
+															"value": {
+																"text": {
+																	"mapping": {
+																		"fieldKey": "dailyRate",
+																		"itemReference": {
+																			"contextSource": "CollectionItem"
+																		}
+																	}
+																}
+															}
+														}
+													],
+													"fragmentStyle": {},
+													"indexed": true
+												},
+												"id": "a1e43449-34a6-5dc1-a005-070f47c1aeca",
+												"type": "Fragment"
+											}
+										],
+										"type": "Section"
+									}
+								],
+								"type": "CollectionItem"
+							}
+						],
+						"type": "Collection"
+					}
+				],
+				"type": "Section"
+			}
+		],
+		"type": "Root"
+	},
+	"masterPage": {
+		"key": "outfitter"
+	},
+	"settings": {
+		"masterPage": {
+			"key": "outfitter"
+		}
+	}
+}

@@ -1,0 +1,509 @@
+{
+	"pageElement": {
+		"id": "64e7eebe-d727-5ada-9774-fca20e3f15b8",
+		"pageElements": [
+			{
+				"definition": {
+					"fragment": {
+						"key": "hero",
+						"siteKey": "[$GROUP_KEY$]"
+					},
+					"fragmentConfig": {
+						"height": "short",
+						"align": "left",
+						"showEyebrow": true,
+						"showSecondaryCta": false
+					},
+					"fragmentFields": [
+						{
+							"id": "backgroundImage",
+							"value": {
+								"backgroundFragmentImage": {
+									"url": {
+										"mapping": {
+											"fieldKey": "FileEntry_previewImage",
+											"itemReference": {
+												"className": "com.liferay.portal.kernel.repository.model.FileEntry",
+												"classPK": "[#DOCUMENT_FILE_ENTRY_ID:/site-initializer/documents/group/story-how-it-works.jpg#]"
+											}
+										}
+									}
+								}
+							}
+						},
+						{
+							"id": "eyebrow",
+							"value": {
+								"text": {
+									"value_i18n": {
+										"en_US": "How it works"
+									}
+								}
+							}
+						},
+						{
+							"id": "title",
+							"value": {
+								"text": {
+									"value_i18n": {
+										"en_US": "Four steps, one of which is walking"
+									}
+								}
+							}
+						},
+						{
+							"id": "lead",
+							"value": {
+								"text": {
+									"value_i18n": {
+										"en_US": "From picking a date to handing the bag back."
+									}
+								}
+							}
+						}
+					],
+					"fragmentStyle": {},
+					"indexed": true
+				},
+				"id": "2bf8b863-a95a-598d-814d-bf25557b7526",
+				"type": "Fragment"
+			},
+			{
+				"definition": {
+					"indexed": true,
+					"layout": {
+						"contentDisplay": "Block",
+						"widthType": "Fixed"
+					},
+					"fragmentStyle": {
+						"paddingBottom": "7",
+						"paddingTop": "7"
+					}
+				},
+				"id": "3ac18f55-dc5a-5a7b-b0df-9e51643bf184",
+				"pageElements": [
+					{
+						"definition": {
+							"gutters": true,
+							"indexed": true,
+							"modulesPerRow": 2,
+							"numberOfColumns": 2,
+							"reverseOrder": false,
+							"rowViewports": [
+								{
+									"id": "landscapeMobile",
+									"rowViewportDefinition": {
+										"modulesPerRow": 1
+									}
+								},
+								{
+									"id": "portraitMobile",
+									"rowViewportDefinition": {
+										"modulesPerRow": 1
+									}
+								},
+								{
+									"id": "tablet",
+									"rowViewportDefinition": {}
+								}
+							],
+							"verticalAlignment": "top"
+						},
+						"id": "8fe645ab-44f2-5c24-9882-5ad2287558aa",
+						"type": "Row",
+						"pageElements": [
+							{
+								"definition": {
+									"columnViewports": [
+										{
+											"id": "landscapeMobile",
+											"columnViewportDefinition": {
+												"size": 12
+											}
+										},
+										{
+											"id": "portraitMobile",
+											"columnViewportDefinition": {
+												"size": 12
+											}
+										},
+										{
+											"id": "tablet",
+											"columnViewportDefinition": {
+												"size": 12
+											}
+										}
+									],
+									"size": 7
+								},
+								"id": "9214455a-7f5a-5839-bfee-34ed98a1d6dc",
+								"pageElements": [
+									{
+										"definition": {
+											"fragment": {
+												"key": "step-card",
+												"siteKey": "[$GROUP_KEY$]"
+											},
+											"fragmentConfig": {
+												"number": "1"
+											},
+											"fragmentFields": [
+												{
+													"id": "title",
+													"value": {
+														"text": {
+															"value_i18n": {
+																"en_US": "Tell us the dates and the depot"
+															}
+														}
+													}
+												},
+												{
+													"id": "body",
+													"value": {
+														"text": {
+															"value_i18n": {
+																"en_US": "Pick the days you need and where you want to collect. Stock is held per depot, so the answer depends on both."
+															}
+														}
+													}
+												}
+											],
+											"fragmentStyle": {},
+											"indexed": true
+										},
+										"id": "b4c63ba8-1aa8-528f-bace-f0474e980317",
+										"type": "Fragment"
+									},
+									{
+										"definition": {
+											"fragment": {
+												"key": "step-card",
+												"siteKey": "[$GROUP_KEY$]"
+											},
+											"fragmentConfig": {
+												"number": "2"
+											},
+											"fragmentFields": [
+												{
+													"id": "title",
+													"value": {
+														"text": {
+															"value_i18n": {
+																"en_US": "We put the bag together"
+															}
+														}
+													}
+												},
+												{
+													"id": "body",
+													"value": {
+														"text": {
+															"value_i18n": {
+																"en_US": "Each item is checked out against your hire and logged. Anything that failed its last inspection never reaches you."
+															}
+														}
+													}
+												}
+											],
+											"fragmentStyle": {},
+											"indexed": true
+										},
+										"id": "fe2855f1-90bf-5680-bb65-ccfa980c66cd",
+										"type": "Fragment"
+									},
+									{
+										"definition": {
+											"fragment": {
+												"key": "step-card",
+												"siteKey": "[$GROUP_KEY$]"
+											},
+											"fragmentConfig": {
+												"number": "3"
+											},
+											"fragmentFields": [
+												{
+													"id": "title",
+													"value": {
+														"text": {
+															"value_i18n": {
+																"en_US": "Collect, or have it moved"
+															}
+														}
+													}
+												},
+												{
+													"id": "body",
+													"value": {
+														"text": {
+															"value_i18n": {
+																"en_US": "Collect from your depot, or ask us to move it to another one on the route. Moving stock is what the four depots are for."
+															}
+														}
+													}
+												}
+											],
+											"fragmentStyle": {},
+											"indexed": true
+										},
+										"id": "7fa7ac77-10d6-549d-93d8-0c89ded18a71",
+										"type": "Fragment"
+									},
+									{
+										"definition": {
+											"fragment": {
+												"key": "step-card",
+												"siteKey": "[$GROUP_KEY$]"
+											},
+											"fragmentConfig": {
+												"number": "4"
+											},
+											"fragmentFields": [
+												{
+													"id": "title",
+													"value": {
+														"text": {
+															"value_i18n": {
+																"en_US": "Bring it back to any depot"
+															}
+														}
+													}
+												},
+												{
+													"id": "body",
+													"value": {
+														"text": {
+															"value_i18n": {
+																"en_US": "Return anywhere. We inspect, log the condition and, if it needs work, take it out of service before it goes out again."
+															}
+														}
+													}
+												}
+											],
+											"fragmentStyle": {},
+											"indexed": true
+										},
+										"id": "96a5daed-9172-58c2-bc3c-ee5c3adb707c",
+										"type": "Fragment"
+									}
+								],
+								"type": "Column"
+							},
+							{
+								"definition": {
+									"columnViewports": [
+										{
+											"id": "landscapeMobile",
+											"columnViewportDefinition": {
+												"size": 12
+											}
+										},
+										{
+											"id": "portraitMobile",
+											"columnViewportDefinition": {
+												"size": 12
+											}
+										},
+										{
+											"id": "tablet",
+											"columnViewportDefinition": {
+												"size": 12
+											}
+										}
+									],
+									"size": 5
+								},
+								"id": "ddd7ac6a-a84f-5047-b5f0-1c27469f905b",
+								"pageElements": [
+									{
+										"definition": {
+											"indexed": true,
+											"layout": {
+												"contentDisplay": "Block",
+												"widthType": "Fixed"
+											},
+											"customCSS": ".[$FRAGMENT_CLASS$] {\n\tbackground: var(--color-neutral-1, #f7f6f9);\n\tborder-radius: var(--border-radius-lg, 0.75rem);\n\theight: 100%;\n\tmargin-bottom: 1.5rem;\n\tpadding: 1.5rem;\n}"
+										},
+										"id": "46b137f7-39ee-547e-8813-70c9e2c872e9",
+										"pageElements": [
+											{
+												"definition": {
+													"fragment": {
+														"key": "BASIC_COMPONENT-heading"
+													},
+													"fragmentConfig": {
+														"headingLevel": "h3"
+													},
+													"fragmentFields": [
+														{
+															"id": "element-text",
+															"value": {
+																"text": {
+																	"value_i18n": {
+																		"en_US": "What we check"
+																	}
+																}
+															}
+														}
+													],
+													"fragmentStyle": {},
+													"indexed": true
+												},
+												"id": "21c7c5ed-b003-516d-a76f-5c8af44d5681",
+												"type": "Fragment"
+											},
+											{
+												"definition": {
+													"fragment": {
+														"key": "BASIC_COMPONENT-paragraph"
+													},
+													"fragmentConfig": {},
+													"fragmentFields": [
+														{
+															"id": "element-text",
+															"value": {
+																"text": {
+																	"value_i18n": {
+																		"en_US": "Seams, zips and poles on shelter. Hull and bulkheads on anything that floats. Sheath and core on rope, with a date on the tag. Battery health on anything with a radio in it."
+																	}
+																}
+															}
+														}
+													],
+													"fragmentStyle": {},
+													"indexed": true
+												},
+												"id": "52ef643b-7d08-510e-bf14-bae5f9df6fd6",
+												"type": "Fragment"
+											},
+											{
+												"definition": {
+													"fragment": {
+														"key": "BASIC_COMPONENT-heading"
+													},
+													"fragmentConfig": {
+														"headingLevel": "h3"
+													},
+													"fragmentFields": [
+														{
+															"id": "element-text",
+															"value": {
+																"text": {
+																	"value_i18n": {
+																		"en_US": "What it costs when we get it wrong"
+																	}
+																}
+															}
+														}
+													],
+													"fragmentStyle": {
+														"marginTop": "4"
+													},
+													"indexed": true
+												},
+												"id": "e9243e6a-b2e1-5185-9c58-385fc455cf23",
+												"type": "Fragment"
+											},
+											{
+												"definition": {
+													"fragment": {
+														"key": "BASIC_COMPONENT-paragraph"
+													},
+													"fragmentConfig": {},
+													"fragmentFields": [
+														{
+															"id": "element-text",
+															"value": {
+																"text": {
+																	"value_i18n": {
+																		"en_US": "If kit fails an inspection after you have booked it, you get the substitute at the lower of the two rates, or the hire free if we cannot substitute."
+																	}
+																}
+															}
+														}
+													],
+													"fragmentStyle": {},
+													"indexed": true
+												},
+												"id": "80fe11f1-eabd-5400-b942-2d586333d92e",
+												"type": "Fragment"
+											}
+										],
+										"type": "Section"
+									}
+								],
+								"type": "Column"
+							}
+						]
+					}
+				],
+				"type": "Section"
+			},
+			{
+				"definition": {
+					"fragment": {
+						"key": "media-band",
+						"siteKey": "[$GROUP_KEY$]"
+					},
+					"fragmentConfig": {
+						"height": "short",
+						"align": "center",
+						"scrim": "heavy",
+						"showCta": false
+					},
+					"fragmentFields": [
+						{
+							"id": "backgroundImage",
+							"value": {
+								"backgroundFragmentImage": {
+									"url": {
+										"mapping": {
+											"fieldKey": "FileEntry_previewImage",
+											"itemReference": {
+												"className": "com.liferay.portal.kernel.repository.model.FileEntry",
+												"classPK": "[#DOCUMENT_FILE_ENTRY_ID:/site-initializer/documents/group/band-weather.jpg#]"
+											}
+										}
+									}
+								}
+							}
+						},
+						{
+							"id": "title",
+							"value": {
+								"text": {
+									"value_i18n": {
+										"en_US": "The weather decides, not the booking"
+									}
+								}
+							}
+						},
+						{
+							"id": "lead",
+							"value": {
+								"text": {
+									"value_i18n": {
+										"en_US": "Cancel up to 24 hours before collection and the hire costs nothing."
+									}
+								}
+							}
+						}
+					],
+					"fragmentStyle": {},
+					"indexed": true
+				},
+				"id": "e6ad36af-539a-5d1a-ae3b-4da3704a16f2",
+				"type": "Fragment"
+			}
+		],
+		"type": "Root"
+	},
+	"masterPage": {
+		"key": "outfitter"
+	},
+	"settings": {
+		"masterPage": {
+			"key": "outfitter"
+		}
+	}
+}

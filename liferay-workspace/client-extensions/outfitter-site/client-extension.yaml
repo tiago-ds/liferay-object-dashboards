@@ -1,0 +1,32 @@
+# The Outfitter demo site, delivered as a Client Extension rather than clicked
+# together in the page editor.
+#
+# Everything the site is — its theme, both brands' style books, its fragments,
+# master page, display page template, collections, navigation and pages — is
+# text in this folder. Redeploying re-runs the initializer, so the site is
+# reproducible rather than a thing that exists only on one laptop.
+#
+# This is also the only route: headless-delivery advertises POST on
+# /sites/{id}/site-pages in its OpenAPI and the implementation throws
+# UnsupportedOperationException, even for an empty page.
+#
+# The Objects this site reads are NOT created here. They are seeded by
+# outfitter/objects.py into their own OUTFITTER object folder, deliberately
+# separate from the SALESORDER and SUPPORTTICKET Objects the conference demo
+# depends on, so that rebuilding the site can never disturb the talk.
+outfitter-site:
+    name: Outfitter Demo Site
+    oAuthApplicationHeadlessServer: outfitter-site-oahs
+    siteExternalReferenceCode: OUTFITTER_DEMO
+    siteName: Outfitter
+    type: siteInitializer
+
+outfitter-site-oahs:
+    .serviceAddress: localhost:8080
+    .serviceScheme: http
+    name: Outfitter Demo Site OAuth Application Headless Server
+    scopes:
+        -   Liferay.Headless.Admin.Taxonomy.everything
+        -   Liferay.Headless.Delivery.everything
+        -   Liferay.Headless.Site.everything
+    type: oAuthApplicationHeadlessServer

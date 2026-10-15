@@ -1,0 +1,17 @@
+{
+	"friendlyURL": "/catalogue",
+	"hidden": false,
+	"name_i18n": {
+		"en_US": "Gear"
+	},
+	"priority": 1,
+	"private": false,
+	"system": false,
+	"typeSettings": [
+		{
+			"key": "published",
+			"value": "true"
+		}
+	],
+	"type": "Content"
+}

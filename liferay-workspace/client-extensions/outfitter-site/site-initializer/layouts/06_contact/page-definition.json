@@ -1,0 +1,509 @@
+{
+	"pageElement": {
+		"id": "af3d5d38-8efb-540d-8ec9-1acbbdaf4e53",
+		"pageElements": [
+			{
+				"definition": {
+					"fragment": {
+						"key": "hero",
+						"siteKey": "[$GROUP_KEY$]"
+					},
+					"fragmentConfig": {
+						"height": "short",
+						"align": "left",
+						"showEyebrow": true,
+						"showSecondaryCta": false
+					},
+					"fragmentFields": [
+						{
+							"id": "backgroundImage",
+							"value": {
+								"backgroundFragmentImage": {
+									"url": {
+										"mapping": {
+											"fieldKey": "FileEntry_previewImage",
+											"itemReference": {
+												"className": "com.liferay.portal.kernel.repository.model.FileEntry",
+												"classPK": "[#DOCUMENT_FILE_ENTRY_ID:/site-initializer/documents/group/band-trail.jpg#]"
+											}
+										}
+									}
+								}
+							}
+						},
+						{
+							"id": "eyebrow",
+							"value": {
+								"text": {
+									"value_i18n": {
+										"en_US": "Get in touch"
+									}
+								}
+							}
+						},
+						{
+							"id": "title",
+							"value": {
+								"text": {
+									"value_i18n": {
+										"en_US": "Tell us the trip"
+									}
+								}
+							}
+						},
+						{
+							"id": "lead",
+							"value": {
+								"text": {
+									"value_i18n": {
+										"en_US": "Dates, depot and roughly what you are doing. We will come back with a kit list and a price."
+									}
+								}
+							}
+						}
+					],
+					"fragmentStyle": {},
+					"indexed": true
+				},
+				"id": "dd5ee084-11b4-5f7a-b084-6b5167cd0c85",
+				"type": "Fragment"
+			},
+			{
+				"definition": {
+					"indexed": true,
+					"layout": {
+						"contentDisplay": "Block",
+						"widthType": "Fixed"
+					},
+					"fragmentStyle": {
+						"paddingBottom": "7",
+						"paddingTop": "7"
+					}
+				},
+				"id": "fad0b2ac-02a0-53ef-b6e4-e06f20a57678",
+				"pageElements": [
+					{
+						"definition": {
+							"gutters": true,
+							"indexed": true,
+							"modulesPerRow": 2,
+							"numberOfColumns": 2,
+							"reverseOrder": false,
+							"rowViewports": [
+								{
+									"id": "landscapeMobile",
+									"rowViewportDefinition": {
+										"modulesPerRow": 1
+									}
+								},
+								{
+									"id": "portraitMobile",
+									"rowViewportDefinition": {
+										"modulesPerRow": 1
+									}
+								},
+								{
+									"id": "tablet",
+									"rowViewportDefinition": {}
+								}
+							],
+							"verticalAlignment": "top"
+						},
+						"id": "f055a73b-d436-5f5a-8780-58a69491edff",
+						"type": "Row",
+						"pageElements": [
+							{
+								"definition": {
+									"columnViewports": [
+										{
+											"id": "landscapeMobile",
+											"columnViewportDefinition": {
+												"size": 12
+											}
+										},
+										{
+											"id": "portraitMobile",
+											"columnViewportDefinition": {
+												"size": 12
+											}
+										},
+										{
+											"id": "tablet",
+											"columnViewportDefinition": {
+												"size": 12
+											}
+										}
+									],
+									"size": 7
+								},
+								"id": "3102ccec-0e7c-5fc3-91e8-501044ec0ca3",
+								"pageElements": [
+									{
+										"definition": {
+											"fragment": {
+												"key": "section-intro",
+												"siteKey": "[$GROUP_KEY$]"
+											},
+											"fragmentConfig": {
+												"align": "left",
+												"spacing": "normal",
+												"showEyebrow": false,
+												"showLead": true
+											},
+											"fragmentFields": [
+												{
+													"id": "title",
+													"value": {
+														"text": {
+															"value_i18n": {
+																"en_US": "What to send us"
+															}
+														}
+													}
+												},
+												{
+													"id": "lead",
+													"value": {
+														"text": {
+															"value_i18n": {
+																"en_US": "The more of this you can answer, the closer the first reply will be to a real quote."
+															}
+														}
+													}
+												}
+											],
+											"fragmentStyle": {},
+											"indexed": true
+										},
+										"id": "4536c0c7-7226-5a6c-aabd-d05e049b6ecf",
+										"type": "Fragment"
+									},
+									{
+										"definition": {
+											"fragment": {
+												"key": "step-card",
+												"siteKey": "[$GROUP_KEY$]"
+											},
+											"fragmentConfig": {
+												"number": "1"
+											},
+											"fragmentFields": [
+												{
+													"id": "title",
+													"value": {
+														"text": {
+															"value_i18n": {
+																"en_US": "Where and when"
+															}
+														}
+													}
+												},
+												{
+													"id": "body",
+													"value": {
+														"text": {
+															"value_i18n": {
+																"en_US": "Dates, and the depot you can reach most easily."
+															}
+														}
+													}
+												}
+											],
+											"fragmentStyle": {},
+											"indexed": true
+										},
+										"id": "bd55b036-2964-5678-ae10-9e20384752fb",
+										"type": "Fragment"
+									},
+									{
+										"definition": {
+											"fragment": {
+												"key": "step-card",
+												"siteKey": "[$GROUP_KEY$]"
+											},
+											"fragmentConfig": {
+												"number": "2"
+											},
+											"fragmentFields": [
+												{
+													"id": "title",
+													"value": {
+														"text": {
+															"value_i18n": {
+																"en_US": "How many of you"
+															}
+														}
+													}
+												},
+												{
+													"id": "body",
+													"value": {
+														"text": {
+															"value_i18n": {
+																"en_US": "Party size decides shelter and how much we can split across packs."
+															}
+														}
+													}
+												}
+											],
+											"fragmentStyle": {},
+											"indexed": true
+										},
+										"id": "23fdcb08-0ce7-551d-9e19-60e4bf91f6ec",
+										"type": "Fragment"
+									},
+									{
+										"definition": {
+											"fragment": {
+												"key": "step-card",
+												"siteKey": "[$GROUP_KEY$]"
+											},
+											"fragmentConfig": {
+												"number": "3"
+											},
+											"fragmentFields": [
+												{
+													"id": "title",
+													"value": {
+														"text": {
+															"value_i18n": {
+																"en_US": "What you already own"
+															}
+														}
+													}
+												},
+												{
+													"id": "body",
+													"value": {
+														"text": {
+															"value_i18n": {
+																"en_US": "Most people have boots and a bag. We would rather not hire you a second one."
+															}
+														}
+													}
+												}
+											],
+											"fragmentStyle": {},
+											"indexed": true
+										},
+										"id": "f1f3c4ca-7979-5276-91ca-86cda54eeacb",
+										"type": "Fragment"
+									}
+								],
+								"type": "Column"
+							},
+							{
+								"definition": {
+									"columnViewports": [
+										{
+											"id": "landscapeMobile",
+											"columnViewportDefinition": {
+												"size": 12
+											}
+										},
+										{
+											"id": "portraitMobile",
+											"columnViewportDefinition": {
+												"size": 12
+											}
+										},
+										{
+											"id": "tablet",
+											"columnViewportDefinition": {
+												"size": 12
+											}
+										}
+									],
+									"size": 5
+								},
+								"id": "d4db1cc6-de0f-518d-b2cd-e4d04c50d4de",
+								"pageElements": [
+									{
+										"definition": {
+											"indexed": true,
+											"layout": {
+												"contentDisplay": "Block",
+												"widthType": "Fixed"
+											},
+											"customCSS": ".[$FRAGMENT_CLASS$] {\n\tbackground: var(--color-neutral-1, #f7f6f9);\n\tborder-radius: var(--border-radius-lg, 0.75rem);\n\theight: 100%;\n\tmargin-bottom: 1.5rem;\n\tpadding: 1.5rem;\n}"
+										},
+										"id": "655bb2b4-4c1c-59c7-97c0-b2792f5f3fe5",
+										"pageElements": [
+											{
+												"definition": {
+													"fragment": {
+														"key": "BASIC_COMPONENT-heading"
+													},
+													"fragmentConfig": {
+														"headingLevel": "h3"
+													},
+													"fragmentFields": [
+														{
+															"id": "element-text",
+															"value": {
+																"text": {
+																	"value_i18n": {
+																		"en_US": "Depot desks"
+																	}
+																}
+															}
+														}
+													],
+													"fragmentStyle": {},
+													"indexed": true
+												},
+												"id": "3d328e09-2c95-5f1f-9022-25550f42ebf8",
+												"type": "Fragment"
+											},
+											{
+												"definition": {
+													"fragment": {
+														"key": "BASIC_COMPONENT-paragraph"
+													},
+													"fragmentConfig": {},
+													"fragmentFields": [
+														{
+															"id": "element-text",
+															"value": {
+																"text": {
+																	"value_i18n": {
+																		"en_US": "Fjordside and Coast Road are open seven days. Highland and Lakehead are closed Tuesdays outside the season."
+																	}
+																}
+															}
+														}
+													],
+													"fragmentStyle": {},
+													"indexed": true
+												},
+												"id": "2a63ac04-c707-5f26-bb09-c389b63f042e",
+												"type": "Fragment"
+											},
+											{
+												"definition": {
+													"fragment": {
+														"key": "spec-row",
+														"siteKey": "[$GROUP_KEY$]"
+													},
+													"fragmentConfig": {},
+													"fragmentFields": [
+														{
+															"id": "label",
+															"value": {
+																"text": {
+																	"value_i18n": {
+																		"en_US": "Email"
+																	}
+																}
+															}
+														},
+														{
+															"id": "value",
+															"value": {
+																"text": {
+																	"value_i18n": {
+																		"en_US": "hire@alpineridge.example"
+																	}
+																}
+															}
+														}
+													],
+													"fragmentStyle": {},
+													"indexed": true
+												},
+												"id": "f54283e1-18e4-53c6-a9fd-d6e3be01d6c4",
+												"type": "Fragment"
+											},
+											{
+												"definition": {
+													"fragment": {
+														"key": "spec-row",
+														"siteKey": "[$GROUP_KEY$]"
+													},
+													"fragmentConfig": {},
+													"fragmentFields": [
+														{
+															"id": "label",
+															"value": {
+																"text": {
+																	"value_i18n": {
+																		"en_US": "Phone"
+																	}
+																}
+															}
+														},
+														{
+															"id": "value",
+															"value": {
+																"text": {
+																	"value_i18n": {
+																		"en_US": "+00 1234 5678"
+																	}
+																}
+															}
+														}
+													],
+													"fragmentStyle": {},
+													"indexed": true
+												},
+												"id": "29630fb6-e6f3-5ba0-ae57-8d6916e62c18",
+												"type": "Fragment"
+											},
+											{
+												"definition": {
+													"fragment": {
+														"key": "spec-row",
+														"siteKey": "[$GROUP_KEY$]"
+													},
+													"fragmentConfig": {},
+													"fragmentFields": [
+														{
+															"id": "label",
+															"value": {
+																"text": {
+																	"value_i18n": {
+																		"en_US": "Reply within"
+																	}
+																}
+															}
+														},
+														{
+															"id": "value",
+															"value": {
+																"text": {
+																	"value_i18n": {
+																		"en_US": "One working day"
+																	}
+																}
+															}
+														}
+													],
+													"fragmentStyle": {},
+													"indexed": true
+												},
+												"id": "9e52aef6-ba1c-574f-ba06-704619f58bfa",
+												"type": "Fragment"
+											}
+										],
+										"type": "Section"
+									}
+								],
+								"type": "Column"
+							}
+						]
+					}
+				],
+				"type": "Section"
+			}
+		],
+		"type": "Root"
+	},
+	"masterPage": {
+		"key": "outfitter"
+	},
+	"settings": {
+		"masterPage": {
+			"key": "outfitter"
+		}
+	}
+}

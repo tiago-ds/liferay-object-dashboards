@@ -1,0 +1,78 @@
+{
+	"fieldSets": [
+		{
+			"fields": [
+				{
+					"dataType": "string",
+					"defaultValue": "short",
+					"label": "Height",
+					"name": "height",
+					"type": "select",
+					"typeOptions": {
+						"validValues": [
+							{
+								"label": "Short",
+								"value": "short"
+							},
+							{
+								"label": "Tall",
+								"value": "tall"
+							}
+						]
+					}
+				},
+				{
+					"dataType": "string",
+					"defaultValue": "left",
+					"label": "Alignment",
+					"name": "align",
+					"type": "select",
+					"typeOptions": {
+						"validValues": [
+							{
+								"label": "Left",
+								"value": "left"
+							},
+							{
+								"label": "Centre",
+								"value": "center"
+							}
+						]
+					}
+				},
+				{
+					"dataType": "string",
+					"defaultValue": "medium",
+					"label": "Overlay strength",
+					"name": "scrim",
+					"type": "select",
+					"typeOptions": {
+						"validValues": [
+							{
+								"label": "Light",
+								"value": "light"
+							},
+							{
+								"label": "Medium",
+								"value": "medium"
+							},
+							{
+								"label": "Heavy",
+								"value": "heavy"
+							}
+						]
+					},
+					"description": "Darkens the photograph behind the text. Raise it on a busy or pale image \u2014 white text on an unscrimmed sky is unreadable."
+				},
+				{
+					"dataType": "string",
+					"defaultValue": true,
+					"label": "Show button",
+					"name": "showCta",
+					"type": "checkbox"
+				}
+			],
+			"label": "Media Band"
+		}
+	]
+}

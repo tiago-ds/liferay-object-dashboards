@@ -32,6 +32,7 @@ PASS = os.environ.get("LR_PASS", "pw")
 GEAR = int(os.environ.get("GEAR", "48"))
 RENTALS = int(os.environ.get("RENTALS", "9000"))
 FOLDER = "OUTFITTER"
+SITE = os.environ.get("SITE", "/outfitter")   # where site-scoped entries go
 CHUNK = 2000
 
 _AUTH = "Basic " + base64.b64encode(f"{USER}:{PASS}".encode()).decode()
@@ -79,7 +80,16 @@ EQUIPMENT = {
     "label": {"en_US": "Gear"},
     "pluralLabel": {"en_US": "Gear"},
     "name": "OutfitterGear",
-    "scope": "company",
+    # SITE scope, not company, and this is the difference between a catalogue
+    # that works and one that is permanently empty. A Collection, a Display Page
+    # Template and the asset framework all look inside a site; a company-scoped
+    # Object's entries land in the company group, so a Collection on a site page
+    # finds nothing and says "No Results Found" with no error anywhere.
+    #
+    # Hires stay company-scoped: nothing renders them as site content, the
+    # dashboard widget reads them straight over REST, and that keeps the
+    # operations charts working from any site.
+    "scope": "site",
     "active": True,
     "titleObjectFieldName": "gearName",
     "friendlyURLSeparator": "gear",
@@ -128,6 +138,19 @@ RENTAL = {
 }
 
 
+def site_group_id(friendly_url):
+    """The group a site-scoped Object writes into. Its REST path is
+    <restContextPath>/scopes/<groupId>, and without it entries are rejected."""
+    st, b = call("GET", "/o/headless-admin-site/v1.0/sites?page=1&pageSize=100")
+    if st != 200:
+        raise SystemExit(f"  cannot list sites ({st}): {b}")
+    for s in b.get("items", []):
+        if s.get("friendlyUrlPath") == friendly_url:
+            return s["id"]
+    raise SystemExit(
+        f"  no site at {friendly_url} — deploy outfitter-site first, then re-run")
+
+
 def ensure(definition):
     erc = definition["externalReferenceCode"]
     st, existing = call(
@@ -157,7 +180,10 @@ def ensure(definition):
 
     st, fresh = call(
         "GET", f"/o/object-admin/v1.0/object-definitions/by-external-reference-code/{erc}")
-    return fresh["restContextPath"]
+    path = fresh["restContextPath"]
+    if fresh.get("scope") == "site":
+        path = f"{path}/scopes/{site_group_id(SITE)}"
+    return path
 
 
 def poll(task_id, label):
@@ -182,6 +208,12 @@ def seed(path, rows):
     for start in range(0, len(rows), CHUNK):
         chunk = rows[start:start + CHUNK]
         st, b = call("POST", f"{path}/batch", chunk)
+        if st in (405, 409):
+            # A site-scoped Object has no batch endpoint under its scopes path,
+            # and the unscoped one refuses the write. One POST per row is fine
+            # here: the catalogue is dozens of rows, not thousands.
+            print(f"    no batch endpoint at this scope — posting {len(rows)} rows singly")
+            return seed_singly(path, rows)
         if st not in (200, 201, 202):
             print(f"    batch rejected ({st}): {b}")
             return
@@ -189,6 +221,17 @@ def seed(path, rows):
             return
         print(f"    {min(start + CHUNK, len(rows))}/{len(rows)}", flush=True)
     print(f"  seeded {len(rows)} rows into {path}")
+
+
+def seed_singly(path, rows):
+    written = 0
+    for row in rows:
+        st, b = call("POST", path, row)
+        if st not in (200, 201):
+            print(f"    row rejected ({st}): {str(b)[:160]}")
+            return
+        written += 1
+    print(f"  seeded {written} rows into {path}")
 
 
 # ---------------------------------------------------------------------------

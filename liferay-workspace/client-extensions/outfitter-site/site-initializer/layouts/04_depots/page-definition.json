@@ -1,0 +1,519 @@
+{
+	"pageElement": {
+		"id": "83592ac8-e2b8-5d2f-bf1d-9d0662c3e187",
+		"pageElements": [
+			{
+				"definition": {
+					"fragment": {
+						"key": "hero",
+						"siteKey": "[$GROUP_KEY$]"
+					},
+					"fragmentConfig": {
+						"height": "short",
+						"align": "left",
+						"showEyebrow": true,
+						"showSecondaryCta": false
+					},
+					"fragmentFields": [
+						{
+							"id": "backgroundImage",
+							"value": {
+								"backgroundFragmentImage": {
+									"url": {
+										"mapping": {
+											"fieldKey": "FileEntry_previewImage",
+											"itemReference": {
+												"className": "com.liferay.portal.kernel.repository.model.FileEntry",
+												"classPK": "[#DOCUMENT_FILE_ENTRY_ID:/site-initializer/documents/group/depot-fjordside.jpg#]"
+											}
+										}
+									}
+								}
+							}
+						},
+						{
+							"id": "eyebrow",
+							"value": {
+								"text": {
+									"value_i18n": {
+										"en_US": "Where we are"
+									}
+								}
+							}
+						},
+						{
+							"id": "title",
+							"value": {
+								"text": {
+									"value_i18n": {
+										"en_US": "Four depots"
+									}
+								}
+							}
+						},
+						{
+							"id": "lead",
+							"value": {
+								"text": {
+									"value_i18n": {
+										"en_US": "Collect at one, return to any. We move the stock."
+									}
+								}
+							}
+						}
+					],
+					"fragmentStyle": {},
+					"indexed": true
+				},
+				"id": "d44442a8-0df9-582e-a1ff-7c1915bcac01",
+				"type": "Fragment"
+			},
+			{
+				"definition": {
+					"indexed": true,
+					"layout": {
+						"contentDisplay": "Block",
+						"widthType": "Fixed"
+					},
+					"fragmentStyle": {
+						"paddingBottom": "7",
+						"paddingTop": "7"
+					}
+				},
+				"id": "2d77aa3c-2886-504d-b0a5-61c6ff4c07bb",
+				"pageElements": [
+					{
+						"definition": {
+							"fragment": {
+								"key": "section-intro",
+								"siteKey": "[$GROUP_KEY$]"
+							},
+							"fragmentConfig": {
+								"align": "left",
+								"spacing": "normal",
+								"showEyebrow": false,
+								"showLead": true
+							},
+							"fragmentFields": [
+								{
+									"id": "title",
+									"value": {
+										"text": {
+											"value_i18n": {
+												"en_US": "Pick the one on your route"
+											}
+										}
+									}
+								},
+								{
+									"id": "lead",
+									"value": {
+										"text": {
+											"value_i18n": {
+												"en_US": "Each depot keeps the kit its country needs, and can pull anything else across overnight."
+											}
+										}
+									}
+								}
+							],
+							"fragmentStyle": {},
+							"indexed": true
+						},
+						"id": "36552c57-b12e-562e-9c18-c8691a811f82",
+						"type": "Fragment"
+					},
+					{
+						"definition": {
+							"gutters": true,
+							"indexed": true,
+							"modulesPerRow": 2,
+							"numberOfColumns": 4,
+							"reverseOrder": false,
+							"rowViewports": [
+								{
+									"id": "landscapeMobile",
+									"rowViewportDefinition": {
+										"modulesPerRow": 1
+									}
+								},
+								{
+									"id": "portraitMobile",
+									"rowViewportDefinition": {
+										"modulesPerRow": 1
+									}
+								},
+								{
+									"id": "tablet",
+									"rowViewportDefinition": {}
+								}
+							],
+							"verticalAlignment": "top"
+						},
+						"id": "b4b2d5c1-a1cd-5c5b-a97f-a8bef6f15b04",
+						"type": "Row",
+						"pageElements": [
+							{
+								"definition": {
+									"columnViewports": [
+										{
+											"id": "landscapeMobile",
+											"columnViewportDefinition": {
+												"size": 12
+											}
+										},
+										{
+											"id": "portraitMobile",
+											"columnViewportDefinition": {
+												"size": 12
+											}
+										},
+										{
+											"id": "tablet",
+											"columnViewportDefinition": {
+												"size": 12
+											}
+										}
+									],
+									"size": 6
+								},
+								"id": "4182eddf-8300-5330-8971-3ed75dfcccae",
+								"pageElements": [
+									{
+										"definition": {
+											"fragment": {
+												"key": "category-card",
+												"siteKey": "[$GROUP_KEY$]"
+											},
+											"fragmentConfig": {},
+											"fragmentFields": [
+												{
+													"id": "backgroundImage",
+													"value": {
+														"backgroundFragmentImage": {
+															"url": {
+																"mapping": {
+																	"fieldKey": "FileEntry_previewImage",
+																	"itemReference": {
+																		"className": "com.liferay.portal.kernel.repository.model.FileEntry",
+																		"classPK": "[#DOCUMENT_FILE_ENTRY_ID:/site-initializer/documents/group/depot-fjordside.jpg#]"
+																	}
+																}
+															}
+														}
+													}
+												},
+												{
+													"id": "title",
+													"value": {
+														"text": {
+															"value_i18n": {
+																"en_US": "Fjordside"
+															}
+														}
+													}
+												},
+												{
+													"id": "meta",
+													"value": {
+														"text": {
+															"value_i18n": {
+																"en_US": "Sea kayaks and coastal kit, on the water"
+															}
+														}
+													}
+												}
+											],
+											"fragmentStyle": {},
+											"indexed": true,
+											"fragmentLink": {
+												"value": {
+													"href": {
+														"value": "/web/outfitter/contact"
+													}
+												}
+											}
+										},
+										"id": "7e3ba051-c455-5b0c-98da-ee0015608e4a",
+										"type": "Fragment"
+									}
+								],
+								"type": "Column"
+							},
+							{
+								"definition": {
+									"columnViewports": [
+										{
+											"id": "landscapeMobile",
+											"columnViewportDefinition": {
+												"size": 12
+											}
+										},
+										{
+											"id": "portraitMobile",
+											"columnViewportDefinition": {
+												"size": 12
+											}
+										},
+										{
+											"id": "tablet",
+											"columnViewportDefinition": {
+												"size": 12
+											}
+										}
+									],
+									"size": 6
+								},
+								"id": "57ee94ba-2b16-5fdf-b1a8-b5a6a3dceea1",
+								"pageElements": [
+									{
+										"definition": {
+											"fragment": {
+												"key": "category-card",
+												"siteKey": "[$GROUP_KEY$]"
+											},
+											"fragmentConfig": {},
+											"fragmentFields": [
+												{
+													"id": "backgroundImage",
+													"value": {
+														"backgroundFragmentImage": {
+															"url": {
+																"mapping": {
+																	"fieldKey": "FileEntry_previewImage",
+																	"itemReference": {
+																		"className": "com.liferay.portal.kernel.repository.model.FileEntry",
+																		"classPK": "[#DOCUMENT_FILE_ENTRY_ID:/site-initializer/documents/group/depot-highland.jpg#]"
+																	}
+																}
+															}
+														}
+													}
+												},
+												{
+													"id": "title",
+													"value": {
+														"text": {
+															"value_i18n": {
+																"en_US": "Highland"
+															}
+														}
+													}
+												},
+												{
+													"id": "meta",
+													"value": {
+														"text": {
+															"value_i18n": {
+																"en_US": "Alpine racks and winter shelter"
+															}
+														}
+													}
+												}
+											],
+											"fragmentStyle": {},
+											"indexed": true,
+											"fragmentLink": {
+												"value": {
+													"href": {
+														"value": "/web/outfitter/contact"
+													}
+												}
+											}
+										},
+										"id": "05926ac3-8648-5375-ac1c-e03ad218eab1",
+										"type": "Fragment"
+									}
+								],
+								"type": "Column"
+							},
+							{
+								"definition": {
+									"columnViewports": [
+										{
+											"id": "landscapeMobile",
+											"columnViewportDefinition": {
+												"size": 12
+											}
+										},
+										{
+											"id": "portraitMobile",
+											"columnViewportDefinition": {
+												"size": 12
+											}
+										},
+										{
+											"id": "tablet",
+											"columnViewportDefinition": {
+												"size": 12
+											}
+										}
+									],
+									"size": 6
+								},
+								"id": "0f1a019d-c7bc-5406-ae3d-82108219df4b",
+								"pageElements": [
+									{
+										"definition": {
+											"fragment": {
+												"key": "category-card",
+												"siteKey": "[$GROUP_KEY$]"
+											},
+											"fragmentConfig": {},
+											"fragmentFields": [
+												{
+													"id": "backgroundImage",
+													"value": {
+														"backgroundFragmentImage": {
+															"url": {
+																"mapping": {
+																	"fieldKey": "FileEntry_previewImage",
+																	"itemReference": {
+																		"className": "com.liferay.portal.kernel.repository.model.FileEntry",
+																		"classPK": "[#DOCUMENT_FILE_ENTRY_ID:/site-initializer/documents/group/depot-lakehead.jpg#]"
+																	}
+																}
+															}
+														}
+													}
+												},
+												{
+													"id": "title",
+													"value": {
+														"text": {
+															"value_i18n": {
+																"en_US": "Lakehead"
+															}
+														}
+													}
+												},
+												{
+													"id": "meta",
+													"value": {
+														"text": {
+															"value_i18n": {
+																"en_US": "Trail and multi-day walking gear"
+															}
+														}
+													}
+												}
+											],
+											"fragmentStyle": {},
+											"indexed": true,
+											"fragmentLink": {
+												"value": {
+													"href": {
+														"value": "/web/outfitter/contact"
+													}
+												}
+											}
+										},
+										"id": "e1116e87-7d8a-5c01-9669-e092a7f0922d",
+										"type": "Fragment"
+									}
+								],
+								"type": "Column"
+							},
+							{
+								"definition": {
+									"columnViewports": [
+										{
+											"id": "landscapeMobile",
+											"columnViewportDefinition": {
+												"size": 12
+											}
+										},
+										{
+											"id": "portraitMobile",
+											"columnViewportDefinition": {
+												"size": 12
+											}
+										},
+										{
+											"id": "tablet",
+											"columnViewportDefinition": {
+												"size": 12
+											}
+										}
+									],
+									"size": 6
+								},
+								"id": "cbbc9b88-dc2a-5572-8f2c-5d0fba072426",
+								"pageElements": [
+									{
+										"definition": {
+											"fragment": {
+												"key": "category-card",
+												"siteKey": "[$GROUP_KEY$]"
+											},
+											"fragmentConfig": {},
+											"fragmentFields": [
+												{
+													"id": "backgroundImage",
+													"value": {
+														"backgroundFragmentImage": {
+															"url": {
+																"mapping": {
+																	"fieldKey": "FileEntry_previewImage",
+																	"itemReference": {
+																		"className": "com.liferay.portal.kernel.repository.model.FileEntry",
+																		"classPK": "[#DOCUMENT_FILE_ENTRY_ID:/site-initializer/documents/group/depot-coast-road.jpg#]"
+																	}
+																}
+															}
+														}
+													}
+												},
+												{
+													"id": "title",
+													"value": {
+														"text": {
+															"value_i18n": {
+																"en_US": "Coast Road"
+															}
+														}
+													}
+												},
+												{
+													"id": "meta",
+													"value": {
+														"text": {
+															"value_i18n": {
+																"en_US": "Everything, collected on your way out"
+															}
+														}
+													}
+												}
+											],
+											"fragmentStyle": {},
+											"indexed": true,
+											"fragmentLink": {
+												"value": {
+													"href": {
+														"value": "/web/outfitter/contact"
+													}
+												}
+											}
+										},
+										"id": "e9eb74f2-5ccf-5a4a-a085-46b68ebc75c8",
+										"type": "Fragment"
+									}
+								],
+								"type": "Column"
+							}
+						]
+					}
+				],
+				"type": "Section"
+			}
+		],
+		"type": "Root"
+	},
+	"masterPage": {
+		"key": "outfitter"
+	},
+	"settings": {
+		"masterPage": {
+			"key": "outfitter"
+		}
+	}
+}

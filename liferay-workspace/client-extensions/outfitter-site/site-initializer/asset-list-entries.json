@@ -1,0 +1,18 @@
+[
+	{
+		"title": "Gear Catalogue",
+		"unicodeProperties": {
+			"classNameIds": "[$OBJECT_DEFINITION_CLASS_NAME:OutfitterGear$]",
+			"orderBy": [
+				{
+					"key": "orderByColumn1",
+					"value": "title"
+				},
+				{
+					"key": "orderByType1",
+					"value": "ASC"
+				}
+			]
+		}
+	}
+]

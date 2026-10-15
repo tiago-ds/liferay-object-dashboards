@@ -1,0 +1,17 @@
+<div class="of-intro of-align-${(configuration.align)!"left"} of-intro-${(configuration.spacing)!"normal"}">
+	[#if (configuration.showEyebrow)!true]
+		<p class="of-intro-eyebrow" data-lfr-editable-id="eyebrow" data-lfr-editable-type="text">
+			Section
+		</p>
+	[/#if]
+
+	<h2 class="of-intro-title" data-lfr-editable-id="title" data-lfr-editable-type="text">
+		A heading that says what this section is
+	</h2>
+
+	[#if (configuration.showLead)!true]
+		<p class="of-intro-lead" data-lfr-editable-id="lead" data-lfr-editable-type="text">
+			One sentence of context, no more than two lines on a laptop.
+		</p>
+	[/#if]
+</div>

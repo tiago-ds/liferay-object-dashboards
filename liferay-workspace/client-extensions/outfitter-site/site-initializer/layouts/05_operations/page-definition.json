@@ -1,0 +1,598 @@
+{
+	"pageElement": {
+		"id": "f79c7bda-2309-5471-810c-7c0729ca2e7a",
+		"pageElements": [
+			{
+				"definition": {
+					"fragment": {
+						"key": "hero",
+						"siteKey": "[$GROUP_KEY$]"
+					},
+					"fragmentConfig": {
+						"height": "short",
+						"align": "left",
+						"showEyebrow": true,
+						"showSecondaryCta": false
+					},
+					"fragmentFields": [
+						{
+							"id": "backgroundImage",
+							"value": {
+								"backgroundFragmentImage": {
+									"url": {
+										"mapping": {
+											"fieldKey": "FileEntry_previewImage",
+											"itemReference": {
+												"className": "com.liferay.portal.kernel.repository.model.FileEntry",
+												"classPK": "[#DOCUMENT_FILE_ENTRY_ID:/site-initializer/documents/group/cat-navigation.jpg#]"
+											}
+										}
+									}
+								}
+							}
+						},
+						{
+							"id": "eyebrow",
+							"value": {
+								"text": {
+									"value_i18n": {
+										"en_US": "Operations"
+									}
+								}
+							}
+						},
+						{
+							"id": "title",
+							"value": {
+								"text": {
+									"value_i18n": {
+										"en_US": "Nine thousand hires, no reports to write"
+									}
+								}
+							}
+						},
+						{
+							"id": "lead",
+							"value": {
+								"text": {
+									"value_i18n": {
+										"en_US": "Every chart below is the same widget pointed at the Hire Object and given a dimension and a measure."
+									}
+								}
+							}
+						}
+					],
+					"fragmentStyle": {},
+					"indexed": true
+				},
+				"id": "449f3ec4-9da1-5717-a189-4d806acf14b3",
+				"type": "Fragment"
+			},
+			{
+				"definition": {
+					"indexed": true,
+					"layout": {
+						"contentDisplay": "Block",
+						"widthType": "Fixed"
+					},
+					"fragmentStyle": {
+						"paddingBottom": "7",
+						"paddingTop": "7"
+					}
+				},
+				"id": "3d581772-1ad3-5972-b9a6-3b321857143d",
+				"pageElements": [
+					{
+						"definition": {
+							"fragment": {
+								"key": "section-intro",
+								"siteKey": "[$GROUP_KEY$]"
+							},
+							"fragmentConfig": {
+								"align": "left",
+								"spacing": "normal",
+								"showEyebrow": true,
+								"showLead": true
+							},
+							"fragmentFields": [
+								{
+									"id": "title",
+									"value": {
+										"text": {
+											"value_i18n": {
+												"en_US": "Where the money comes from"
+											}
+										}
+									}
+								},
+								{
+									"id": "eyebrow",
+									"value": {
+										"text": {
+											"value_i18n": {
+												"en_US": "Revenue"
+											}
+										}
+									}
+								},
+								{
+									"id": "lead",
+									"value": {
+										"text": {
+											"value_i18n": {
+												"en_US": "Server-side aggregation: the browser receives the answer, not the nine thousand rows."
+											}
+										}
+									}
+								}
+							],
+							"fragmentStyle": {},
+							"indexed": true
+						},
+						"id": "97b1dd94-564e-5009-8703-96feee480fa2",
+						"type": "Fragment"
+					},
+					{
+						"definition": {
+							"gutters": true,
+							"indexed": true,
+							"modulesPerRow": 2,
+							"numberOfColumns": 2,
+							"reverseOrder": false,
+							"rowViewports": [
+								{
+									"id": "landscapeMobile",
+									"rowViewportDefinition": {
+										"modulesPerRow": 1
+									}
+								},
+								{
+									"id": "portraitMobile",
+									"rowViewportDefinition": {
+										"modulesPerRow": 1
+									}
+								},
+								{
+									"id": "tablet",
+									"rowViewportDefinition": {}
+								}
+							],
+							"verticalAlignment": "top"
+						},
+						"id": "293a3124-a474-52a3-976a-5e30e009f278",
+						"type": "Row",
+						"pageElements": [
+							{
+								"definition": {
+									"columnViewports": [
+										{
+											"id": "landscapeMobile",
+											"columnViewportDefinition": {
+												"size": 12
+											}
+										},
+										{
+											"id": "portraitMobile",
+											"columnViewportDefinition": {
+												"size": 12
+											}
+										},
+										{
+											"id": "tablet",
+											"columnViewportDefinition": {
+												"size": 12
+											}
+										}
+									],
+									"size": 6
+								},
+								"id": "6b76b7a0-70cb-532e-8316-2865df625821",
+								"pageElements": [
+									{
+										"definition": {
+											"widgetInstance": {
+												"widgetConfig": {
+													"properties": "object-erc=OUTFITTERRENTAL\nrest-context-path=/o/c/outfitterhires\ninstance-id=ops-revenue-depot\ndimension=depot\nmeasure=revenue\naggregation=sum\nchart-type=bar\nstrategy=server\n"
+												},
+												"widgetName": "[$CLIENT_EXTENSION_ENTRY_ERC:LXC:object-dashboard-custom-element$]"
+											}
+										},
+										"id": "f6e3d9bc-5eb4-52d8-b9d0-704bac18fdfe",
+										"type": "Widget"
+									}
+								],
+								"type": "Column"
+							},
+							{
+								"definition": {
+									"columnViewports": [
+										{
+											"id": "landscapeMobile",
+											"columnViewportDefinition": {
+												"size": 12
+											}
+										},
+										{
+											"id": "portraitMobile",
+											"columnViewportDefinition": {
+												"size": 12
+											}
+										},
+										{
+											"id": "tablet",
+											"columnViewportDefinition": {
+												"size": 12
+											}
+										}
+									],
+									"size": 6
+								},
+								"id": "336ba82d-bf0e-5905-ac03-91d6d9204c4c",
+								"pageElements": [
+									{
+										"definition": {
+											"widgetInstance": {
+												"widgetConfig": {
+													"properties": "object-erc=OUTFITTERRENTAL\nrest-context-path=/o/c/outfitterhires\ninstance-id=ops-revenue-activity\ndimension=activity\nmeasure=revenue\naggregation=sum\nchart-type=pie\nstrategy=server\n"
+												},
+												"widgetName": "[$CLIENT_EXTENSION_ENTRY_ERC:LXC:object-dashboard-custom-element$]"
+											}
+										},
+										"id": "78880e50-1157-5002-970c-5b3932b3fc28",
+										"type": "Widget"
+									}
+								],
+								"type": "Column"
+							}
+						]
+					},
+					{
+						"definition": {
+							"gutters": true,
+							"indexed": true,
+							"modulesPerRow": 3,
+							"numberOfColumns": 3,
+							"reverseOrder": false,
+							"rowViewports": [
+								{
+									"id": "landscapeMobile",
+									"rowViewportDefinition": {
+										"modulesPerRow": 1
+									}
+								},
+								{
+									"id": "portraitMobile",
+									"rowViewportDefinition": {
+										"modulesPerRow": 1
+									}
+								},
+								{
+									"id": "tablet",
+									"rowViewportDefinition": {}
+								}
+							],
+							"verticalAlignment": "top"
+						},
+						"id": "0fd39007-5438-5ccb-bd4a-4e19a522a7f7",
+						"type": "Row",
+						"pageElements": [
+							{
+								"definition": {
+									"columnViewports": [
+										{
+											"id": "landscapeMobile",
+											"columnViewportDefinition": {
+												"size": 12
+											}
+										},
+										{
+											"id": "portraitMobile",
+											"columnViewportDefinition": {
+												"size": 12
+											}
+										},
+										{
+											"id": "tablet",
+											"columnViewportDefinition": {
+												"size": 12
+											}
+										}
+									],
+									"size": 4
+								},
+								"id": "4d3cb981-8322-5ee3-96f9-ec3ca71a6e19",
+								"pageElements": [
+									{
+										"definition": {
+											"widgetInstance": {
+												"widgetConfig": {
+													"properties": "object-erc=OUTFITTERRENTAL\nrest-context-path=/o/c/outfitterhires\ninstance-id=ops-hires-category\ndimension=category\nmeasure=revenue\naggregation=count\nchart-type=bar\nstrategy=server\n"
+												},
+												"widgetName": "[$CLIENT_EXTENSION_ENTRY_ERC:LXC:object-dashboard-custom-element$]"
+											}
+										},
+										"id": "0ca5fdb1-3ba9-521a-be00-9cefad9b8e10",
+										"type": "Widget"
+									}
+								],
+								"type": "Column"
+							},
+							{
+								"definition": {
+									"columnViewports": [
+										{
+											"id": "landscapeMobile",
+											"columnViewportDefinition": {
+												"size": 12
+											}
+										},
+										{
+											"id": "portraitMobile",
+											"columnViewportDefinition": {
+												"size": 12
+											}
+										},
+										{
+											"id": "tablet",
+											"columnViewportDefinition": {
+												"size": 12
+											}
+										}
+									],
+									"size": 4
+								},
+								"id": "c4f0ac36-9db3-598d-93be-e0167d24e261",
+								"pageElements": [
+									{
+										"definition": {
+											"widgetInstance": {
+												"widgetConfig": {
+													"properties": "object-erc=OUTFITTERRENTAL\nrest-context-path=/o/c/outfitterhires\ninstance-id=ops-days-category\ndimension=category\nmeasure=days\naggregation=avg\nchart-type=bar\nstrategy=server\n"
+												},
+												"widgetName": "[$CLIENT_EXTENSION_ENTRY_ERC:LXC:object-dashboard-custom-element$]"
+											}
+										},
+										"id": "30bc896b-211f-5609-80e1-77800bc4978a",
+										"type": "Widget"
+									}
+								],
+								"type": "Column"
+							},
+							{
+								"definition": {
+									"columnViewports": [
+										{
+											"id": "landscapeMobile",
+											"columnViewportDefinition": {
+												"size": 12
+											}
+										},
+										{
+											"id": "portraitMobile",
+											"columnViewportDefinition": {
+												"size": 12
+											}
+										},
+										{
+											"id": "tablet",
+											"columnViewportDefinition": {
+												"size": 12
+											}
+										}
+									],
+									"size": 4
+								},
+								"id": "58da340d-1cc9-5347-9759-4a347b80d958",
+								"pageElements": [
+									{
+										"definition": {
+											"widgetInstance": {
+												"widgetConfig": {
+													"properties": "object-erc=OUTFITTERRENTAL\nrest-context-path=/o/c/outfitterhires\ninstance-id=ops-party-activity\ndimension=activity\nmeasure=partySize\naggregation=avg\nchart-type=bar\nstrategy=server\n"
+												},
+												"widgetName": "[$CLIENT_EXTENSION_ENTRY_ERC:LXC:object-dashboard-custom-element$]"
+											}
+										},
+										"id": "d906a547-d780-5235-8cef-84ecc681e2cf",
+										"type": "Widget"
+									}
+								],
+								"type": "Column"
+							}
+						]
+					}
+				],
+				"type": "Section"
+			},
+			{
+				"definition": {
+					"indexed": true,
+					"layout": {
+						"contentDisplay": "Block",
+						"widthType": "Fixed"
+					},
+					"fragmentStyle": {
+						"paddingBottom": "7"
+					}
+				},
+				"id": "2c59a09d-45e7-5fb1-82e0-5cc7290bdf08",
+				"pageElements": [
+					{
+						"definition": {
+							"fragment": {
+								"key": "section-intro",
+								"siteKey": "[$GROUP_KEY$]"
+							},
+							"fragmentConfig": {
+								"align": "left",
+								"spacing": "normal",
+								"showEyebrow": true,
+								"showLead": true
+							},
+							"fragmentFields": [
+								{
+									"id": "title",
+									"value": {
+										"text": {
+											"value_i18n": {
+												"en_US": "Channel and status"
+											}
+										}
+									}
+								},
+								{
+									"id": "eyebrow",
+									"value": {
+										"text": {
+											"value_i18n": {
+												"en_US": "Mix"
+											}
+										}
+									}
+								},
+								{
+									"id": "lead",
+									"value": {
+										"text": {
+											"value_i18n": {
+												"en_US": "The same widget again, on different fields."
+											}
+										}
+									}
+								}
+							],
+							"fragmentStyle": {},
+							"indexed": true
+						},
+						"id": "21b07f89-431d-5da1-988d-cf357fc2123b",
+						"type": "Fragment"
+					},
+					{
+						"definition": {
+							"gutters": true,
+							"indexed": true,
+							"modulesPerRow": 2,
+							"numberOfColumns": 2,
+							"reverseOrder": false,
+							"rowViewports": [
+								{
+									"id": "landscapeMobile",
+									"rowViewportDefinition": {
+										"modulesPerRow": 1
+									}
+								},
+								{
+									"id": "portraitMobile",
+									"rowViewportDefinition": {
+										"modulesPerRow": 1
+									}
+								},
+								{
+									"id": "tablet",
+									"rowViewportDefinition": {}
+								}
+							],
+							"verticalAlignment": "top"
+						},
+						"id": "c3898de3-6886-5cc9-bad1-cad44a54ad6f",
+						"type": "Row",
+						"pageElements": [
+							{
+								"definition": {
+									"columnViewports": [
+										{
+											"id": "landscapeMobile",
+											"columnViewportDefinition": {
+												"size": 12
+											}
+										},
+										{
+											"id": "portraitMobile",
+											"columnViewportDefinition": {
+												"size": 12
+											}
+										},
+										{
+											"id": "tablet",
+											"columnViewportDefinition": {
+												"size": 12
+											}
+										}
+									],
+									"size": 6
+								},
+								"id": "4045da0a-5a4a-58c9-99b0-81f36f4492ce",
+								"pageElements": [
+									{
+										"definition": {
+											"widgetInstance": {
+												"widgetConfig": {
+													"properties": "object-erc=OUTFITTERRENTAL\nrest-context-path=/o/c/outfitterhires\ninstance-id=ops-channel\ndimension=channel\nmeasure=revenue\naggregation=sum\nchart-type=pie\nstrategy=server\n"
+												},
+												"widgetName": "[$CLIENT_EXTENSION_ENTRY_ERC:LXC:object-dashboard-custom-element$]"
+											}
+										},
+										"id": "e285d486-a779-5c50-8dd3-460cff1d16af",
+										"type": "Widget"
+									}
+								],
+								"type": "Column"
+							},
+							{
+								"definition": {
+									"columnViewports": [
+										{
+											"id": "landscapeMobile",
+											"columnViewportDefinition": {
+												"size": 12
+											}
+										},
+										{
+											"id": "portraitMobile",
+											"columnViewportDefinition": {
+												"size": 12
+											}
+										},
+										{
+											"id": "tablet",
+											"columnViewportDefinition": {
+												"size": 12
+											}
+										}
+									],
+									"size": 6
+								},
+								"id": "fb9cae79-c902-5d63-b8c9-b69eb926719f",
+								"pageElements": [
+									{
+										"definition": {
+											"widgetInstance": {
+												"widgetConfig": {
+													"properties": "object-erc=OUTFITTERRENTAL\nrest-context-path=/o/c/outfitterhires\ninstance-id=ops-status\ndimension=hireStatus\nmeasure=revenue\naggregation=count\nchart-type=bar\nstrategy=server\n"
+												},
+												"widgetName": "[$CLIENT_EXTENSION_ENTRY_ERC:LXC:object-dashboard-custom-element$]"
+											}
+										},
+										"id": "f081706d-ff14-5947-9a38-b5af9249e1d2",
+										"type": "Widget"
+									}
+								],
+								"type": "Column"
+							}
+						]
+					}
+				],
+				"type": "Section"
+			}
+		],
+		"type": "Root"
+	},
+	"masterPage": {
+		"key": "outfitter"
+	},
+	"settings": {
+		"masterPage": {
+			"key": "outfitter"
+		}
+	}
+}

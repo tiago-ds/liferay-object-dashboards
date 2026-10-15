@@ -1,0 +1,36 @@
+{
+	"fieldSets": [
+		{
+			"fields": [
+				{
+					"dataType": "string",
+					"defaultValue": "left",
+					"label": "Alignment",
+					"name": "align",
+					"type": "select",
+					"typeOptions": {
+						"validValues": [
+							{
+								"label": "Left",
+								"value": "left"
+							},
+							{
+								"label": "Centre",
+								"value": "center"
+							}
+						]
+					}
+				},
+				{
+					"name": "showNote",
+					"label": "Show note",
+					"type": "checkbox",
+					"dataType": "string",
+					"defaultValue": true,
+					"description": "A quieter line under the label, for the caveat."
+				}
+			],
+			"label": "Stat"
+		}
+	]
+}

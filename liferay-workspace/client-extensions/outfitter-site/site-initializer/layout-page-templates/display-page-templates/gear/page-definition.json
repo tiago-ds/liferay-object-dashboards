@@ -1,0 +1,755 @@
+{
+	"pageElement": {
+		"id": "54054514-b83a-518f-832b-b2b545837867",
+		"pageElements": [
+			{
+				"definition": {
+					"fragment": {
+						"key": "media-band",
+						"siteKey": "[$GROUP_KEY$]"
+					},
+					"fragmentConfig": {
+						"height": "short",
+						"align": "left",
+						"scrim": "heavy",
+						"showCta": false
+					},
+					"fragmentFields": [
+						{
+							"id": "backgroundImage",
+							"value": {
+								"backgroundFragmentImage": {
+									"url": {
+										"mapping": {
+											"fieldKey": "FileEntry_previewImage",
+											"itemReference": {
+												"className": "com.liferay.portal.kernel.repository.model.FileEntry",
+												"classPK": "[#DOCUMENT_FILE_ENTRY_ID:/site-initializer/documents/group/gear-default.jpg#]"
+											}
+										}
+									}
+								}
+							}
+						},
+						{
+							"id": "title",
+							"value": {
+								"text": {
+									"value_i18n": {
+										"en_US": ""
+									}
+								}
+							}
+						},
+						{
+							"id": "lead",
+							"value": {
+								"text": {
+									"value_i18n": {
+										"en_US": ""
+									}
+								}
+							}
+						}
+					],
+					"fragmentStyle": {},
+					"indexed": true
+				},
+				"id": "7a2b7e03-d892-5081-a765-948aff0cd0b8",
+				"type": "Fragment"
+			},
+			{
+				"definition": {
+					"indexed": true,
+					"layout": {
+						"contentDisplay": "Block",
+						"widthType": "Fixed"
+					},
+					"fragmentStyle": {
+						"paddingBottom": "7",
+						"paddingTop": "7"
+					}
+				},
+				"id": "e8f24120-dd3f-5b7a-9d5e-239d467f74cc",
+				"pageElements": [
+					{
+						"definition": {
+							"gutters": true,
+							"indexed": true,
+							"modulesPerRow": 2,
+							"numberOfColumns": 2,
+							"reverseOrder": false,
+							"rowViewports": [
+								{
+									"id": "landscapeMobile",
+									"rowViewportDefinition": {
+										"modulesPerRow": 1
+									}
+								},
+								{
+									"id": "portraitMobile",
+									"rowViewportDefinition": {
+										"modulesPerRow": 1
+									}
+								},
+								{
+									"id": "tablet",
+									"rowViewportDefinition": {}
+								}
+							],
+							"verticalAlignment": "top"
+						},
+						"id": "52c8a230-fde3-5d57-ab41-b35cee6a9089",
+						"type": "Row",
+						"pageElements": [
+							{
+								"definition": {
+									"columnViewports": [
+										{
+											"id": "landscapeMobile",
+											"columnViewportDefinition": {
+												"size": 12
+											}
+										},
+										{
+											"id": "portraitMobile",
+											"columnViewportDefinition": {
+												"size": 12
+											}
+										},
+										{
+											"id": "tablet",
+											"columnViewportDefinition": {
+												"size": 12
+											}
+										}
+									],
+									"size": 7
+								},
+								"id": "32892dea-59d4-5cf0-af71-e9d192dd727b",
+								"pageElements": [
+									{
+										"definition": {
+											"fragment": {
+												"key": "BASIC_COMPONENT-paragraph"
+											},
+											"fragmentConfig": {},
+											"fragmentFields": [
+												{
+													"id": "element-text",
+													"value": {
+														"text": {
+															"mapping": {
+																"fieldKey": "category",
+																"itemReference": {
+																	"contextSource": "CollectionItem"
+																}
+															}
+														}
+													}
+												}
+											],
+											"fragmentStyle": {},
+											"indexed": true,
+											"customCSS": ".[$FRAGMENT_CLASS$] {\n\tcolor: var(--color-brand-primary);\n\tfont-size: .8125rem;\n\tfont-weight: 600;\n\tletter-spacing: .14em;\n\ttext-transform: uppercase;\n}"
+										},
+										"id": "7ef963a2-0dde-5482-ab47-432ddcd32216",
+										"type": "Fragment"
+									},
+									{
+										"definition": {
+											"fragment": {
+												"key": "BASIC_COMPONENT-heading"
+											},
+											"fragmentConfig": {
+												"headingLevel": "h1"
+											},
+											"fragmentFields": [
+												{
+													"id": "element-text",
+													"value": {
+														"text": {
+															"mapping": {
+																"fieldKey": "gearName",
+																"itemReference": {
+																	"contextSource": "CollectionItem"
+																}
+															}
+														}
+													}
+												}
+											],
+											"fragmentStyle": {},
+											"indexed": true
+										},
+										"id": "19903057-96b0-5bb8-b80d-849401303c67",
+										"type": "Fragment"
+									},
+									{
+										"definition": {
+											"fragment": {
+												"key": "BASIC_COMPONENT-paragraph"
+											},
+											"fragmentConfig": {},
+											"fragmentFields": [
+												{
+													"id": "element-text",
+													"value": {
+														"text": {
+															"mapping": {
+																"fieldKey": "summary",
+																"itemReference": {
+																	"contextSource": "CollectionItem"
+																}
+															}
+														}
+													}
+												}
+											],
+											"fragmentStyle": {},
+											"indexed": true,
+											"customCSS": ".[$FRAGMENT_CLASS$] {\n\tcolor: var(--color-neutral-7);\n\tfont-size: 1.125rem;\n}"
+										},
+										"id": "122426b7-4b2f-54ae-a96f-52f777c08e5e",
+										"type": "Fragment"
+									},
+									{
+										"definition": {
+											"fragment": {
+												"key": "BASIC_COMPONENT-heading"
+											},
+											"fragmentConfig": {
+												"headingLevel": "h2"
+											},
+											"fragmentFields": [
+												{
+													"id": "element-text",
+													"value": {
+														"text": {
+															"value_i18n": {
+																"en_US": "Specification"
+															}
+														}
+													}
+												}
+											],
+											"fragmentStyle": {
+												"marginTop": "5"
+											},
+											"indexed": true
+										},
+										"id": "41501387-c1e5-5d88-9c7c-9f608386bdbb",
+										"type": "Fragment"
+									},
+									{
+										"definition": {
+											"fragment": {
+												"key": "spec-row",
+												"siteKey": "[$GROUP_KEY$]"
+											},
+											"fragmentConfig": {},
+											"fragmentFields": [
+												{
+													"id": "label",
+													"value": {
+														"text": {
+															"value_i18n": {
+																"en_US": "SKU"
+															}
+														}
+													}
+												},
+												{
+													"id": "value",
+													"value": {
+														"text": {
+															"mapping": {
+																"fieldKey": "sku",
+																"itemReference": {
+																	"contextSource": "DisplayPageItem"
+																}
+															}
+														}
+													}
+												}
+											],
+											"fragmentStyle": {},
+											"indexed": true
+										},
+										"id": "64c38b13-e98f-5d33-8f91-805aef62fe4a",
+										"type": "Fragment"
+									},
+									{
+										"definition": {
+											"fragment": {
+												"key": "spec-row",
+												"siteKey": "[$GROUP_KEY$]"
+											},
+											"fragmentConfig": {},
+											"fragmentFields": [
+												{
+													"id": "label",
+													"value": {
+														"text": {
+															"value_i18n": {
+																"en_US": "Category"
+															}
+														}
+													}
+												},
+												{
+													"id": "value",
+													"value": {
+														"text": {
+															"mapping": {
+																"fieldKey": "category",
+																"itemReference": {
+																	"contextSource": "DisplayPageItem"
+																}
+															}
+														}
+													}
+												}
+											],
+											"fragmentStyle": {},
+											"indexed": true
+										},
+										"id": "a6555e29-c893-56c7-b880-5d2e9c96d45a",
+										"type": "Fragment"
+									},
+									{
+										"definition": {
+											"fragment": {
+												"key": "spec-row",
+												"siteKey": "[$GROUP_KEY$]"
+											},
+											"fragmentConfig": {},
+											"fragmentFields": [
+												{
+													"id": "label",
+													"value": {
+														"text": {
+															"value_i18n": {
+																"en_US": "Best for"
+															}
+														}
+													}
+												},
+												{
+													"id": "value",
+													"value": {
+														"text": {
+															"mapping": {
+																"fieldKey": "activity",
+																"itemReference": {
+																	"contextSource": "DisplayPageItem"
+																}
+															}
+														}
+													}
+												}
+											],
+											"fragmentStyle": {},
+											"indexed": true
+										},
+										"id": "f3718def-a459-56f9-871d-f0180a397e1b",
+										"type": "Fragment"
+									},
+									{
+										"definition": {
+											"fragment": {
+												"key": "spec-row",
+												"siteKey": "[$GROUP_KEY$]"
+											},
+											"fragmentConfig": {},
+											"fragmentFields": [
+												{
+													"id": "label",
+													"value": {
+														"text": {
+															"value_i18n": {
+																"en_US": "Home depot"
+															}
+														}
+													}
+												},
+												{
+													"id": "value",
+													"value": {
+														"text": {
+															"mapping": {
+																"fieldKey": "depot",
+																"itemReference": {
+																	"contextSource": "DisplayPageItem"
+																}
+															}
+														}
+													}
+												}
+											],
+											"fragmentStyle": {},
+											"indexed": true
+										},
+										"id": "b8f268ca-619a-5894-91de-11b55ecf13f6",
+										"type": "Fragment"
+									},
+									{
+										"definition": {
+											"fragment": {
+												"key": "spec-row",
+												"siteKey": "[$GROUP_KEY$]"
+											},
+											"fragmentConfig": {},
+											"fragmentFields": [
+												{
+													"id": "label",
+													"value": {
+														"text": {
+															"value_i18n": {
+																"en_US": "Condition"
+															}
+														}
+													}
+												},
+												{
+													"id": "value",
+													"value": {
+														"text": {
+															"mapping": {
+																"fieldKey": "gearCondition",
+																"itemReference": {
+																	"contextSource": "DisplayPageItem"
+																}
+															}
+														}
+													}
+												}
+											],
+											"fragmentStyle": {},
+											"indexed": true
+										},
+										"id": "dcbef337-74cb-5c0d-9aae-8118a565b3ad",
+										"type": "Fragment"
+									},
+									{
+										"definition": {
+											"fragment": {
+												"key": "spec-row",
+												"siteKey": "[$GROUP_KEY$]"
+											},
+											"fragmentConfig": {},
+											"fragmentFields": [
+												{
+													"id": "label",
+													"value": {
+														"text": {
+															"value_i18n": {
+																"en_US": "Days on hire this year"
+															}
+														}
+													}
+												},
+												{
+													"id": "value",
+													"value": {
+														"text": {
+															"mapping": {
+																"fieldKey": "utilisationDays",
+																"itemReference": {
+																	"contextSource": "DisplayPageItem"
+																}
+															}
+														}
+													}
+												}
+											],
+											"fragmentStyle": {},
+											"indexed": true
+										},
+										"id": "4f8b1742-5cbf-5625-8278-9ea34ed7c996",
+										"type": "Fragment"
+									},
+									{
+										"definition": {
+											"fragment": {
+												"key": "spec-row",
+												"siteKey": "[$GROUP_KEY$]"
+											},
+											"fragmentConfig": {},
+											"fragmentFields": [
+												{
+													"id": "label",
+													"value": {
+														"text": {
+															"value_i18n": {
+																"en_US": "Days out of service"
+															}
+														}
+													}
+												},
+												{
+													"id": "value",
+													"value": {
+														"text": {
+															"mapping": {
+																"fieldKey": "downtimeDays",
+																"itemReference": {
+																	"contextSource": "DisplayPageItem"
+																}
+															}
+														}
+													}
+												}
+											],
+											"fragmentStyle": {},
+											"indexed": true
+										},
+										"id": "40f94bac-f039-5cf4-b023-293ebe054c7c",
+										"type": "Fragment"
+									},
+									{
+										"definition": {
+											"fragment": {
+												"key": "spec-row",
+												"siteKey": "[$GROUP_KEY$]"
+											},
+											"fragmentConfig": {},
+											"fragmentFields": [
+												{
+													"id": "label",
+													"value": {
+														"text": {
+															"value_i18n": {
+																"en_US": "Replacement value"
+															}
+														}
+													}
+												},
+												{
+													"id": "value",
+													"value": {
+														"text": {
+															"mapping": {
+																"fieldKey": "replacementValue",
+																"itemReference": {
+																	"contextSource": "DisplayPageItem"
+																}
+															}
+														}
+													}
+												}
+											],
+											"fragmentStyle": {},
+											"indexed": true
+										},
+										"id": "db67d808-2289-5881-943d-80c11cf32c90",
+										"type": "Fragment"
+									}
+								],
+								"type": "Column"
+							},
+							{
+								"definition": {
+									"columnViewports": [
+										{
+											"id": "landscapeMobile",
+											"columnViewportDefinition": {
+												"size": 12
+											}
+										},
+										{
+											"id": "portraitMobile",
+											"columnViewportDefinition": {
+												"size": 12
+											}
+										},
+										{
+											"id": "tablet",
+											"columnViewportDefinition": {
+												"size": 12
+											}
+										}
+									],
+									"size": 5
+								},
+								"id": "dc08a832-c893-59ec-a78d-7f556def3f5c",
+								"pageElements": [
+									{
+										"definition": {
+											"indexed": true,
+											"layout": {
+												"contentDisplay": "Block",
+												"widthType": "Fixed"
+											},
+											"customCSS": ".[$FRAGMENT_CLASS$] {\n\tbackground: var(--color-neutral-1, #f7f6f9);\n\tborder-radius: var(--border-radius-lg, 0.75rem);\n\theight: 100%;\n\tmargin-bottom: 1.5rem;\n\tpadding: 1.5rem;\n}"
+										},
+										"id": "e47d2027-e31c-5637-8391-050e0abdacdf",
+										"pageElements": [
+											{
+												"definition": {
+													"fragment": {
+														"key": "BASIC_COMPONENT-paragraph"
+													},
+													"fragmentConfig": {},
+													"fragmentFields": [
+														{
+															"id": "element-text",
+															"value": {
+																"text": {
+																	"value_i18n": {
+																		"en_US": "Daily rate"
+																	}
+																}
+															}
+														}
+													],
+													"fragmentStyle": {},
+													"indexed": true
+												},
+												"id": "5dfb1500-624d-5ac2-a44b-8be78cff23e1",
+												"type": "Fragment"
+											},
+											{
+												"definition": {
+													"fragment": {
+														"key": "BASIC_COMPONENT-heading"
+													},
+													"fragmentConfig": {
+														"headingLevel": "h2"
+													},
+													"fragmentFields": [
+														{
+															"id": "element-text",
+															"value": {
+																"text": {
+																	"mapping": {
+																		"fieldKey": "dailyRate",
+																		"itemReference": {
+																			"contextSource": "CollectionItem"
+																		}
+																	}
+																}
+															}
+														}
+													],
+													"fragmentStyle": {},
+													"indexed": true
+												},
+												"id": "eb24c439-5d88-5ad8-b55c-8c826b09a434",
+												"type": "Fragment"
+											},
+											{
+												"definition": {
+													"fragment": {
+														"key": "BASIC_COMPONENT-paragraph"
+													},
+													"fragmentConfig": {},
+													"fragmentFields": [
+														{
+															"id": "element-text",
+															"value": {
+																"text": {
+																	"value_i18n": {
+																		"en_US": "Per day, including the pre-hire check. Discounts apply from the fourth day."
+																	}
+																}
+															}
+														}
+													],
+													"fragmentStyle": {},
+													"indexed": true
+												},
+												"id": "66b71a14-bb48-5765-84e7-5103e6ff62b8",
+												"type": "Fragment"
+											},
+											{
+												"definition": {
+													"fragment": {
+														"key": "BASIC_COMPONENT-button"
+													},
+													"fragmentConfig": {
+														"buttonSize": "regular",
+														"displayType": "primary"
+													},
+													"fragmentFields": [
+														{
+															"id": "link",
+															"value": {
+																"fragmentLink": {
+																	"value": {
+																		"href": {
+																			"value": "/web/outfitter/contact"
+																		}
+																	}
+																},
+																"text": {
+																	"value_i18n": {
+																		"en_US": "Check availability"
+																	}
+																}
+															}
+														}
+													],
+													"fragmentStyle": {},
+													"indexed": true
+												},
+												"id": "648eaff1-7a0d-56b3-acb4-a197d3ec8ea8",
+												"type": "Fragment"
+											},
+											{
+												"definition": {
+													"fragment": {
+														"key": "BASIC_COMPONENT-button"
+													},
+													"fragmentConfig": {
+														"buttonSize": "regular",
+														"displayType": "secondary"
+													},
+													"fragmentFields": [
+														{
+															"id": "link",
+															"value": {
+																"fragmentLink": {
+																	"value": {
+																		"href": {
+																			"value": "/web/outfitter/catalogue"
+																		}
+																	}
+																},
+																"text": {
+																	"value_i18n": {
+																		"en_US": "Back to the catalogue"
+																	}
+																}
+															}
+														}
+													],
+													"fragmentStyle": {},
+													"indexed": true
+												},
+												"id": "de354988-b89d-5196-86f2-74d73d5c04df",
+												"type": "Fragment"
+											}
+										],
+										"type": "Section"
+									}
+								],
+								"type": "Column"
+							}
+						]
+					}
+				],
+				"type": "Section"
+			}
+		],
+		"type": "Root"
+	},
+	"masterPage": {
+		"key": "outfitter"
+	},
+	"settings": {
+		"masterPage": {
+			"key": "outfitter"
+		}
+	}
+}

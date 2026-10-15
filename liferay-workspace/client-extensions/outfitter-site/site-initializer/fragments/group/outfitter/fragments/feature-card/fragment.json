@@ -1,0 +1,8 @@
+{
+	"cssPath": "index.css",
+	"htmlPath": "index.html",
+	"icon": "cards2",
+	"name": "Feature Card",
+	"type": "component",
+	"configurationPath": "configuration.json"
+}

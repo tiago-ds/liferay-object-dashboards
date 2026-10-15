@@ -3,5 +3,9 @@
 		"lfr-theme:regular:show-footer": false,
 		"lfr-theme:regular:wrap-widget-page-content": false
 	},
-	"themeName": "Classic"
+	"themeName": "Classic",
+	"styleBook": {
+		"key": "dashboards-dark",
+		"name": "Dashboards Dark"
+	}
 }

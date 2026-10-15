@@ -1,0 +1,137 @@
+{
+	"pageElement": {
+		"id": "0603ef35-878c-54b8-b42c-e474f113793c",
+		"pageElements": [
+			{
+				"definition": {
+					"fragment": {
+						"key": "site-header",
+						"siteKey": "[$GROUP_KEY$]"
+					},
+					"fragmentConfig": {
+						"homeLink": "/web/outfitter"
+					},
+					"fragmentFields": [
+						{
+							"id": "brand",
+							"value": {
+								"text": {
+									"value_i18n": {
+										"en_US": "Alpine Ridge Outfitters"
+									}
+								}
+							}
+						},
+						{
+							"id": "cta",
+							"value": {
+								"fragmentLink": {
+									"value": {
+										"href": {
+											"value": "/web/outfitter/catalogue"
+										}
+									}
+								},
+								"text": {
+									"value_i18n": {
+										"en_US": "Book gear"
+									}
+								}
+							}
+						}
+					],
+					"fragmentStyle": {},
+					"indexed": true
+				},
+				"id": "5e9c4018-2033-56c7-b6d2-e3e3431aca50",
+				"type": "Fragment",
+				"pageElements": [
+					{
+						"type": "FragmentDropZone",
+						"pageElements": [
+							{
+								"definition": {
+									"widgetInstance": {
+										"widgetName": "com_liferay_site_navigation_menu_web_portlet_SiteNavigationMenuPortlet"
+									}
+								},
+								"id": "ff2b622e-0cb1-52ee-9096-cc322fe9d49e",
+								"type": "Widget"
+							}
+						]
+					}
+				]
+			},
+			{
+				"definition": {
+					"fragmentSettings": {
+						"unallowedFragments": []
+					}
+				},
+				"type": "DropZone"
+			},
+			{
+				"definition": {
+					"fragment": {
+						"key": "site-footer",
+						"siteKey": "[$GROUP_KEY$]"
+					},
+					"fragmentConfig": {},
+					"fragmentFields": [
+						{
+							"id": "brand",
+							"value": {
+								"text": {
+									"value_i18n": {
+										"en_US": "Alpine Ridge Outfitters"
+									}
+								}
+							}
+						},
+						{
+							"id": "blurb",
+							"value": {
+								"text": {
+									"value_i18n": {
+										"en_US": "Expedition kit, hired by the day from four depots across the range and the coast."
+									}
+								}
+							}
+						},
+						{
+							"id": "legal",
+							"value": {
+								"text": {
+									"value_i18n": {
+										"en_US": "A fictional company, built to demonstrate Liferay Objects at DevCon 2026. No gear is actually for hire."
+									}
+								}
+							}
+						}
+					],
+					"fragmentStyle": {},
+					"indexed": true
+				},
+				"id": "96bce36e-ca8a-5bae-9208-2650efb78558",
+				"type": "Fragment",
+				"pageElements": [
+					{
+						"type": "FragmentDropZone",
+						"pageElements": [
+							{
+								"definition": {
+									"widgetInstance": {
+										"widgetName": "com_liferay_site_navigation_menu_web_portlet_SiteNavigationMenuPortlet"
+									}
+								},
+								"id": "c4d12d1c-9219-5704-886c-702ef10a62ce",
+								"type": "Widget"
+							}
+						]
+					}
+				]
+			}
+		],
+		"type": "Root"
+	}
+}

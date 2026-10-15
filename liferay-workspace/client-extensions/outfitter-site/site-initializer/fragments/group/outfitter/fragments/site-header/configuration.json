@@ -1,0 +1,16 @@
+{
+	"fieldSets": [
+		{
+			"fields": [
+				{
+					"dataType": "string",
+					"defaultValue": "/web/outfitter",
+					"label": "Home link",
+					"name": "homeLink",
+					"type": "text"
+				}
+			],
+			"label": "Site Header"
+		}
+	]
+}

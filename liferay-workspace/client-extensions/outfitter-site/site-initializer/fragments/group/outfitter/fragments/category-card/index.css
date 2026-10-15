@@ -1,0 +1,51 @@
+.of-cat {
+	cursor: pointer;
+	border-radius: var(--border-radius-lg, 0.75rem);
+	color: inherit;
+	display: block;
+	overflow: hidden;
+	position: relative;
+	text-decoration: none;
+	transition: transform 160ms ease, box-shadow 160ms ease;
+}
+
+.of-cat:hover,
+.of-cat:focus-visible {
+	box-shadow: 0 12px 28px rgba(0, 0, 0, 0.18);
+	color: inherit;
+	text-decoration: none;
+	transform: translateY(-2px);
+}
+
+.of-cat-media {
+	aspect-ratio: 4 / 3;
+	background-position: center;
+	background-size: cover;
+	display: block;
+	width: 100%;
+}
+
+/* Text sits on the image, so it carries its own gradient rather than relying
+   on whatever the photograph happens to do in its bottom third. */
+.of-cat-body {
+	background: linear-gradient(to top, rgba(0, 0, 0, 0.82), rgba(0, 0, 0, 0));
+	bottom: 0;
+	color: #fff;
+	display: block;
+	left: 0;
+	padding: 2.5rem 1.25rem 1.1rem;
+	position: absolute;
+	right: 0;
+}
+
+.of-cat-title {
+	display: block;
+	font-size: 1.1875rem;
+	font-weight: 600;
+}
+
+.of-cat-meta {
+	display: block;
+	font-size: 0.875rem;
+	opacity: 0.88;
+}

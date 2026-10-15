@@ -1,0 +1,8 @@
+{
+	"cssPath": "index.css",
+	"htmlPath": "index.html",
+	"icon": "live-blog",
+	"name": "Media Band",
+	"type": "component",
+	"configurationPath": "configuration.json"
+}

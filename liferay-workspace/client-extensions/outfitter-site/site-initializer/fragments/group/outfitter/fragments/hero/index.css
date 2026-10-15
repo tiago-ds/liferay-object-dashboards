@@ -1,0 +1,84 @@
+/* The scrim is a separate layer rather than a gradient baked into the image:
+   the two brands use different photographs, and an image-side gradient would
+   have to be re-cut for each one. */
+.of-hero {
+	align-items: flex-end;
+	background-position: center;
+	background-size: cover;
+	color: #fff;
+	display: flex;
+	position: relative;
+}
+
+.of-hero-short { min-height: 42vh; }
+.of-hero-tall { min-height: 68vh; }
+.of-hero-full { min-height: 86vh; }
+
+.of-hero-scrim {
+	background: linear-gradient(
+		to top,
+		rgba(0, 0, 0, 0.78) 0%,
+		rgba(0, 0, 0, 0.5) 38%,
+		rgba(0, 0, 0, 0.12) 100%
+	);
+	inset: 0;
+	position: absolute;
+}
+
+.of-hero-inner {
+	padding-bottom: 4.5rem;
+	padding-top: 6rem;
+	position: relative;
+	width: 100%;
+}
+
+.of-hero-text { max-width: 44rem; }
+
+.of-align-center { margin: 0 auto; text-align: center; }
+.of-align-center .of-hero-actions { justify-content: center; }
+
+.of-eyebrow {
+	font-size: 0.8125rem;
+	font-weight: 600;
+	letter-spacing: 0.14em;
+	margin-bottom: 0.75rem;
+	opacity: 0.92;
+	text-transform: uppercase;
+}
+
+.of-hero-title {
+	font-size: clamp(2.25rem, 5.2vw, 3.75rem);
+	font-weight: 700;
+	line-height: 1.06;
+	margin: 0 0 1rem;
+	text-wrap: balance;
+}
+
+.of-hero-lead {
+	font-size: clamp(1.0625rem, 1.6vw, 1.3125rem);
+	margin: 0 0 2rem;
+	max-width: 34rem;
+	opacity: 0.94;
+}
+
+.of-align-center .of-hero-lead { margin-left: auto; margin-right: auto; }
+
+.of-hero-actions {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 0.75rem;
+}
+
+/* Clay has no "on a photograph" button variant, so this is the one place the
+   site defines its own: a white outline that survives any background. */
+.of-btn-ghost {
+	background: rgba(255, 255, 255, 0.08);
+	border: 1px solid rgba(255, 255, 255, 0.75);
+	color: #fff;
+}
+
+.of-btn-ghost:hover,
+.of-btn-ghost:focus {
+	background: rgba(255, 255, 255, 0.95);
+	color: var(--color-brand-primary-darken-2, #002c76);
+}

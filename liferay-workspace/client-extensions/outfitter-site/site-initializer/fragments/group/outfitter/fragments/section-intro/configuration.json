@@ -1,0 +1,65 @@
+{
+	"fieldSets": [
+		{
+			"fields": [
+				{
+					"dataType": "string",
+					"defaultValue": "left",
+					"label": "Alignment",
+					"name": "align",
+					"type": "select",
+					"typeOptions": {
+						"validValues": [
+							{
+								"label": "Left",
+								"value": "left"
+							},
+							{
+								"label": "Centre",
+								"value": "center"
+							}
+						]
+					}
+				},
+				{
+					"dataType": "string",
+					"defaultValue": "normal",
+					"label": "Space below",
+					"name": "spacing",
+					"type": "select",
+					"typeOptions": {
+						"validValues": [
+							{
+								"label": "Tight",
+								"value": "tight"
+							},
+							{
+								"label": "Normal",
+								"value": "normal"
+							},
+							{
+								"label": "Loose",
+								"value": "loose"
+							}
+						]
+					}
+				},
+				{
+					"dataType": "string",
+					"defaultValue": true,
+					"label": "Show eyebrow",
+					"name": "showEyebrow",
+					"type": "checkbox"
+				},
+				{
+					"dataType": "string",
+					"defaultValue": true,
+					"label": "Show lead paragraph",
+					"name": "showLead",
+					"type": "checkbox"
+				}
+			],
+			"label": "Section Intro"
+		}
+	]
+}

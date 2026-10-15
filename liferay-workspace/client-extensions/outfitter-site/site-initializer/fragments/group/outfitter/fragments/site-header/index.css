@@ -1,0 +1,52 @@
+.of-header {
+	background: var(--color-neutral-0, #fff);
+	border-bottom: 1px solid var(--color-neutral-3, #dcd9e2);
+	position: relative;
+	z-index: 2;
+}
+
+.of-header-inner {
+	align-items: center;
+	display: flex;
+	gap: 1.5rem;
+	min-height: 4.5rem;
+}
+
+.of-brand {
+	align-items: center;
+	color: inherit;
+	display: flex;
+	flex: 0 0 auto;
+	gap: 0.6rem;
+	text-decoration: none;
+}
+
+.of-brand:hover { color: inherit; text-decoration: none; }
+
+/* A mark drawn from the brand colour rather than a logo file, so the second
+   brand needs no second asset. */
+.of-brand-mark {
+	background: var(--color-brand-primary, #2460b7);
+	clip-path: polygon(50% 0%, 100% 100%, 0% 100%);
+	display: inline-block;
+	height: 1.5rem;
+	width: 1.5rem;
+}
+
+.of-brand-name {
+	font-size: 1.0625rem;
+	font-weight: 700;
+	letter-spacing: -0.01em;
+}
+
+.of-header-nav {
+	flex: 1 1 auto;
+	min-width: 0;
+}
+
+.of-header-cta { flex: 0 0 auto; }
+
+@media (max-width: 767px) {
+	.of-header-inner { flex-wrap: wrap; }
+	.of-header-cta { display: none; }
+}

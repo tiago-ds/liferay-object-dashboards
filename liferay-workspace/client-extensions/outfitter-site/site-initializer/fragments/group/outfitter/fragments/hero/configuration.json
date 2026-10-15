@@ -1,0 +1,66 @@
+{
+	"fieldSets": [
+		{
+			"fields": [
+				{
+					"dataType": "string",
+					"defaultValue": "tall",
+					"label": "Height",
+					"name": "height",
+					"type": "select",
+					"typeOptions": {
+						"validValues": [
+							{
+								"label": "Short",
+								"value": "short"
+							},
+							{
+								"label": "Tall",
+								"value": "tall"
+							},
+							{
+								"label": "Full bleed",
+								"value": "full"
+							}
+						]
+					}
+				},
+				{
+					"dataType": "string",
+					"defaultValue": "left",
+					"label": "Alignment",
+					"name": "align",
+					"type": "select",
+					"typeOptions": {
+						"validValues": [
+							{
+								"label": "Left",
+								"value": "left"
+							},
+							{
+								"label": "Centre",
+								"value": "center"
+							}
+						]
+					}
+				},
+				{
+					"dataType": "string",
+					"defaultValue": true,
+					"label": "Show eyebrow",
+					"name": "showEyebrow",
+					"type": "checkbox",
+					"description": "The small uppercase line above the title."
+				},
+				{
+					"dataType": "string",
+					"defaultValue": true,
+					"label": "Show secondary button",
+					"name": "showSecondaryCta",
+					"type": "checkbox"
+				}
+			],
+			"label": "Hero"
+		}
+	]
+}

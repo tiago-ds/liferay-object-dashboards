@@ -1,0 +1,33 @@
+<header class="of-hero of-hero-${(configuration.height)!"tall"}" data-lfr-background-image-id="backgroundImage">
+	<div class="of-hero-scrim"></div>
+
+	<div class="container of-hero-inner">
+		<div class="of-hero-text of-align-${(configuration.align)!"left"}">
+			[#if (configuration.showEyebrow)!true]
+				<p class="of-eyebrow" data-lfr-editable-id="eyebrow" data-lfr-editable-type="text">
+					Alpine &amp; coastal hire
+				</p>
+			[/#if]
+
+			<h1 class="of-hero-title" data-lfr-editable-id="title" data-lfr-editable-type="text">
+				Gear that has already been where you are going
+			</h1>
+
+			<p class="of-hero-lead" data-lfr-editable-id="lead" data-lfr-editable-type="text">
+				Four depots, one inventory, checked between every hire.
+			</p>
+
+			<div class="of-hero-actions">
+				<a class="btn btn-primary btn-lg" data-lfr-editable-id="cta-primary" data-lfr-editable-type="link" href="/web/outfitter/catalogue">
+					Browse the gear
+				</a>
+
+				[#if (configuration.showSecondaryCta)!true]
+					<a class="btn btn-lg of-btn-ghost" data-lfr-editable-id="cta-secondary" data-lfr-editable-type="link" href="/web/outfitter/how-it-works">
+						How hiring works
+					</a>
+				[/#if]
+			</div>
+		</div>
+	</div>
+</header>

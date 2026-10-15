@@ -1,0 +1,17 @@
+{
+	"friendlyURL": "/how-it-works",
+	"hidden": false,
+	"name_i18n": {
+		"en_US": "How It Works"
+	},
+	"priority": 2,
+	"private": false,
+	"system": false,
+	"typeSettings": [
+		{
+			"key": "published",
+			"value": "true"
+		}
+	],
+	"type": "Content"
+}

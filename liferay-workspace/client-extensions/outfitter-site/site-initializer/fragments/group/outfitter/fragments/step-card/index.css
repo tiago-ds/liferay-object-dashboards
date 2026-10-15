@@ -1,0 +1,30 @@
+.of-step {
+	display: flex;
+	gap: 1.25rem;
+	padding: 1rem 0;
+}
+
+.of-step-number {
+	align-items: center;
+	border: 2px solid var(--color-brand-primary, #2460b7);
+	border-radius: 50%;
+	color: var(--color-brand-primary, #2460b7);
+	display: inline-flex;
+	flex: 0 0 auto;
+	font-size: 1.125rem;
+	font-weight: 700;
+	height: 2.75rem;
+	justify-content: center;
+	width: 2.75rem;
+}
+
+.of-step-title {
+	font-size: 1.125rem;
+	font-weight: 600;
+	margin: 0.3rem 0 0.4rem;
+}
+
+.of-step-body {
+	color: var(--color-neutral-7, #5a5469);
+	margin: 0;
+}

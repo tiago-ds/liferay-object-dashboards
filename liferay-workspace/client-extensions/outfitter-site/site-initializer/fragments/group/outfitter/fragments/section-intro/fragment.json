@@ -1,0 +1,8 @@
+{
+	"cssPath": "index.css",
+	"htmlPath": "index.html",
+	"icon": "heading",
+	"name": "Section Intro",
+	"type": "component",
+	"configurationPath": "configuration.json"
+}

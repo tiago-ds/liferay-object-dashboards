@@ -1,0 +1,50 @@
+{
+	"primaryColor": {
+		"cssVariableMapping": "primary",
+		"value": "#3b82f6"
+	},
+	"pinkColor": {
+		"cssVariableMapping": "pink",
+		"value": "#db2777"
+	},
+	"greenColor": {
+		"cssVariableMapping": "green",
+		"value": "#15803d"
+	},
+	"purpleColor": {
+		"cssVariableMapping": "purple",
+		"value": "#9333ea"
+	},
+	"orangeColor": {
+		"cssVariableMapping": "orange",
+		"value": "#c2410c"
+	},
+	"cyanColor": {
+		"cssVariableMapping": "cyan",
+		"value": "#0d9488"
+	},
+	"redColor": {
+		"cssVariableMapping": "red",
+		"value": "#dc2626"
+	},
+	"indigoColor": {
+		"cssVariableMapping": "indigo",
+		"value": "#4f46e5"
+	},
+	"bodyBgColor": {
+		"cssVariableMapping": "body-bg",
+		"value": "#0a0d1f"
+	},
+	"bodyColor": {
+		"cssVariableMapping": "body-color",
+		"value": "#e8eaf4"
+	},
+	"gray300Color": {
+		"cssVariableMapping": "gray-300",
+		"value": "#262b45"
+	},
+	"secondaryColor": {
+		"cssVariableMapping": "secondary",
+		"value": "#9aa3c0"
+	}
+}

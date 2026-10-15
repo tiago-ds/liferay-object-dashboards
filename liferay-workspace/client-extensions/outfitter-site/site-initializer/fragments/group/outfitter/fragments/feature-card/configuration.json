@@ -1,0 +1,76 @@
+{
+	"fieldSets": [
+		{
+			"fields": [
+				{
+					"dataType": "string",
+					"defaultValue": "shield-check",
+					"label": "Icon",
+					"name": "icon",
+					"type": "select",
+					"typeOptions": {
+						"validValues": [
+							{
+								"label": "Shield",
+								"value": "shield-check"
+							},
+							{
+								"label": "Check",
+								"value": "check-circle"
+							},
+							{
+								"label": "Location",
+								"value": "map-marker"
+							},
+							{
+								"label": "Clock",
+								"value": "time"
+							},
+							{
+								"label": "Repeat",
+								"value": "repeat"
+							},
+							{
+								"label": "Spanner",
+								"value": "wrench"
+							},
+							{
+								"label": "Tag",
+								"value": "tag"
+							},
+							{
+								"label": "Person",
+								"value": "user"
+							}
+						]
+					},
+					"description": "A Clay icon. The name must be one Clay actually ships, or nothing renders."
+				},
+				{
+					"dataType": "string",
+					"defaultValue": "card",
+					"label": "Style",
+					"name": "tone",
+					"type": "select",
+					"typeOptions": {
+						"validValues": [
+							{
+								"label": "Plain",
+								"value": "plain"
+							},
+							{
+								"label": "Card",
+								"value": "card"
+							},
+							{
+								"label": "Outlined",
+								"value": "outline"
+							}
+						]
+					}
+				}
+			],
+			"label": "Feature Card"
+		}
+	]
+}

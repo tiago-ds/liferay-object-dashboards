@@ -1,0 +1,55 @@
+[
+	{
+		"externalReferenceCode": "OUTFITTER_PRIMARY_NAV",
+		"menuItems": [
+			{
+				"externalReferenceCode": "OUTFITTER_NAV_GEAR",
+				"name_i18n": {
+					"en_US": "Gear"
+				},
+				"type": "url",
+				"url": "/web/outfitter/catalogue",
+				"useNewTab": false
+			},
+			{
+				"externalReferenceCode": "OUTFITTER_NAV_HOW",
+				"name_i18n": {
+					"en_US": "How it works"
+				},
+				"type": "url",
+				"url": "/web/outfitter/how-it-works",
+				"useNewTab": false
+			},
+			{
+				"externalReferenceCode": "OUTFITTER_NAV_DEPOTS",
+				"name_i18n": {
+					"en_US": "Depots"
+				},
+				"type": "url",
+				"url": "/web/outfitter/depots",
+				"useNewTab": false
+			},
+			{
+				"externalReferenceCode": "OUTFITTER_NAV_OPS",
+				"name_i18n": {
+					"en_US": "Operations"
+				},
+				"type": "url",
+				"url": "/web/outfitter/operations",
+				"useNewTab": false
+			},
+			{
+				"externalReferenceCode": "OUTFITTER_NAV_CONTACT",
+				"name_i18n": {
+					"en_US": "Contact"
+				},
+				"type": "url",
+				"url": "/web/outfitter/contact",
+				"useNewTab": false
+			}
+		],
+		"name": "Outfitter Primary",
+		"primary": true,
+		"secondary": false
+	}
+]

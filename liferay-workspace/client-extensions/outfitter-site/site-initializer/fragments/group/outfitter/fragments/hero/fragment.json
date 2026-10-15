@@ -1,0 +1,8 @@
+{
+	"cssPath": "index.css",
+	"htmlPath": "index.html",
+	"icon": "picture",
+	"name": "Hero",
+	"type": "component",
+	"configurationPath": "configuration.json"
+}

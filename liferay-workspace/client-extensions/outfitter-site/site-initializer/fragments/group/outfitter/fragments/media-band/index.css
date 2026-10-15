@@ -1,0 +1,43 @@
+.of-band {
+	align-items: center;
+	background-attachment: scroll;
+	background-position: center;
+	background-size: cover;
+	color: #fff;
+	display: flex;
+	position: relative;
+}
+
+.of-band-short { min-height: 20rem; }
+.of-band-tall { min-height: 30rem; }
+
+.of-band-scrim { inset: 0; position: absolute; }
+.of-band-scrim-light { background: rgba(0, 0, 0, 0.3); }
+.of-band-scrim-medium { background: rgba(0, 0, 0, 0.5); }
+.of-band-scrim-heavy { background: rgba(0, 0, 0, 0.68); }
+
+.of-band-inner {
+	padding: 4rem 0;
+	position: relative;
+	width: 100%;
+}
+
+.of-band-title {
+	font-size: clamp(1.75rem, 3.6vw, 2.75rem);
+	font-weight: 700;
+	margin: 0 0 0.75rem;
+	max-width: 40rem;
+	text-wrap: balance;
+}
+
+.of-align-center .of-band-title,
+.of-align-center .of-band-lead { margin-left: auto; margin-right: auto; }
+
+.of-band-lead {
+	font-size: 1.125rem;
+	margin: 0;
+	max-width: 36rem;
+	opacity: 0.94;
+}
+
+.of-band-cta { margin-top: 1.75rem; }

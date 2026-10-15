@@ -1,0 +1,17 @@
+{
+	"friendlyURL": "/depots",
+	"hidden": false,
+	"name_i18n": {
+		"en_US": "Depots"
+	},
+	"priority": 3,
+	"private": false,
+	"system": false,
+	"typeSettings": [
+		{
+			"key": "published",
+			"value": "true"
+		}
+	],
+	"type": "Content"
+}

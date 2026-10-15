@@ -1,0 +1,7 @@
+{
+	"cssPath": "index.css",
+	"htmlPath": "index.html",
+	"icon": "page",
+	"name": "Site Footer",
+	"type": "component"
+}
