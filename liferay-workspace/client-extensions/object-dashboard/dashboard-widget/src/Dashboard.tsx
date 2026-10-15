@@ -8,6 +8,8 @@ interface Props {
   instanceId: string;
   /** Config declared on the page, if the element carried one. */
   declared?: ChartConfig | null;
+  /** Heading declared on the page; falls back to the Object's reference code. */
+  declaredTitle?: string | null;
 }
 
 const STORAGE_PREFIX = "object-dashboard:";
@@ -38,7 +40,7 @@ function describe(config: ChartConfig): string {
 
 const cap = (s: string) => s[0].toUpperCase() + s.slice(1);
 
-export function Dashboard({ instanceId, declared = null }: Props) {
+export function Dashboard({ instanceId, declared = null, declaredTitle = null }: Props) {
   // A viewer's own edit wins over the declared chart; otherwise the page's
   // declaration is the chart. Only a widget with neither opens on the panel.
   const [config, setConfig] = useState<ChartConfig | null>(
@@ -48,7 +50,10 @@ export function Dashboard({ instanceId, declared = null }: Props) {
     () => loadConfig(instanceId) === null && declared === null
   );
 
-  const title = useMemo(() => (config ? config.objectErc : "New chart"), [config]);
+  const title = useMemo(
+    () => declaredTitle ?? (config ? config.objectErc : "New chart"),
+    [declaredTitle, config]
+  );
 
   function handleSave(next: ChartConfig) {
     saveConfig(instanceId, next);

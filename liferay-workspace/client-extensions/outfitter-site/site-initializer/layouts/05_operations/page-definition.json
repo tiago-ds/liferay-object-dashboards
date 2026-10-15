@@ -192,7 +192,7 @@
 										"definition": {
 											"widgetInstance": {
 												"widgetConfig": {
-													"properties": "object-erc=OUTFITTERRENTAL\nrest-context-path=/o/c/outfitterhires\ninstance-id=ops-revenue-depot\ndimension=depot\nmeasure=revenue\naggregation=sum\nchart-type=bar\nstrategy=server\n"
+													"properties": "object-erc=OUTFITTERRENTAL\nrest-context-path=/o/c/outfitterhires\ninstance-id=ops-revenue-depot\nchart-title=Revenue by depot\ndimension=depot\nmeasure=revenue\naggregation=sum\nchart-type=bar\nstrategy=server\n"
 												},
 												"widgetName": "[$CLIENT_EXTENSION_ENTRY_ERC:LXC:object-dashboard-custom-element$]"
 											}
@@ -233,7 +233,7 @@
 										"definition": {
 											"widgetInstance": {
 												"widgetConfig": {
-													"properties": "object-erc=OUTFITTERRENTAL\nrest-context-path=/o/c/outfitterhires\ninstance-id=ops-revenue-activity\ndimension=activity\nmeasure=revenue\naggregation=sum\nchart-type=pie\nstrategy=server\n"
+													"properties": "object-erc=OUTFITTERRENTAL\nrest-context-path=/o/c/outfitterhires\ninstance-id=ops-revenue-activity\nchart-title=Revenue by activity\ndimension=activity\nmeasure=revenue\naggregation=sum\nchart-type=pie\nstrategy=server\n"
 												},
 												"widgetName": "[$CLIENT_EXTENSION_ENTRY_ERC:LXC:object-dashboard-custom-element$]"
 											}
@@ -306,7 +306,7 @@
 										"definition": {
 											"widgetInstance": {
 												"widgetConfig": {
-													"properties": "object-erc=OUTFITTERRENTAL\nrest-context-path=/o/c/outfitterhires\ninstance-id=ops-hires-category\ndimension=category\nmeasure=revenue\naggregation=count\nchart-type=bar\nstrategy=server\n"
+													"properties": "object-erc=OUTFITTERRENTAL\nrest-context-path=/o/c/outfitterhires\ninstance-id=ops-hires-category\nchart-title=Hires by category\ndimension=category\nmeasure=revenue\naggregation=count\nchart-type=bar\nstrategy=server\n"
 												},
 												"widgetName": "[$CLIENT_EXTENSION_ENTRY_ERC:LXC:object-dashboard-custom-element$]"
 											}
@@ -347,7 +347,7 @@
 										"definition": {
 											"widgetInstance": {
 												"widgetConfig": {
-													"properties": "object-erc=OUTFITTERRENTAL\nrest-context-path=/o/c/outfitterhires\ninstance-id=ops-days-category\ndimension=category\nmeasure=days\naggregation=avg\nchart-type=bar\nstrategy=server\n"
+													"properties": "object-erc=OUTFITTERRENTAL\nrest-context-path=/o/c/outfitterhires\ninstance-id=ops-days-category\nchart-title=Average hire length\ndimension=category\nmeasure=days\naggregation=avg\nchart-type=bar\nstrategy=server\n"
 												},
 												"widgetName": "[$CLIENT_EXTENSION_ENTRY_ERC:LXC:object-dashboard-custom-element$]"
 											}
@@ -388,7 +388,7 @@
 										"definition": {
 											"widgetInstance": {
 												"widgetConfig": {
-													"properties": "object-erc=OUTFITTERRENTAL\nrest-context-path=/o/c/outfitterhires\ninstance-id=ops-party-activity\ndimension=activity\nmeasure=partySize\naggregation=avg\nchart-type=bar\nstrategy=server\n"
+													"properties": "object-erc=OUTFITTERRENTAL\nrest-context-path=/o/c/outfitterhires\ninstance-id=ops-party-activity\nchart-title=Average party size\ndimension=activity\nmeasure=partySize\naggregation=avg\nchart-type=bar\nstrategy=server\n"
 												},
 												"widgetName": "[$CLIENT_EXTENSION_ENTRY_ERC:LXC:object-dashboard-custom-element$]"
 											}
@@ -527,7 +527,7 @@
 										"definition": {
 											"widgetInstance": {
 												"widgetConfig": {
-													"properties": "object-erc=OUTFITTERRENTAL\nrest-context-path=/o/c/outfitterhires\ninstance-id=ops-channel\ndimension=channel\nmeasure=revenue\naggregation=sum\nchart-type=pie\nstrategy=server\n"
+													"properties": "object-erc=OUTFITTERRENTAL\nrest-context-path=/o/c/outfitterhires\ninstance-id=ops-channel\nchart-title=Revenue by channel\ndimension=channel\nmeasure=revenue\naggregation=sum\nchart-type=pie\nstrategy=server\n"
 												},
 												"widgetName": "[$CLIENT_EXTENSION_ENTRY_ERC:LXC:object-dashboard-custom-element$]"
 											}
@@ -568,7 +568,7 @@
 										"definition": {
 											"widgetInstance": {
 												"widgetConfig": {
-													"properties": "object-erc=OUTFITTERRENTAL\nrest-context-path=/o/c/outfitterhires\ninstance-id=ops-status\ndimension=hireStatus\nmeasure=revenue\naggregation=count\nchart-type=bar\nstrategy=server\n"
+													"properties": "object-erc=OUTFITTERRENTAL\nrest-context-path=/o/c/outfitterhires\ninstance-id=ops-status\nchart-title=Hires by status\ndimension=hireStatus\nmeasure=revenue\naggregation=count\nchart-type=bar\nstrategy=server\n"
 												},
 												"widgetName": "[$CLIENT_EXTENSION_ENTRY_ERC:LXC:object-dashboard-custom-element$]"
 											}

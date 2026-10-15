@@ -55,3 +55,22 @@ export function readDeclaredConfig(el: Element): ChartConfig | null {
     strategy: pick(attr("strategy"), STRATEGIES) ?? "client",
   };
 }
+
+/**
+ * A heading the page author chose, from the optional `chart-title` attribute.
+ *
+ * Not `title`: that is a global HTML attribute, so the browser would also show
+ * it as a tooltip on hover over the whole widget.
+ *
+ * Deliberately NOT part of ChartConfig: that type is one of the three files
+ * shared byte-for-byte with the aggregator, which has no opinion about what a
+ * chart is called. Keeping the label out of it keeps the parity files about
+ * aggregation.
+ *
+ * Without one the widget falls back to the Object's external reference code,
+ * which reads fine on a developer's dashboard and badly on a site page —
+ * "OUTFITTERRENTAL" is not a chart title.
+ */
+export function readDeclaredTitle(el: Element): string | null {
+  return el.getAttribute("chart-title")?.trim() || null;
+}

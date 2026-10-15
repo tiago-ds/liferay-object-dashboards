@@ -3,7 +3,7 @@
 // that an attribute-less widget falls back to a per-page-load counter.
 import { createRoot, type Root } from "react-dom/client";
 import { Dashboard } from "./Dashboard";
-import { readDeclaredConfig } from "./declared";
+import { readDeclaredConfig, readDeclaredTitle } from "./declared";
 // ?inline gives us the CSS as a string instead of a separate asset. The CX
 // manifest ships only object-dashboard.js, so an emitted .css file would never
 // be loaded and the widget would render unstyled.
@@ -38,7 +38,11 @@ class ObjectDashboardElement extends HTMLElement {
 
     this.root = createRoot(this);
     this.root.render(
-      <Dashboard instanceId={instanceId} declared={readDeclaredConfig(this)} />
+      <Dashboard
+        instanceId={instanceId}
+        declared={readDeclaredConfig(this)}
+        declaredTitle={readDeclaredTitle(this)}
+      />
     );
   }
 

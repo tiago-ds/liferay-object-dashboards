@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { readDeclaredConfig } from "./declared";
+import { readDeclaredConfig, readDeclaredTitle } from "./declared";
 
 /** A stand-in for the element Liferay renders, with attributes as strings. */
 function el(attrs: Record<string, string>): Element {
@@ -59,5 +59,25 @@ describe("readDeclaredConfig", () => {
     expect(c?.chartType).toBe("bar");       // the default, not "donut"
     expect(c?.strategy).toBe("client");     // the default, not "magic"
     expect(c?.dateBucket).toBeUndefined();
+  });
+});
+
+describe("readDeclaredTitle", () => {
+  it("takes the heading a page author set", () => {
+    expect(readDeclaredTitle(el({ "chart-title": "Revenue by depot" }))).toBe("Revenue by depot");
+  });
+
+  it("ignores a blank or whitespace-only heading", () => {
+    expect(readDeclaredTitle(el({ "chart-title": "   " }))).toBeNull();
+    expect(readDeclaredTitle(el({ "chart-title": "" }))).toBeNull();
+  });
+
+  it("is null when the page declared none, so the widget keeps its fallback", () => {
+    expect(readDeclaredTitle(el({}))).toBeNull();
+  });
+
+  it("does not read the native title attribute", () => {
+    // `title` would also render as a browser tooltip over the whole widget.
+    expect(readDeclaredTitle(el({ title: "tooltip" }))).toBeNull();
   });
 });

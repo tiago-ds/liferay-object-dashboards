@@ -720,10 +720,11 @@ def build_contact():
 HIRES = {"object-erc": "OUTFITTERRENTAL", "rest-context-path": "/o/c/outfitterhires"}
 
 
-def chart(name, instance, dimension, measure, aggregation, chart_type, strategy,
-          **extra):
+def chart(name, instance, title, dimension, measure, aggregation, chart_type,
+          strategy, **extra):
     props = dict(HIRES, **{
         "instance-id": instance,
+        "chart-title": title,
         "dimension": dimension,
         "measure": measure,
         "aggregation": aggregation,
@@ -750,16 +751,21 @@ def build_operations():
                   "not the nine thousand rows."),
             row("ops:row-1", [
                 col("ops:c1", 6, [chart("ops:revenue-depot", "ops-revenue-depot",
+                                        "Revenue by depot",
                                         "depot", "revenue", "sum", "bar", "server")]),
                 col("ops:c2", 6, [chart("ops:revenue-activity", "ops-revenue-activity",
+                                        "Revenue by activity",
                                         "activity", "revenue", "sum", "pie", "server")]),
             ], mobile=1),
             row("ops:row-2", [
                 col("ops:c3", 4, [chart("ops:hires-category", "ops-hires-category",
+                                        "Hires by category",
                                         "category", "revenue", "count", "bar", "server")]),
                 col("ops:c4", 4, [chart("ops:days-category", "ops-days-category",
+                                        "Average hire length",
                                         "category", "days", "avg", "bar", "server")]),
                 col("ops:c5", 4, [chart("ops:party-activity", "ops-party-activity",
+                                        "Average party size",
                                         "activity", "partySize", "avg", "bar", "server")]),
             ], mobile=1),
         ], style=SPACER_LG),
@@ -768,8 +774,10 @@ def build_operations():
                   "The same widget again, on different fields."),
             row("ops:row-3", [
                 col("ops:c6", 6, [chart("ops:channel", "ops-channel",
+                                        "Revenue by channel",
                                         "channel", "revenue", "sum", "pie", "server")]),
                 col("ops:c7", 6, [chart("ops:status", "ops-status",
+                                        "Hires by status",
                                         "hireStatus", "revenue", "count", "bar", "server")]),
             ], mobile=1),
         ], style={"paddingBottom": "7"}),
