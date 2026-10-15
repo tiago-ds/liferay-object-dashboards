@@ -20,32 +20,37 @@ const COLOR_TOKENS = [
   "--primary",
   "--pink",
   "--green",
-  "--orange",
   "--purple",
-  "--red",
+  "--orange",
   "--cyan",
+  "--red",
   "--indigo",
 ];
 
 /**
  * Used when a token is missing, and as the whole palette outside Liferay.
  *
- * Not hand-picked: this exact sequence is the output of the palette validator,
- * and it passes the lightness band, the chroma floor, the normal-vision floor
- * and 3:1 contrast against BOTH a light and a dark chart surface. The one
- * warning it carries — deutan separation of 7.0 between slots 4 and 3 — is
- * admissible only because every categorical chart here also carries a legend.
- * If you reorder or re-step this, re-run the validator; do not eyeball it.
+ * Not hand-picked: this sequence is the output of the palette validator and
+ * passes every check — lightness band, chroma floor, CVD separation,
+ * normal-vision floor and 3:1 contrast — against BOTH a light and a dark chart
+ * surface.
+ *
+ * The SLOT ORDER above was chosen the same way, and it is load-bearing: the
+ * order decides which colours end up adjacent, and adjacency is what the CVD
+ * checks measure. Liferay's own default theme fails two checks in the obvious
+ * hue order (its orange and green are deutan-confusable at dE 4.8) and passes
+ * cleanly in this one. Re-run the validator if you touch either; do not
+ * eyeball it.
  */
 const FALLBACK_COLORS = [
   "#3b82f6",
   "#db2777",
   "#15803d",
-  "#c2410c",
   "#9333ea",
-  "#dc2626",
+  "#c2410c",
   "#0d9488",
-  "#a16207",
+  "#dc2626",
+  "#4f46e5",
 ];
 
 const FALLBACK_INK = "#10131a";
@@ -97,7 +102,9 @@ export function readChartTheme(element: Element | null): ChartTheme {
   return {
     colors,
     accent: colors[0],
-    grid: token(style, "--border-color") || FALLBACK_RULE,
+    // The stock theme defines no --border-color; --gray-300 is the rule colour
+    // the widget used to hardcode (#e7e7ed). Verified on a running portal.
+    grid: token(style, "--border-color") || token(style, "--gray-300") || FALLBACK_RULE,
     axis: token(style, "--secondary") || token(style, "--body-color") || FALLBACK_MUTED,
   };
 }

@@ -254,7 +254,7 @@ function renderChart(type: ChartConfig["chartType"], data: DataPoint[], theme: C
             nameKey="name"
             outerRadius="75%"
             minAngle={2}
-            label={renderPieLabel}
+            label={(props: PieLabelProps) => renderPieLabel(props, theme.axis)}
             labelLine={false}
           >
             {data.map((_, i) => (
@@ -277,10 +277,31 @@ function renderChart(type: ChartConfig["chartType"], data: DataPoint[], theme: C
   }
 }
 
-// Label only slices big enough to read; format the value. Suppressing tiny
-// slices is what stops their labels from colliding on skewed data.
-function renderPieLabel(props: { name?: string; value?: number; percent?: number }): string {
-  const { name, value, percent } = props;
-  if (percent === undefined || percent < PIE_LABEL_MIN_SHARE) return "";
-  return `${name}: ${fmt(value ?? 0)}`;
+interface PieLabelProps {
+  name?: string;
+  value?: number;
+  percent?: number;
+  x?: number;
+  y?: number;
+  textAnchor?: "start" | "middle" | "end" | "inherit";
+}
+
+/**
+ * Label only slices big enough to read — suppressing tiny ones is what stops
+ * their labels colliding on skewed data — and draw the text in the theme's ink,
+ * never in the slice colour.
+ *
+ * Recharts tints pie labels with their slice fill by default. That reads as
+ * decoration and it is wrong: colour is how a reader identifies a slice, so
+ * spending it on the number too means the value and the swatch compete. Text
+ * wears text colour; the slice beside it carries the identity.
+ */
+function renderPieLabel(props: PieLabelProps, fill: string) {
+  const { name, value, percent, x, y, textAnchor } = props;
+  if (percent === undefined || percent < PIE_LABEL_MIN_SHARE) return <g />;
+  return (
+    <text x={x} y={y} fill={fill} textAnchor={textAnchor} dominantBaseline="central" fontSize={12}>
+      {`${name}: ${fmt(value ?? 0)}`}
+    </text>
+  );
 }
