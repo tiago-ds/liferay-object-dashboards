@@ -29,11 +29,18 @@ assemble:
 # here at BUILD time, unlike the client-side strategy, which rides the user's
 # session and works on any Object. Add a line per chartable Object, or point
 # charts at one cube Object.
+#
+# The demo site proved the point the hard way: its Operations page was built
+# against a new Hire Object, every chart came back "Server aggregation failed
+# (400): Headless read failed (403)", and the fix was two lines here plus a
+# redeploy. That is the cost of the server strategy, stated honestly.
 object-aggregator-oaua:
     .serviceAddress: localhost:3002
     .serviceScheme: http
     name: Object Aggregator OAuth Application User Agent
     scopes:
+        -   c_outfittergear.everything.read
+        -   c_outfitterhire.everything.read
         -   c_salesorder.everything.read
         -   c_supportcase.everything.read
     type: oAuthApplicationUserAgent

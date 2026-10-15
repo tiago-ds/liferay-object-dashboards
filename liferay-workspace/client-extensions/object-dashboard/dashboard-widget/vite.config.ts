@@ -39,4 +39,12 @@ export default defineConfig({
     // imported by main.tsx and inlined into the bundle.
     cssCodeSplit: false,
   },
+  // Recharts and its d3 vendor code read process.env.NODE_ENV. Vite's library
+  // mode does not substitute it, so the bundle reaches the browser with 23 live
+  // references to `process` and the widget dies on its first line with
+  // "ReferenceError: process is not defined" — every chart on the page stays an
+  // empty custom element. Nothing in the page's importmap provides a shim.
+  define: {
+    "process.env.NODE_ENV": JSON.stringify("production"),
+  },
 });

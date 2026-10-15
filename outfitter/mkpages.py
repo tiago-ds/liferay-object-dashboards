@@ -395,6 +395,10 @@ def build_display_page():
     d = SITE / "layout-page-templates" / "display-page-templates" / "gear"
     write(d / "display-page-template.json", {
         "contentType": {"className": "[$OBJECT_DEFINITION_CLASS_NAME:OutfitterGear$]"},
+        # Without this the template exists but nothing uses it, and every entry
+        # URL is a 404 — a display page template is only reached by entries that
+        # point at one, and the default is how they all do.
+        "defaultTemplate": True,
         "name": "Gear Detail",
     })
     specs = [
