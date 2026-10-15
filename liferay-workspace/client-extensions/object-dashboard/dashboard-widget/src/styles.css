@@ -1,12 +1,17 @@
-/* REWRITTEN after the original was lost. Class names are the ones the
-   components actually use; the visual details are a reconstruction. */
+/* Every colour, radius and face here comes from the Liferay theme's own custom
+   properties, with the previous hardcoded values kept only as fallbacks for the
+   standalone harness. Changing the theme restyles this widget with no rebuild —
+   which is what the talk claims, and what the chart palette now does too
+   (see theme.ts). */
 
 .od-root {
-  background: #fff;
-  border: 1px solid #e7e7ed;
-  border-radius: 4px;
+  background: var(--body-bg, #fff);
+  border: 1px solid var(--border-color, #e7e7ed);
+  border-radius: var(--border-radius, 4px);
+  color: var(--body-color, #10131a);
   display: flex;
   flex-direction: column;
+  font-family: var(--font-family-base, system-ui, sans-serif);
   padding: 16px;
 }
 
@@ -25,7 +30,7 @@
 }
 
 .od-subtitle {
-  color: #6b6c7e;
+  color: var(--secondary, #6b6c7e);
   font-size: 0.875rem;
   margin: 2px 0 0;
 }
@@ -38,7 +43,7 @@
 }
 
 .od-state {
-  color: #6b6c7e;
+  color: var(--secondary, #6b6c7e);
   padding: 32px 0;
   text-align: center;
 }
@@ -46,14 +51,14 @@
 /* Footnote under a server-aggregated chart: how many rows never reached the
    browser. Deliberately visible — it is the evidence for the whole strategy. */
 .od-meta {
-  color: #6b6c7e;
+  color: var(--secondary, #6b6c7e);
   font-size: 0.75rem;
   margin: 0.25rem 0 0;
 }
 
 /* Inline explanation under the aggregation-strategy select. */
 .od-help {
-  color: #6b6c7e;
+  color: var(--secondary, #6b6c7e);
   font-size: 0.75rem;
   margin: 0.25rem 0 0;
 }

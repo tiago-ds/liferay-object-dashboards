@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import ClayAlert from "@clayui/alert";
 import {
   Area,
@@ -21,11 +21,8 @@ import { aggregate } from "./aggregate";
 import { requiredFields } from "./classify";
 import { fetchAggregate, fetchEntries } from "./liferay";
 import type { AggregateMeta } from "./liferay";
+import { CHART_THEME_FALLBACK, readChartTheme, type ChartTheme } from "./theme";
 import type { ChartConfig, DataPoint } from "./types";
-
-// Clay-ish categorical palette for pie slices.
-const COLORS = ["#0b5fff", "#2e5aac", "#ffb46e", "#56c1c2", "#f5b400", "#9a6dd7", "#ff7a59", "#41b883"];
-const ACCENT = COLORS[0];
 
 // Thousands separators + at most 2 decimals, so 71521.5 reads as "71,521.5".
 const NUMBER_FORMAT = new Intl.NumberFormat(undefined, { maximumFractionDigits: 2 });
@@ -84,6 +81,15 @@ function loadPoints(
 export function ChartView({ config }: Props) {
   const [state, setState] = useState<LoadState>({ status: "loading" });
 
+  // Custom properties inherit, so the palette depends on where this widget
+  // sits — which is the whole point. It can only be computed once the element
+  // is in the document, and a theme change reloads the page, so once is enough.
+  const frame = useRef<HTMLDivElement>(null);
+  const [theme, setTheme] = useState<ChartTheme>(CHART_THEME_FALLBACK);
+  useLayoutEffect(() => {
+    setTheme(readChartTheme(frame.current));
+  }, []);
+
   useEffect(() => {
     let cancelled = false;
     setState({ status: "loading" });
@@ -103,7 +109,7 @@ export function ChartView({ config }: Props) {
   }, [config]);
 
   if (state.status === "loading") {
-    return <div className="od-state">Loading…</div>;
+    return <div className="od-state" ref={frame}>Loading…</div>;
   }
   if (state.status === "error") {
     return (
@@ -128,9 +134,9 @@ export function ChartView({ config }: Props) {
 
   return (
     <>
-      <div className="od-chart">
+      <div className="od-chart" ref={frame}>
         <ResponsiveContainer width="100%" height="100%">
-          {renderChart(config.chartType, state.data)}
+          {renderChart(config.chartType, state.data, theme)}
         </ResponsiveContainer>
       </div>
       {(() => {
@@ -214,26 +220,27 @@ function describeCoverage(meta: ChartMeta, config: ChartConfig, pointCount: numb
   };
 }
 
-function renderChart(type: ChartConfig["chartType"], data: DataPoint[]) {
+function renderChart(type: ChartConfig["chartType"], data: DataPoint[], theme: ChartTheme) {
+  const axisTick = { fontSize: 12, fill: theme.axis };
   switch (type) {
     case "line":
       return (
         <LineChart data={data} margin={{ top: 8, right: 16, bottom: 8, left: 8 }}>
-          <CartesianGrid strokeDasharray="3 3" />
-          <XAxis dataKey="name" fontSize={12} />
-          <YAxis fontSize={12} tickFormatter={fmt} width={64} />
+          <CartesianGrid strokeDasharray="3 3" stroke={theme.grid} />
+          <XAxis dataKey="name" tick={axisTick} stroke={theme.grid} />
+          <YAxis tick={axisTick} stroke={theme.grid} tickFormatter={fmt} width={64} />
           <Tooltip formatter={(v) => fmt(v as number)} />
-          <Line type="monotone" dataKey="value" stroke={ACCENT} strokeWidth={2} dot={false} />
+          <Line type="monotone" dataKey="value" stroke={theme.accent} strokeWidth={2} dot={false} />
         </LineChart>
       );
     case "area":
       return (
         <AreaChart data={data} margin={{ top: 8, right: 16, bottom: 8, left: 8 }}>
-          <CartesianGrid strokeDasharray="3 3" />
-          <XAxis dataKey="name" fontSize={12} />
-          <YAxis fontSize={12} tickFormatter={fmt} width={64} />
+          <CartesianGrid strokeDasharray="3 3" stroke={theme.grid} />
+          <XAxis dataKey="name" tick={axisTick} stroke={theme.grid} />
+          <YAxis tick={axisTick} stroke={theme.grid} tickFormatter={fmt} width={64} />
           <Tooltip formatter={(v) => fmt(v as number)} />
-          <Area type="monotone" dataKey="value" stroke={ACCENT} fill={ACCENT} fillOpacity={0.2} />
+          <Area type="monotone" dataKey="value" stroke={theme.accent} fill={theme.accent} fillOpacity={0.2} />
         </AreaChart>
       );
     case "pie":
@@ -251,7 +258,7 @@ function renderChart(type: ChartConfig["chartType"], data: DataPoint[]) {
             labelLine={false}
           >
             {data.map((_, i) => (
-              <Cell key={i} fill={COLORS[i % COLORS.length]} />
+              <Cell key={i} fill={theme.colors[i % theme.colors.length]} />
             ))}
           </Pie>
         </PieChart>
@@ -260,11 +267,11 @@ function renderChart(type: ChartConfig["chartType"], data: DataPoint[]) {
     default:
       return (
         <BarChart data={data} margin={{ top: 8, right: 16, bottom: 8, left: 8 }}>
-          <CartesianGrid strokeDasharray="3 3" />
-          <XAxis dataKey="name" fontSize={12} />
-          <YAxis fontSize={12} tickFormatter={fmt} width={64} />
+          <CartesianGrid strokeDasharray="3 3" stroke={theme.grid} />
+          <XAxis dataKey="name" tick={axisTick} stroke={theme.grid} />
+          <YAxis tick={axisTick} stroke={theme.grid} tickFormatter={fmt} width={64} />
           <Tooltip formatter={(v) => fmt(v as number)} />
-          <Bar dataKey="value" fill={ACCENT} />
+          <Bar dataKey="value" fill={theme.accent} radius={[4, 4, 0, 0]} />
         </BarChart>
       );
   }
