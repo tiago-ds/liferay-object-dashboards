@@ -58,7 +58,7 @@
 								"definition": {
 									"widgetInstance": {
 										"widgetConfig": {
-											"properties": "instance-id=revenue-by-region\n"
+											"properties": "object-erc=SALESORDER\nrest-context-path=/o/c/salesorders\ninstance-id=revenue-by-region\ndimension=region\nmeasure=amount\naggregation=sum\nchart-type=bar\nstrategy=server\n"
 										},
 										"widgetName": "com_liferay_client_extension_web_internal_portlet_ClientExtensionEntryPortlet_20814320218988_LXC_object_dashboard_custom_element"
 									}
@@ -95,7 +95,7 @@
 								"definition": {
 									"widgetInstance": {
 										"widgetConfig": {
-											"properties": "instance-id=orders-by-month\n"
+											"properties": "object-erc=SALESORDER\nrest-context-path=/o/c/salesorders\ninstance-id=orders-by-month\ndimension=orderDate\naggregation=count\nchart-type=line\ndate-bucket=month\nstrategy=server\n"
 										},
 										"widgetName": "com_liferay_client_extension_web_internal_portlet_ClientExtensionEntryPortlet_20814320218988_LXC_object_dashboard_custom_element"
 									}
@@ -162,7 +162,7 @@
 								"definition": {
 									"widgetInstance": {
 										"widgetConfig": {
-											"properties": "instance-id=orders-by-category\n"
+											"properties": "object-erc=SALESORDER\nrest-context-path=/o/c/salesorders\ninstance-id=orders-by-category\ndimension=productCategory\naggregation=count\nchart-type=pie\nstrategy=server\n"
 										},
 										"widgetName": "com_liferay_client_extension_web_internal_portlet_ClientExtensionEntryPortlet_20814320218988_LXC_object_dashboard_custom_element"
 									}
@@ -199,7 +199,7 @@
 								"definition": {
 									"widgetInstance": {
 										"widgetConfig": {
-											"properties": "instance-id=revenue-by-channel\n"
+											"properties": "object-erc=SALESORDER\nrest-context-path=/o/c/salesorders\ninstance-id=revenue-by-channel\ndimension=channel\nmeasure=amount\naggregation=sum\nchart-type=bar\nstrategy=server\n"
 										},
 										"widgetName": "com_liferay_client_extension_web_internal_portlet_ClientExtensionEntryPortlet_20814320218988_LXC_object_dashboard_custom_element"
 									}
@@ -236,7 +236,7 @@
 								"definition": {
 									"widgetInstance": {
 										"widgetConfig": {
-											"properties": "instance-id=orders-by-status\n"
+											"properties": "object-erc=SALESORDER\nrest-context-path=/o/c/salesorders\ninstance-id=orders-by-status\ndimension=orderStatus\naggregation=count\nchart-type=pie\nstrategy=server\n"
 										},
 										"widgetName": "com_liferay_client_extension_web_internal_portlet_ClientExtensionEntryPortlet_20814320218988_LXC_object_dashboard_custom_element"
 									}
@@ -303,7 +303,7 @@
 								"definition": {
 									"widgetInstance": {
 										"widgetConfig": {
-											"properties": "instance-id=resolution-by-priority\n"
+											"properties": "object-erc=SUPPORTTICKET\nrest-context-path=/o/c/supportcases\ninstance-id=resolution-by-priority\ndimension=priority\nmeasure=resolutionHours\naggregation=avg\nchart-type=bar\nstrategy=client\n"
 										},
 										"widgetName": "com_liferay_client_extension_web_internal_portlet_ClientExtensionEntryPortlet_20814320218988_LXC_object_dashboard_custom_element"
 									}
@@ -340,7 +340,7 @@
 								"definition": {
 									"widgetInstance": {
 										"widgetConfig": {
-											"properties": "instance-id=cases-by-status\n"
+											"properties": "object-erc=SUPPORTTICKET\nrest-context-path=/o/c/supportcases\ninstance-id=cases-by-status\ndimension=ticketStatus\naggregation=count\nchart-type=pie\nstrategy=client\n"
 										},
 										"widgetName": "com_liferay_client_extension_web_internal_portlet_ClientExtensionEntryPortlet_20814320218988_LXC_object_dashboard_custom_element"
 									}
@@ -377,7 +377,7 @@
 								"definition": {
 									"widgetInstance": {
 										"widgetConfig": {
-											"properties": "instance-id=cases-by-month\n"
+											"properties": "object-erc=SUPPORTTICKET\nrest-context-path=/o/c/supportcases\ninstance-id=cases-by-month\ndimension=createdDate\naggregation=count\nchart-type=area\ndate-bucket=month\nstrategy=client\n"
 										},
 										"widgetName": "com_liferay_client_extension_web_internal_portlet_ClientExtensionEntryPortlet_20814320218988_LXC_object_dashboard_custom_element"
 									}

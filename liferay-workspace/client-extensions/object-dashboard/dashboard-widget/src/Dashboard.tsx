@@ -6,6 +6,8 @@ import type { ChartConfig } from "./types";
 
 interface Props {
   instanceId: string;
+  /** Config declared on the page, if the element carried one. */
+  declared?: ChartConfig | null;
 }
 
 const STORAGE_PREFIX = "object-dashboard:";
@@ -36,10 +38,15 @@ function describe(config: ChartConfig): string {
 
 const cap = (s: string) => s[0].toUpperCase() + s.slice(1);
 
-export function Dashboard({ instanceId }: Props) {
-  const [config, setConfig] = useState<ChartConfig | null>(() => loadConfig(instanceId));
-  // An unconfigured widget opens straight into the config panel.
-  const [editing, setEditing] = useState(() => loadConfig(instanceId) === null);
+export function Dashboard({ instanceId, declared = null }: Props) {
+  // A viewer's own edit wins over the declared chart; otherwise the page's
+  // declaration is the chart. Only a widget with neither opens on the panel.
+  const [config, setConfig] = useState<ChartConfig | null>(
+    () => loadConfig(instanceId) ?? declared
+  );
+  const [editing, setEditing] = useState(
+    () => loadConfig(instanceId) === null && declared === null
+  );
 
   const title = useMemo(() => (config ? config.objectErc : "New chart"), [config]);
 
