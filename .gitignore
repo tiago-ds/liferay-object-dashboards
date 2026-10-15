@@ -25,3 +25,14 @@ dist/
 # Python bytecode from the seeder/reset scripts.
 __pycache__/
 *.pyc
+
+# Slide decks and presentation artefacts: the DevCon template is a 31 MB org
+# asset you re-download, and the built deck plus its render intermediates are
+# generated. Binaries like these bloat history fast. The generator and the
+# content mapping ARE tracked, so the deck is reproducible from the repo.
+*.pptx
+*.potx
+*.ppt
+*.pdf
+deck/build/
+deck/template/
