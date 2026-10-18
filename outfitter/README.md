@@ -95,32 +95,34 @@ python3 outfitter/brand.py "Alpine Ridge"     # leave the site on Alpine
 
 ## Known gaps
 
-- **The gear detail page 404s — because the site has no display page template.**
+- **The gear detail page: fixed, but the template is hand-made.**
+  `/web/outfitter/gear/aurora-2p-tent` returns 200; every gear slug does.
+
   The earlier note here blamed the friendly URL, and that was wrong. The
-  `FriendlyURLEntry` rows are present and correct (group 354702, the Object's
-  class name id, `urlTitle` `aurora-2p-tent`), and the resolver works: by id,
-  `/web/outfitter/gear/356236` resolves and 302s to the canonical title URL. It
-  is the next step that fails, because there is no page to render the entry on.
-  `GET /o/headless-admin-content/v1.0/sites/354702/display-page-templates`
-  returns `totalCount: 0`, and Site Builder → Page Templates → Display Page
-  Templates says "There are no display page templates."
+  `FriendlyURLEntry` rows were always present and correct. What was missing was
+  a **display page template** — the site had none at all, so an entry resolved
+  and then had no page to render on.
 
-  **This site initializer never imports one.** Proven rather than assumed:
-  deploying a `display-page-template.json` with its required `name` removed
-  produces no warning at all, and the importer logs
-  *"Invalid display page template"* whenever it reads a bad one. So the file is
-  not being read. The master page, which sits in the same
-  `layout-page-templates/` tree and is zipped by the same code, imports fine on
-  every deploy. Both the `[$OBJECT_DEFINITION_CLASS_NAME:…$]` placeholder form
-  and a literal class name behave identically — the className was never the
-  problem.
+  **The site initializer never imports one**, and that is proven rather than
+  assumed: deploying a `display-page-template.json` with its required `name`
+  removed produces no warning at all, while the importer logs *"Invalid display
+  page template"* for anything it actually reads. So the file is never read. The
+  master page sits in the same `layout-page-templates/` tree, is zipped by the
+  same code, and imports on every deploy. Both the
+  `[$OBJECT_DEFINITION_CLASS_NAME:…$]` placeholder and a literal class name
+  behave identically, so the class name was never the problem either.
 
-  Two things were fixed along the way and are worth keeping regardless: the Gear
-  Object is now declared in the initializer (see below), and the `FriendlyURLEntry`
-  story is now understood. **To get detail pages today, create the template by
-  hand once:** Site Builder → Page Templates → Display Page Templates → New →
-  pick the Outfitter master → name it, content type **Gear**. Nothing links to a
-  detail page, so the site is coherent until then.
+  So the template was made by hand, once: Site Builder → Page Templates →
+  Display Page Templates → New → Display Page Template → Outfitter master →
+  name *Gear Detail*, content type **Gear** → Publish → ⋮ → **Mark as Default**.
+  That last step is not optional: without it the template exists, is published,
+  and every detail URL still 404s, because nothing assigns it to the entries.
+
+  **Still open:** the template is empty — it renders the master's header, footer
+  and the entry's title, and nothing else. The design that belongs in it is
+  already written, in this folder's `page-definition.json`, and there is no way
+  to get it in until either the initializer import is understood or it is
+  imported through ⋮ → Import. Nothing links to a detail page yet either.
 
 - **Why the Gear Object is declared in the site initializer.** A display page
   template names its Object through `[$OBJECT_DEFINITION_CLASS_NAME:<name>$]`,
