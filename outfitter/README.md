@@ -41,6 +41,9 @@ The site initializer re-runs on every redeploy, so iterating is just
 | `outfitter/mkstylebook.mjs` | both brands' `frontend-tokens-values.json` |
 | `outfitter/mkpalette.mjs` | searches OKLCH space for a chart palette that passes the colour checks |
 | `outfitter/objects.py` | creates, publishes and seeds the two Objects |
+| `outfitter/brand.py` | marks a style book as the theme's default — the stage gesture, scripted |
+| `outfitter/shoot.py` | screenshots a page, signed in, at slide resolution |
+| `outfitter/cdp.py` | the headless-Chrome plumbing the two above share |
 
 `mkpages.py` exists because page definitions are deep JSON where a Row needs
 three viewport entries whether or not you care about tablets. Edit the builder,
@@ -61,6 +64,16 @@ Dialect theme. Switching the site's default style book (Design → Style Books �
 ⋮ → Mark as Default) changes the brand colour, the buttons, the links **and
 every chart**, because the widget reads `--color-chart-0..7` from the theme.
 That is the whole demo: no rebuild, no widget change.
+
+Verified end to end on 2026-10-18, and captured: `deck/assets/ops-alpine.jpg`
+and `ops-coastal.jpg` are the same page under each brand at identical framing,
+and they back the deck's *Two brands, one page* slide. Rebuild them with:
+
+```bash
+python3 outfitter/brand.py "Coastal Drift"
+python3 outfitter/shoot.py /web/outfitter/operations deck/assets/ops-coastal.jpg 1105 758
+python3 outfitter/brand.py "Alpine Ridge"     # leave the site on Alpine
+```
 
 **Operations** — seven charts over the Hire Object, server-aggregated. Measured:
 9,000 rows over 18 requests in about 3 s.
@@ -95,6 +108,8 @@ comes out empty, start here.
 | A chart says `Could not fetch entries (409): Conflict with getObjectEntriesPage` | The reverse of the row above: the Object is **site**-scoped, and `/o/c/<object>` names no site. Liferay reports the company path in `restContextPath` for every Object, scoped or not, so the path it hands you is the one that fails. Use `/o/c/<object>/scopes/<groupId>`; in a page definition write `/scopes/[$GROUP_ID$]` and the site initializer substitutes it. |
 | A page URL is rejected with `LayoutFriendlyURLException` | An Object's friendly URL separator reserves that path. `/gear` belongs to the Gear Object, so the catalogue page is `/catalogue`. |
 | Every chart says "Headless read failed (403)" | The aggregator's OAuth2 application has no scope for that Object. Add `c_<objectname>.everything.read` — lowercase — and redeploy. |
+| "Mark as Default for Dialect Theme" freezes the browser tab | It opens a native `confirm()` — *"Do you want to replace X for Y as the default style book?"*. Nothing wrong with that by hand, but an unanswered dialog blocks the renderer, so anything driving the browser from outside hangs and every later command times out. `outfitter/brand.py` answers it over the DevTools protocol. |
+| A screenshot of a page past the fold has axes but no bars | Recharts animates its marks in, and a chart only gets animation frames once it is on screen. `Page.captureScreenshot` with `captureBeyondViewport` resizes the viewport to reach the rest of the page, every `ResponsiveContainer` re-measures and the animation restarts — so the capture is frame zero. `shoot.py` frames the shot with the viewport instead. |
 | Every chart says "Invalid authorization" (401) | The aggregator is running with a stale OAuth2 client id. Deploying the aggregator mints a new one, and the value can still be in flux moments after the deploy finishes. Restart it (below) **after** the portal settles, and check the id it prints against `/o/oauth2/application?externalReferenceCode=object-aggregator-oaua`. |
 
 ## Restarting the aggregator
