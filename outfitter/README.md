@@ -73,9 +73,6 @@ That is the whole demo: no rebuild, no widget change.
   URL then 404s — so the route is registered and the friendly-URL lookup is what
   fails. Re-saving an entry to regenerate its FriendlyURLEntry did not fix it.
   Nothing links to a detail page, so the site is coherent without it.
-- **Chart titles read `OUTFITTERRENTAL`.** The widget titles a chart with the
-  Object's external reference code. Fine on a developer dashboard, less so on a
-  site page; it wants a `title` attribute in `declared.ts`.
 - **A second brand is not wired to anything but the style book.** Switching
   brands does not swap the photographs or the wordmark, both of which are
   authored content rather than tokens.
@@ -95,6 +92,7 @@ comes out empty, start here.
 | A button says "Go Somewhere" | `BASIC_COMPONENT-button`'s editable is `link`, not `element-link`. |
 | A page is "No Results Found" with no content at all | The whole page definition failed to import. Check the fragment keys first. |
 | An Object's entries are invisible to a Collection or a Display Page Template | The Object is company-scoped. Those are site-level features; a company-scoped Object's entries live in the company group. |
+| A chart says `Could not fetch entries (409): Conflict with getObjectEntriesPage` | The reverse of the row above: the Object is **site**-scoped, and `/o/c/<object>` names no site. Liferay reports the company path in `restContextPath` for every Object, scoped or not, so the path it hands you is the one that fails. Use `/o/c/<object>/scopes/<groupId>`; in a page definition write `/scopes/[$GROUP_ID$]` and the site initializer substitutes it. |
 | A page URL is rejected with `LayoutFriendlyURLException` | An Object's friendly URL separator reserves that path. `/gear` belongs to the Gear Object, so the catalogue page is `/catalogue`. |
 | Every chart says "Headless read failed (403)" | The aggregator's OAuth2 application has no scope for that Object. Add `c_<objectname>.everything.read` — lowercase — and redeploy. |
 | Every chart says "Invalid authorization" (401) | The aggregator is running with a stale OAuth2 client id. Deploying the aggregator mints a new one, and the value can still be in flux moments after the deploy finishes. Restart it (below) **after** the portal settles, and check the id it prints against `/o/oauth2/application?externalReferenceCode=object-aggregator-oaua`. |
@@ -125,6 +123,12 @@ Look and Feel.
 
 Two smaller ones:
 
+- `liferay.ts` resolves an Object's **scope** before reading it. A site-scoped
+  Object is addressed as `/o/c/<object>/scopes/<groupId>`, taken from
+  `ThemeDisplay.getScopeGroupId()`. Both strategies also retry once when the
+  portal answers 409, which repairs a chart configured before the widget knew
+  about scope without anyone having to reconfigure it. `scopedRestPath` is
+  exported and covered by `src/liferay.test.ts`.
 - `theme.ts` now prefers a theme's own `--color-chart-0..7` over inferring a
   palette from its hue families. Dialect publishes thirteen of them; Classic
   publishes none, so the talk's site is unaffected.
