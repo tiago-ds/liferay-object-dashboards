@@ -1,0 +1,135 @@
+{
+	"externalReferenceCode": "OUTFITTERGEAR",
+	"label": {
+		"en_US": "Gear"
+	},
+	"pluralLabel": {
+		"en_US": "Gear"
+	},
+	"name": "OutfitterGear",
+	"scope": "site",
+	"active": true,
+	"titleObjectFieldName": "gearName",
+	"friendlyURLSeparator": "gear",
+	"panelCategoryKey": "control_panel.object",
+	"objectFolderExternalReferenceCode": "OUTFITTER",
+	"objectFields": [
+		{
+			"name": "gearName",
+			"label": {
+				"en_US": "Name"
+			},
+			"businessType": "Text",
+			"DBType": "String",
+			"required": true
+		},
+		{
+			"name": "sku",
+			"label": {
+				"en_US": "SKU"
+			},
+			"businessType": "Text",
+			"DBType": "String",
+			"required": true
+		},
+		{
+			"name": "category",
+			"label": {
+				"en_US": "Category"
+			},
+			"businessType": "Text",
+			"DBType": "String",
+			"required": true
+		},
+		{
+			"name": "activity",
+			"label": {
+				"en_US": "Activity"
+			},
+			"businessType": "Text",
+			"DBType": "String",
+			"required": true
+		},
+		{
+			"name": "depot",
+			"label": {
+				"en_US": "Depot"
+			},
+			"businessType": "Text",
+			"DBType": "String",
+			"required": true
+		},
+		{
+			"name": "gearCondition",
+			"label": {
+				"en_US": "Condition"
+			},
+			"businessType": "Text",
+			"DBType": "String",
+			"required": true
+		},
+		{
+			"name": "summary",
+			"label": {
+				"en_US": "Summary"
+			},
+			"businessType": "Text",
+			"DBType": "String",
+			"required": false
+		},
+		{
+			"name": "imageUrl",
+			"label": {
+				"en_US": "Image"
+			},
+			"businessType": "Text",
+			"DBType": "String",
+			"required": false
+		},
+		{
+			"name": "dailyRate",
+			"label": {
+				"en_US": "Daily rate"
+			},
+			"businessType": "PrecisionDecimal",
+			"DBType": "BigDecimal",
+			"required": false
+		},
+		{
+			"name": "replacementValue",
+			"label": {
+				"en_US": "Replacement value"
+			},
+			"businessType": "PrecisionDecimal",
+			"DBType": "BigDecimal",
+			"required": false
+		},
+		{
+			"name": "utilisationDays",
+			"label": {
+				"en_US": "Days on hire"
+			},
+			"businessType": "Integer",
+			"DBType": "Integer",
+			"required": false
+		},
+		{
+			"name": "downtimeDays",
+			"label": {
+				"en_US": "Days out of service"
+			},
+			"businessType": "Integer",
+			"DBType": "Integer",
+			"required": false
+		},
+		{
+			"name": "acquiredDate",
+			"label": {
+				"en_US": "Acquired"
+			},
+			"businessType": "Date",
+			"DBType": "Date",
+			"required": false
+		}
+	]
+}

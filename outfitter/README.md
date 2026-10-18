@@ -95,12 +95,44 @@ python3 outfitter/brand.py "Alpine Ridge"     # leave the site on Alpine
 
 ## Known gaps
 
-- **The gear detail page 404s.** A display page template exists, is bound to the
-  Gear Object and is marked `defaultTemplate`. `/web/outfitter/gear/356236`
-  (by id) resolves and 302s to `/web/outfitter/gear/aurora-2p-tent`, and that
-  URL then 404s — so the route is registered and the friendly-URL lookup is what
-  fails. Re-saving an entry to regenerate its FriendlyURLEntry did not fix it.
-  Nothing links to a detail page, so the site is coherent without it.
+- **The gear detail page 404s — because the site has no display page template.**
+  The earlier note here blamed the friendly URL, and that was wrong. The
+  `FriendlyURLEntry` rows are present and correct (group 354702, the Object's
+  class name id, `urlTitle` `aurora-2p-tent`), and the resolver works: by id,
+  `/web/outfitter/gear/356236` resolves and 302s to the canonical title URL. It
+  is the next step that fails, because there is no page to render the entry on.
+  `GET /o/headless-admin-content/v1.0/sites/354702/display-page-templates`
+  returns `totalCount: 0`, and Site Builder → Page Templates → Display Page
+  Templates says "There are no display page templates."
+
+  **This site initializer never imports one.** Proven rather than assumed:
+  deploying a `display-page-template.json` with its required `name` removed
+  produces no warning at all, and the importer logs
+  *"Invalid display page template"* whenever it reads a bad one. So the file is
+  not being read. The master page, which sits in the same
+  `layout-page-templates/` tree and is zipped by the same code, imports fine on
+  every deploy. Both the `[$OBJECT_DEFINITION_CLASS_NAME:…$]` placeholder form
+  and a literal class name behave identically — the className was never the
+  problem.
+
+  Two things were fixed along the way and are worth keeping regardless: the Gear
+  Object is now declared in the initializer (see below), and the `FriendlyURLEntry`
+  story is now understood. **To get detail pages today, create the template by
+  hand once:** Site Builder → Page Templates → Display Page Templates → New →
+  pick the Outfitter master → name it, content type **Gear**. Nothing links to a
+  detail page, so the site is coherent until then.
+
+- **Why the Gear Object is declared in the site initializer.** A display page
+  template names its Object through `[$OBJECT_DEFINITION_CLASS_NAME:<name>$]`,
+  and the initializer only substitutes that for Objects it created itself —
+  `addLayoutPageTemplates` declares a dependency on `addObjectDefinitions` for
+  exactly this reason. An Object made from outside leaves the placeholder in the
+  JSON as a literal. `objects.py` still owns the declaration and writes
+  `object-definitions/outfitter-gear.json`; it no longer has to create the Object.
+  One trap: **do not put `updateStrategy` in that file.** This portal's
+  `ObjectDefinition` DTO does not know the key, and one unknown property makes
+  the whole transform return null — *"Unable to transform object definition from
+  JSON"*, and no Object.
 - **A second brand is not wired to anything but the style book.** Switching
   brands does not swap the photographs or the wordmark, both of which are
   authored content rather than tokens.

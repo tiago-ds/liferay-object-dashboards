@@ -12,6 +12,15 @@ Kept in the OUTFITTER object folder, apart from SALESORDER and SUPPORTTICKET,
 which the talk's climax demo and the deck screenshot depend on and which this
 script never touches.
 
+The Gear definition is ALSO written out as a site-initializer file, and the
+initializer is what actually creates it. That is not duplication for its own
+sake: a display page template names its Object through
+`[$OBJECT_DEFINITION_CLASS_NAME:<name>$]`, and the initializer only knows how to
+substitute that for Objects it created itself. An Object made out here leaves
+the placeholder in the JSON as a literal, the template silently fails to import,
+and every detail URL 404s with nothing in the log. `addLayoutPageTemplates`
+declares a dependency on `addObjectDefinitions` for exactly this reason.
+
     BASE_URL  (default http://localhost:8080)
     LR_USER   (default test@liferay.com)
     LR_PASS   (default pw)
@@ -21,6 +30,7 @@ script never touches.
 import base64
 import json
 import os
+import pathlib
 import random
 import time
 import urllib.error
@@ -327,9 +337,31 @@ def hire_rows(n, gear):
     return out
 
 
+def export_gear_definition():
+    """Write the Gear definition where the site initializer will find it.
+
+    Declared once, here, and generated into the client extension — the same
+    arrangement as mkpages.py and mkstylebook.mjs. Edit EQUIPMENT, not the JSON.
+    """
+    out = (pathlib.Path(__file__).resolve().parent.parent / "liferay-workspace" /
+           "client-extensions" / "outfitter-site" / "site-initializer" /
+           "object-definitions" / "outfitter-gear.json")
+    out.parent.mkdir(parents=True, exist_ok=True)
+    # NOT `updateStrategy`: this portal's ObjectDefinition DTO does not know
+    # that key, and one unknown property makes the whole transform return null
+    # — "Unable to transform object definition from JSON" and no Object. The
+    # initializer's default for an Object that already exists is to patch it,
+    # which is what we wanted anyway.
+    out.write_text(json.dumps(EQUIPMENT, indent="\t", ensure_ascii=False) + "\n")
+    print(f"  wrote {out.relative_to(pathlib.Path.cwd())}"
+          if out.is_relative_to(pathlib.Path.cwd()) else f"  wrote {out}")
+
+
 if __name__ == "__main__":
     print(f"Target: {BASE} as {USER}")
     print(f"Volume: {GEAR} gear, {RENTALS} hires\n")
+    print("Definitions:")
+    export_gear_definition()
     print("Gear:")
     gear_path = ensure(EQUIPMENT)
     gear = gear_rows(GEAR)
