@@ -127,9 +127,21 @@ const BRANDS = [
   {
     key: "coastal-drift",
     name: "Coastal Drift",
-    primary: "#0079a0",     // deep water
-    secondary: "#c48800",   // wet sand at low sun
-    chart: ["#0079a0","#c48800","#902300","#4f3a9e","#9283ee","#00a786","#b34378","#7c6900"],
+    // Sunset over water, not more water. The first version of this brand was
+    // a deep teal, and on a slide beside Alpine Ridge the two read as the same
+    // brand twice: both primaries were blue, and — worse — the two palettes
+    // agreed on their gold and their dark red, because a greedy max-separation
+    // search spreads accents the same way whatever you anchor it on. So this
+    // palette is SEEDED with its own hue family and the search fills the rest:
+    //
+    //   CMAX=0.24 node outfitter/mkpalette.mjs "#c0451f,#007d6b,#6b3fb5" "#ffffff"
+    //   -> worst all-pairs CVD ΔE=9.2, normal ΔE=15.1, min contrast 3.06
+    //
+    // Every slot a reader actually sees now differs from Alpine's: orange
+    // against blue, sea green against gold, violet against dark red.
+    primary: "#c0451f",     // sun on the water at the end of the day
+    secondary: "#007d6b",   // the water itself
+    chart: ["#c0451f","#007d6b","#6b3fb5","#aa77ff","#c88600","#f245ae","#0066f3","#83265d"],
     bodyFont: "'Source Sans 3', system-ui, -apple-system, 'Segoe UI', Roboto, Arial, sans-serif",
     default: false,
   },

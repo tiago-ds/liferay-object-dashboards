@@ -2,8 +2,27 @@
 // passes every dataviz check. Even hue spacing does NOT work: CVD collapses
 // hues onto one axis, so distance has to be measured in simulated space, over
 // every pair, rather than assumed from the hue wheel.
-const V = "/tmp/claude-1000/bundled-skills/2.1.300/193161ad7c5bca64b9590fc288d76b46/dataviz/scripts/validate_palette.js";
-const { contrast } = await import(V);
+//
+//   node outfitter/mkpalette.mjs "#2460b7" "#ffffff"
+//   node outfitter/mkpalette.mjs "#c0441c,#7d5a00,#a62f6b" "#ffffff"
+//
+// The first argument is one anchor, or several separated by commas. Several
+// matters when two brands have to look DIFFERENT: a greedy max-separation
+// search converges on the same spread of accents whatever you anchor it on, so
+// two palettes built that way come out looking like each other. Seeding the
+// first few slots with a hue family and letting the search fill the rest is
+// what makes a second brand read as a second brand.
+//
+// Self-contained on purpose: this used to import `contrast` from a skill in a
+// temp directory, which stopped existing and took the script with it.
+const contrast = (a, b) => {
+  const lum = h => {
+    const [r, g, bl] = hex2lin(h);
+    return 0.2126 * r + 0.7152 * g + 0.0722 * bl;
+  };
+  const [x, y] = [lum(a), lum(b)].sort((p, q) => q - p);
+  return (x + 0.05) / (y + 0.05);
+};
 
 const lin2s = c => { c = Math.max(0,Math.min(1,c)); return c <= 0.0031308 ? 12.92*c : 1.055*c**(1/2.4) - 0.055; };
 const s2lin = c => c <= 0.04045 ? c/12.92 : ((c+0.055)/1.055)**2.4;
@@ -47,7 +66,8 @@ const dist = (a,b,i) => {
 };
 const cvd = (a,b) => Math.min(dist(a,b,1), dist(a,b,2), dist(a,b,3));
 
-const [,, brandHex, surface, modeArg] = process.argv;
+const [,, seedArg, surface, modeArg] = process.argv;
+const SEEDS = seedArg.split(",").map(x => x.trim()).filter(Boolean);
 const BAND = (modeArg || "light") === "dark" ? [0.48,0.67] : [0.43,0.77];
 
 const pool = [];
@@ -63,11 +83,11 @@ for (let L = BAND[0]; L <= BAND[1]+1e-9; L += 0.03)
     }
 
 const N = 8, NORMAL_FLOOR = 15.0;
-const brand = describe(brandHex);
+const seeds = SEEDS.map(describe);
 let best = null;
 for (let trial = 0; trial < 600; trial++) {
-  const chosen = [brand];
-  for (let k = 1; k < N; k++) {
+  const chosen = seeds.slice();
+  for (let k = seeds.length; k < N; k++) {
     let pick = null, pickScore = -1;
     for (const c of pool) {
       let worstCvd = Infinity, worstNormal = Infinity;
@@ -89,6 +109,22 @@ for (let trial = 0; trial < 600; trial++) {
   for (let i = 0; i < N; i++) for (let j = i+1; j < N; j++) worst = Math.min(worst, cvd(chosen[i], chosen[j]));
   if (!best || worst > best.worst) best = { worst, chosen };
 }
-if (!best) { console.error("no palette found"); process.exit(1); }
+if (!best) {
+  console.error(`no palette found. Seeds too close? ` +
+    `worst pair among seeds: CVD ΔE=${worstPair(seeds, cvd).toFixed(1)}, ` +
+    `normal ΔE=${worstPair(seeds, (a,b) => dist(a,b,0)).toFixed(1)}`);
+  process.exit(1);
+}
 console.log(best.chosen.map(c => c.hex).join(","));
-console.error(`pool=${pool.length} worst all-pairs CVD ΔE=${best.worst.toFixed(1)}`);
+console.error(
+  `pool=${pool.length} seeds=${seeds.length} ` +
+  `worst all-pairs: CVD ΔE=${best.worst.toFixed(1)} ` +
+  `normal ΔE=${worstPair(best.chosen, (a,b) => dist(a,b,0)).toFixed(1)} ` +
+  `min contrast=${Math.min(...best.chosen.map(c => contrast(c.hex, surface))).toFixed(2)}`);
+
+function worstPair(set, metric) {
+  let w = Infinity;
+  for (let i = 0; i < set.length; i++)
+    for (let j = i + 1; j < set.length; j++) w = Math.min(w, metric(set[i], set[j]));
+  return w === Infinity ? 0 : w;
+}

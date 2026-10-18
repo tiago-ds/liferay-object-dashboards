@@ -1,183 +1,183 @@
 {
 	"colorBrandPrimary": {
 		"cssVariableMapping": "color-brand-primary",
-		"value": "#0079a0"
+		"value": "#c0451f"
 	},
 	"colorBrandPrimaryDarken1": {
 		"cssVariableMapping": "color-brand-primary-darken-1",
-		"value": "#005c82"
+		"value": "#9e2200"
 	},
 	"colorBrandPrimaryDarken2": {
 		"cssVariableMapping": "color-brand-primary-darken-2",
-		"value": "#004161"
+		"value": "#760200"
 	},
 	"colorBrandPrimaryDarken3": {
 		"cssVariableMapping": "color-brand-primary-darken-3",
-		"value": "#002641"
+		"value": "#4e0000"
 	},
 	"colorBrandPrimaryDarken4": {
 		"cssVariableMapping": "color-brand-primary-darken-4",
-		"value": "#000e21"
+		"value": "#250000"
 	},
 	"colorBrandPrimaryDarken5": {
 		"cssVariableMapping": "color-brand-primary-darken-5",
-		"value": "#000009"
+		"value": "#040000"
 	},
 	"colorBrandPrimaryLighten1": {
 		"cssVariableMapping": "color-brand-primary-lighten-1",
-		"value": "#3193bb"
+		"value": "#df613d"
 	},
 	"colorBrandPrimaryLighten2": {
 		"cssVariableMapping": "color-brand-primary-lighten-2",
-		"value": "#5fadd1"
+		"value": "#f58565"
 	},
 	"colorBrandPrimaryLighten3": {
 		"cssVariableMapping": "color-brand-primary-lighten-3",
-		"value": "#86c7e6"
+		"value": "#ffa98e"
 	},
 	"colorBrandPrimaryLighten4": {
 		"cssVariableMapping": "color-brand-primary-lighten-4",
-		"value": "#abe0fa"
+		"value": "#ffd1c0"
 	},
 	"colorBrandPrimaryLighten5": {
 		"cssVariableMapping": "color-brand-primary-lighten-5",
-		"value": "#cff9ff"
+		"value": "#fff6ef"
 	},
 	"colorBrandPrimaryLighten6": {
 		"cssVariableMapping": "color-brand-primary-lighten-6",
-		"value": "#e3ffff"
+		"value": "#fff6f0"
 	},
 	"colorBrandSecondary": {
 		"cssVariableMapping": "color-brand-secondary",
-		"value": "#c48800"
+		"value": "#007d6b"
 	},
 	"colorBrandSecondaryDarken1": {
 		"cssVariableMapping": "color-brand-secondary-darken-1",
-		"value": "#9d6300"
+		"value": "#006150"
 	},
 	"colorBrandSecondaryDarken2": {
 		"cssVariableMapping": "color-brand-secondary-darken-2",
-		"value": "#744300"
+		"value": "#004537"
 	},
 	"colorBrandSecondaryDarken3": {
 		"cssVariableMapping": "color-brand-secondary-darken-3",
-		"value": "#4d2400"
+		"value": "#002a20"
 	},
 	"colorBrandSecondaryDarken4": {
 		"cssVariableMapping": "color-brand-secondary-darken-4",
-		"value": "#290700"
+		"value": "#00110b"
 	},
 	"colorBrandSecondaryDarken5": {
 		"cssVariableMapping": "color-brand-secondary-darken-5",
-		"value": "#060000"
+		"value": "#000100"
 	},
 	"colorBrandSecondaryLighten1": {
 		"cssVariableMapping": "color-brand-secondary-lighten-1",
-		"value": "#e7aa3e"
+		"value": "#309784"
 	},
 	"colorBrandSecondaryLighten2": {
 		"cssVariableMapping": "color-brand-secondary-lighten-2",
-		"value": "#ffce78"
+		"value": "#5eaf9d"
 	},
 	"colorBrandSecondaryLighten3": {
 		"cssVariableMapping": "color-brand-secondary-lighten-3",
-		"value": "#fff9d9"
+		"value": "#84c7b7"
 	},
 	"colorBrandSecondaryLighten4": {
 		"cssVariableMapping": "color-brand-secondary-lighten-4",
-		"value": "#fff9da"
+		"value": "#a8ded1"
 	},
 	"colorBrandSecondaryLighten5": {
 		"cssVariableMapping": "color-brand-secondary-lighten-5",
-		"value": "#fff9d9"
+		"value": "#cbf6eb"
 	},
 	"colorBrandSecondaryLighten6": {
 		"cssVariableMapping": "color-brand-secondary-lighten-6",
-		"value": "#fff9db"
+		"value": "#e5fffc"
 	},
 	"colorActionPrimaryDefault": {
 		"cssVariableMapping": "color-action-primary-default",
-		"value": "#0079a0"
+		"value": "#c0451f"
 	},
 	"colorActionPrimaryHover": {
 		"cssVariableMapping": "color-action-primary-hover",
-		"value": "#005c82"
+		"value": "#9e2200"
 	},
 	"colorActionPrimaryActive": {
 		"cssVariableMapping": "color-action-primary-active",
-		"value": "#004161"
+		"value": "#760200"
 	},
 	"colorActionPrimaryDisabled": {
 		"cssVariableMapping": "color-action-primary-disabled",
-		"value": "#86c7e6"
+		"value": "#ffa98e"
 	},
 	"colorActionPrimaryHoverLighten": {
 		"cssVariableMapping": "color-action-primary-hover-lighten",
-		"value": "#e3ffff"
+		"value": "#fff6f0"
 	},
 	"colorActionPrimaryActiveLighten": {
 		"cssVariableMapping": "color-action-primary-active-lighten",
-		"value": "#cff9ff"
+		"value": "#fff6ef"
 	},
 	"colorActionSecondaryDefault": {
 		"cssVariableMapping": "color-action-secondary-default",
-		"value": "#c48800"
+		"value": "#007d6b"
 	},
 	"colorActionSecondaryHover": {
 		"cssVariableMapping": "color-action-secondary-hover",
-		"value": "#9d6300"
+		"value": "#006150"
 	},
 	"colorActionSecondaryActive": {
 		"cssVariableMapping": "color-action-secondary-active",
-		"value": "#744300"
+		"value": "#004537"
 	},
 	"colorActionSecondaryDisabled": {
 		"cssVariableMapping": "color-action-secondary-disabled",
-		"value": "#fff9d9"
+		"value": "#84c7b7"
 	},
 	"colorActionSecondaryHoverLighten": {
 		"cssVariableMapping": "color-action-secondary-hover-lighten",
-		"value": "#fff9db"
+		"value": "#e5fffc"
 	},
 	"colorActionSecondaryActiveLighten": {
 		"cssVariableMapping": "color-action-secondary-active-lighten",
-		"value": "#fff9d9"
+		"value": "#cbf6eb"
 	},
 	"linkVisitedColor": {
 		"cssVariableMapping": "link-visited-color",
-		"value": "#004161"
+		"value": "#760200"
 	},
 	"colorChart0": {
 		"cssVariableMapping": "color-chart-0",
-		"value": "#0079a0"
+		"value": "#c0451f"
 	},
 	"colorChart1": {
 		"cssVariableMapping": "color-chart-1",
-		"value": "#c48800"
+		"value": "#007d6b"
 	},
 	"colorChart2": {
 		"cssVariableMapping": "color-chart-2",
-		"value": "#902300"
+		"value": "#6b3fb5"
 	},
 	"colorChart3": {
 		"cssVariableMapping": "color-chart-3",
-		"value": "#4f3a9e"
+		"value": "#aa77ff"
 	},
 	"colorChart4": {
 		"cssVariableMapping": "color-chart-4",
-		"value": "#9283ee"
+		"value": "#c88600"
 	},
 	"colorChart5": {
 		"cssVariableMapping": "color-chart-5",
-		"value": "#00a786"
+		"value": "#f245ae"
 	},
 	"colorChart6": {
 		"cssVariableMapping": "color-chart-6",
-		"value": "#b34378"
+		"value": "#0066f3"
 	},
 	"colorChart7": {
 		"cssVariableMapping": "color-chart-7",
-		"value": "#7c6900"
+		"value": "#83265d"
 	},
 	"fontFamilyBase": {
 		"cssVariableMapping": "font-family-base",

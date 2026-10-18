@@ -39,7 +39,7 @@ The site initializer re-runs on every redeploy, so iterating is just
 |---|---|
 | `outfitter/mkpages.py` | every `page-definition.json`, the master page, the display page template |
 | `outfitter/mkstylebook.mjs` | both brands' `frontend-tokens-values.json` |
-| `outfitter/mkpalette.mjs` | searches OKLCH space for a chart palette that passes the colour checks |
+| `outfitter/mkpalette.mjs` | searches OKLCH space for a chart palette that passes the colour checks. Pass all eight colours as the anchor to CHECK an existing palette instead of searching for one. |
 | `outfitter/objects.py` | creates, publishes and seeds the two Objects |
 | `outfitter/brand.py` | marks a style book as the theme's default — the stage gesture, scripted |
 | `outfitter/shoot.py` | screenshots a page, signed in, at slide resolution |
@@ -64,6 +64,21 @@ Dialect theme. Switching the site's default style book (Design → Style Books �
 ⋮ → Mark as Default) changes the brand colour, the buttons, the links **and
 every chart**, because the widget reads `--color-chart-0..7` from the theme.
 That is the whole demo: no rebuild, no widget change.
+
+**Making the second brand look like a second brand.** The first attempt was a
+deep teal, and beside Alpine Ridge it read as the same brand twice. Two reasons,
+and only one of them was the primary: a greedy max-separation palette search
+spreads its accents the same way whatever colour you anchor it on, so both
+palettes independently chose nearly the same gold and nearly the same dark red.
+A brand is not its primary — it is the first three or four slots, which is what
+a reader actually sees. Coastal Drift is now SEEDED with its own hue family
+(orange, sea green, violet) and the search fills the rest.
+
+**A dark second brand is not available as a style book.** Dialect publishes 601
+CSS-variable tokens, including `body-bg`, `body-color` and `color-chart-0..12`
+— but no `card-bg`, no gray scale and no `white`. The page ground and the body
+text would go dark and every chart card would stay white. Making that work means
+changing the fragments' and the widget's CSS, which is no longer "one dropdown".
 
 Verified end to end on 2026-10-18, and captured: `deck/assets/ops-alpine.jpg`
 and `ops-coastal.jpg` are the same page under each brand at identical framing,
