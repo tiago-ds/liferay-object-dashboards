@@ -29,6 +29,22 @@ const NUMBER_FORMAT = new Intl.NumberFormat(undefined, { maximumFractionDigits: 
 const fmt = (value: number | string): string =>
   typeof value === "number" ? NUMBER_FORMAT.format(value) : value;
 
+// Axis ticks are compact ("180M"): a full sum like 180,000,000 is wider than the
+// axis and was drawn clipped. The exact figure is one hover away, in the tooltip.
+const AXIS_FORMAT = new Intl.NumberFormat(undefined, { notation: "compact" });
+const fmtAxis = (value: number | string): string =>
+  typeof value === "number" ? AXIS_FORMAT.format(value) : value;
+
+// Recharts draws its tooltip as a white box and lets the text inherit the
+// page's colour, so under a dark theme it was light text on white. Paint the
+// box from the same theme properties as the widget chrome (see styles.css).
+const TOOLTIP_STYLE = {
+  backgroundColor: "var(--body-bg, #fff)",
+  border: "1px solid var(--gray-300, #e7e7ed)",
+  borderRadius: "var(--border-radius, 4px)",
+  color: "var(--body-color, #10131a)",
+};
+
 // Below this share of the pie, a slice's label is dropped — tiny slices would
 // otherwise stack their labels on top of each other (the skewed-data problem).
 const PIE_LABEL_MIN_SHARE = 0.04;
@@ -60,6 +76,7 @@ type LoadState =
 function loadPoints(
   config: ChartConfig
 ): Promise<{ items: DataPoint[]; meta: ChartMeta }> {
+  // THIS IS THE STRATEGY CHECK
   if (config.strategy === "server") {
     return fetchAggregate(config).then(({ items, meta }) => ({
       items,
@@ -228,8 +245,8 @@ function renderChart(type: ChartConfig["chartType"], data: DataPoint[], theme: C
         <LineChart data={data} margin={{ top: 8, right: 16, bottom: 8, left: 8 }}>
           <CartesianGrid strokeDasharray="3 3" stroke={theme.grid} />
           <XAxis dataKey="name" tick={axisTick} stroke={theme.grid} />
-          <YAxis tick={axisTick} stroke={theme.grid} tickFormatter={fmt} width={64} />
-          <Tooltip formatter={(v) => fmt(v as number)} />
+          <YAxis tick={axisTick} stroke={theme.grid} tickFormatter={fmtAxis} width={64} />
+          <Tooltip formatter={(v) => fmt(v as number)} contentStyle={TOOLTIP_STYLE} />
           <Line type="monotone" dataKey="value" stroke={theme.accent} strokeWidth={2} dot={false} />
         </LineChart>
       );
@@ -238,16 +255,19 @@ function renderChart(type: ChartConfig["chartType"], data: DataPoint[], theme: C
         <AreaChart data={data} margin={{ top: 8, right: 16, bottom: 8, left: 8 }}>
           <CartesianGrid strokeDasharray="3 3" stroke={theme.grid} />
           <XAxis dataKey="name" tick={axisTick} stroke={theme.grid} />
-          <YAxis tick={axisTick} stroke={theme.grid} tickFormatter={fmt} width={64} />
-          <Tooltip formatter={(v) => fmt(v as number)} />
+          <YAxis tick={axisTick} stroke={theme.grid} tickFormatter={fmtAxis} width={64} />
+          <Tooltip formatter={(v) => fmt(v as number)} contentStyle={TOOLTIP_STYLE} />
           <Area type="monotone" dataKey="value" stroke={theme.accent} fill={theme.accent} fillOpacity={0.2} />
         </AreaChart>
       );
     case "pie":
       return (
         <PieChart>
-          <Tooltip formatter={(v) => fmt(v as number)} />
-          <Legend />
+          <Tooltip formatter={(v) => fmt(v as number)} contentStyle={TOOLTIP_STYLE} />
+          {/* Past the palette's length the slice colours repeat, so a legend
+              can no longer say which slice is which, and Recharts grows it
+              upward over the whole widget (one entry per order number). */}
+          {data.length <= theme.colors.length && <Legend />}
           <Pie
             data={data}
             dataKey="value"
@@ -269,8 +289,8 @@ function renderChart(type: ChartConfig["chartType"], data: DataPoint[], theme: C
         <BarChart data={data} margin={{ top: 8, right: 16, bottom: 8, left: 8 }}>
           <CartesianGrid strokeDasharray="3 3" stroke={theme.grid} />
           <XAxis dataKey="name" tick={axisTick} stroke={theme.grid} />
-          <YAxis tick={axisTick} stroke={theme.grid} tickFormatter={fmt} width={64} />
-          <Tooltip formatter={(v) => fmt(v as number)} />
+          <YAxis tick={axisTick} stroke={theme.grid} tickFormatter={fmtAxis} width={64} />
+          <Tooltip formatter={(v) => fmt(v as number)} contentStyle={TOOLTIP_STYLE} />
           <Bar dataKey="value" fill={theme.accent} radius={[4, 4, 0, 0]} />
         </BarChart>
       );
