@@ -46,5 +46,5 @@ export const MAX_ROWS = 100_000;
 // expires the first chart before the last one finishes. Every reload then paid
 // full price again.
 //
-// The real fix is to scan once and aggregate many ways; see FOLLOW-UPS.
+// The real fix is to scan once and aggregate many ways.
 export const CACHE_TTL_MS = 600_000;

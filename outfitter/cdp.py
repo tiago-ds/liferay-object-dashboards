@@ -1,8 +1,7 @@
 """
 Drives a headless Chrome over the DevTools protocol, signed in to the portal.
 
-Shared by shoot.py (screenshots) and brand.py (the style-book switch), because
-both need the same three awkward things: a browser that will accept a websocket
+Used by brand.py (the style-book switch), which needs three awkward things: a browser that will accept a websocket
 from us, a Liferay session, and something that answers the native dialogs
 Liferay pops — an unanswered confirm() freezes the renderer and every command
 after it times out.

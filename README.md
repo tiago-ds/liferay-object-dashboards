@@ -1,265 +1,110 @@
 # Point It at an Object, Get a Dashboard
 
-A schema-driven data-visualization **Client Extension** for Liferay. Drop it on a page, point it at
-any Object, pick a dimension + a measure + a chart type, and it renders a live chart from Headless
-data — **no per-chart code**. Compose a dashboard by dropping several on a page; the page builder is
-the layout.
+A schema-driven data-visualization **Client Extension** for Liferay. Drop the widget on a page,
+point it at any Object, pick a dimension, a measure and a chart type, and it renders a live chart
+from Headless data — **no per-chart code**. A dashboard is several widgets on one page; the page
+builder is the layout.
 
-DevCon Deep Dive (45 min). Talk material: [`TALK-OUTLINE.md`](TALK-OUTLINE.md) ·
-[`CFP-submission.md`](CFP-submission.md) · open work: [`FOLLOW-UPS.md`](FOLLOW-UPS.md)
+The code behind the Liferay DevCon Deep Dive *Point It at an Object, Get a Dashboard*.
+
+![The Outfitter demo site's Operations page: five charts over one Object, aggregated on the server](docs/dashboard.jpg)
+
+## How it works
+
+1. **Read the definition.** The widget asks the object-admin API for the Object's fields and
+   classifies them: text and picklists become dimensions, numbers become measures, dates become
+   time dimensions. The config panel offers only what the schema allows, so a new Object works the
+   moment it is published.
+2. **Aggregate — and choose where.** The same pure `aggregate()` function runs in two places:
+   - **In the browser**, over the entries the widget fetched. Liferay caps a page at 500 entries,
+     and a browser chart reads one page.
+   - **On the server**, in `object-aggregator`: a Node Client Extension that scans every page as
+     the signed-in user and returns only the chart's points, cached per user for 10 minutes.
+3. **State the denominator.** Every chart has a footnote saying what it counted — *all 400 rows*,
+   *48,048 rows over 97 requests*, or a warning when the browser only saw the first 500 of 48,048.
+   A chart built on 1% of the entries looks just as convincing as the right one; the footnote is
+   how you tell them apart.
+
+`types.ts`, `classify.ts` and `aggregate.ts` are **byte-identical** in the widget and the
+aggregator, enforced by `npm run check:parity` before every build. That is the architectural claim:
+the group-by never changes, only where it runs.
 
 ## What's in here
 
 | Piece | Where | What it is |
 |---|---|---|
-| **object-dashboard** | `liferay-workspace/client-extensions/object-dashboard/` | The widget. `customElement` CX, React + Clay from the page's importmap, Recharts. Aggregates in the browser. |
-| **object-aggregator** | `liferay-workspace/client-extensions/object-aggregator/` | Server-side aggregation. Node/Express CX. Same config in, same `DataPoint[]` out. |
-| **demo Objects** | `demo-objects/` | Sales Order + Support Case definitions and a seeder. |
+| **object-dashboard** | `liferay-workspace/client-extensions/object-dashboard/` | The widget. `customElement` CX — React and Clay from the page's import map, Recharts for the charts. |
+| **object-aggregator** | `liferay-workspace/client-extensions/object-aggregator/` | Server-side aggregation. Node/Express CX with its own OAuth2 application. Same chart config in, same points out. |
+| **object-dashboard-site** | `liferay-workspace/client-extensions/object-dashboard-site/` | Site initializer: the *Object Dashboards* site, its pages and a style book. |
+| **outfitter-site** | `liferay-workspace/client-extensions/outfitter-site/` | Site initializer: *Outfitter*, a complete demo site for an invented gear-hire company, with two brands as style books. See [`outfitter/README.md`](outfitter/README.md). |
+| **demo Objects** | `demo-objects/` | Sales Order and Support Case definitions, and a seeder. |
+| **Outfitter scripts** | `outfitter/` | Create and seed the Outfitter Objects, generate its pages and style books, switch brands. |
 
-The two extensions share `types.ts`, `classify.ts` and `aggregate.ts` as **byte-identical files**,
-enforced by `npm run check:parity`. That's the architectural claim: the group-by doesn't change,
-only where it runs.
+## Running it
 
----
+Product: **Liferay DXP 2026.Q2** (`liferay-workspace/gradle.properties`).
+Prerequisites: a JDK, Node 18+, Python 3 (standard library only), and a DXP activation key.
 
-# Setup — clean bundle to composed dashboard
+[`RUNBOOK.md`](RUNBOOK.md) is the detailed version of this: memory, start-up timing, a
+verification block, and the traps that fail without an error.
 
-**Read this first:** the widget (step 3) deploys the ordinary way and gets you the whole client-side
-demo. The aggregator (step 4) is a *service*, and a local bundle has nothing to run a service
-container for you — that step is manual and is the one that will bite you.
-
-Product: `dxp-2026.q2.0` (`liferay-workspace/gradle.properties`).
-Prerequisites: JDK, Node 18+, Python 3 (stdlib only).
-
-> **All paths below are relative to `ObjectDashboards/`**, which holds both the talk material and
-> the workspace. The Client Extensions live *inside* `liferay-workspace/client-extensions/` — so
-> treat that workspace as **not** throwaway, or move the extensions out before recreating it.
-
-## 1. Start the portal
+**1. Start the portal**
 
 ```bash
-cd ObjectDashboards/liferay-workspace
-blade gw initBundle          # downloads the bundle into bundles/
-blade server run             # foreground, logs in the terminal
+cd liferay-workspace
+./gradlew initBundle                       # downloads the bundle into bundles/
+cp <your-activation-key>.xml bundles/deploy/
+bundles/tomcat/bin/startup.sh
 ```
 
-Docker instead: `blade gw createDockerContainer && blade gw startDockerContainer`.
+Sign in at **http://localhost:8080**. The setup wizard is disabled
+(`configs/common/portal-setup-wizard.properties`). The commands below use `test@liferay.com` /
+`pw`; use whatever you set.
 
-Wait for `Server startup in ... ms`. Sign in at **http://localhost:8080** as
-**`test@liferay.com` / `pw`**. The setup wizard is disabled
-(`configs/common/portal-setup-wizard.properties`), so you land straight in.
-
-`dxp-2026.q2.0` is a DXP bundle and wants an activation key — there is none in this workspace
-(`bundles/` is not initialised yet). Drop yours in `bundles/deploy/` before or just after first
-boot. Objects and Client Extensions both need a validly activated DXP.
-
-> Credentials drift between installs — older notes here used `http://localhost:8082` with password
-> `a`. This bundle is 8080 / `pw`. Whichever you have, keep it consistent: the seeder and the CX
-> `.serviceAddress` both depend on it.
-
-## 2. Create and seed the Objects
+**2. Deploy the extensions**, one at a time:
 
 ```bash
-cd demo-objects
-BASE_URL=http://localhost:8080 LR_USER=test@liferay.com LR_PASS=pw python3 seed.py
+./gradlew :client-extensions:object-dashboard:deploy --rerun-tasks
+./gradlew :client-extensions:object-aggregator:deploy --rerun-tasks
+./gradlew :client-extensions:object-dashboard-site:deploy --rerun-tasks
+./gradlew :client-extensions:outfitter-site:deploy --rerun-tasks
 ```
 
-Creates and publishes **Sales Order** (`/o/c/salesorders`) and **Support Case**
-(`/o/c/supportcases`), then fills them. Idempotent: existing definitions are reused, and an Object
-that already has entries is skipped unless `FORCE=1`.
+Avoid `blade gw deploy`: it redeploys everything, which mints the aggregator a new OAuth2 client id
+and breaks server-side charts until you restart the aggregator.
 
-### Starting over
-
-`reset.py` deletes every entry from both Objects and leaves the definitions published, so `seed.py`
-can re-seed straight after (it only skips when an Object is non-empty).
+**3. Create and seed the Objects**
 
 ```bash
-cd demo-objects
-BASE_URL=http://localhost:8080 LR_USER=test@liferay.com LR_PASS=pw python3 reset.py
+cd ..
+SO_COUNT=48048 TK_COUNT=400 \
+BASE_URL=http://localhost:8080 LR_USER=test@liferay.com LR_PASS=pw python3 demo-objects/seed.py
+python3 outfitter/objects.py               # the Outfitter site has to exist first
 ```
 
-It asks for confirmation and prints the counts first; `YES=1` skips the prompt. It pages through ids
-with `fields=id`, then uses `DELETE <restContextPath>/batch` with `[{"id": N}, ...]` — the same
-asynchronous import-task machinery as seeding, so it is a couple of dozen requests rather than one
-per row.
+Seed real volume. With the seeder's small defaults every chart fits in one page, and the
+difference between the two strategies — the point of the project — never shows.
+[`demo-objects/README.md`](demo-objects/README.md) covers the seeder's options and `reset.py`.
 
-**Do this after any interrupted seed.** A partial run leaves the Objects non-empty, which makes a
-plain re-run skip seeding entirely and `FORCE=1` append duplicates on top of the partial data.
+**4. Run the aggregator**
 
-### While you're just getting the setup working
-
-Flip `QUICK = True` at the top of `seed.py` (or pass `QUICK=1`). That sends **one request per
-Object** with `QUICK_SIZE` rows — seconds instead of minutes — so you can iterate on steps 3–5
-without waiting on a full seed each time. It prints a loud banner, because a quick run mistaken for
-a real one would leave the server-side demo with nothing to show.
-
-```bash
-QUICK=1 BASE_URL=http://localhost:8080 LR_USER=test@liferay.com LR_PASS=pw python3 seed.py
-```
-
-### Seed real volume, or the server-side segment has nothing to show
-
-Defaults are 48 and 56 rows — good charts, **useless climax**: the footnote would read "48 rows
-scanned over 1 request". For the aggregation demo:
-
-```bash
-SO_COUNT=48000 TK_COUNT=8000 FORCE=1 \
-BASE_URL=http://localhost:8080 LR_USER=test@liferay.com LR_PASS=pw python3 seed.py
-```
-
-Seeding uses the Object entry **batch endpoint** — `POST <restContextPath>/batch` with a JSON array
-(it also accepts `{"items": [...]}`). That returns `202` and creates an **asynchronous import task**,
-so the seeder polls `/o/headless-batch-engine/v1.0/import-task/{id}` until `executeStatus` is
-`COMPLETED`, printing the `/failed-items/report` if one fails. Rows go in chunks of `CHUNK` (2,000),
-so 48k rows is a couple of dozen requests, not 48,000.
-
-If a batch import misbehaves on your instance, fall back to one POST per entry across `WORKERS`
-threads — much slower, but it uses only the plainest API:
-
-```bash
-MODE=single WORKERS=16 SO_COUNT=48000 TK_COUNT=8000 FORCE=1 \
-BASE_URL=http://localhost:8080 LR_USER=test@liferay.com LR_PASS=pw python3 seed.py
-```
-
-> Object **names** matter downstream: `SalesOrder` and `SupportCase` mean internal names
-> `C_SalesOrder` / `C_SupportCase`, which is exactly what the aggregator's OAuth2 scopes name in
-> step 4b. Rename an Object and you must update that yaml.
-
-## 3. Deploy the widget
-
-```bash
-cd liferay-workspace/client-extensions/object-dashboard/dashboard-widget
-npm install
-npm run build                # tsc --noEmit && vite build -> dist/
-cd ../../..
-blade gw deploy
-```
-
-Check: in a page's edit mode, **Object Dashboard** appears under the Client Extensions widget
-category. Drop it — it opens on its config panel. Sales Order → Region → Amount → Sum → Bar.
-
-**The entire client-side half of the talk works at this point.** If you only want to rehearse up to
-minute 23, stop here.
-
-## 4. Deploy the aggregator
-
-Two parts, two different install routes:
-
-| Part | Installed by | Runs |
-|---|---|---|
-| OAuth2 application (`client-extension.yaml`) | `blade gw deploy` | inside Liferay |
-| The Node service (`Dockerfile`, `LCP.json`) | **nothing, locally** | you start it yourself |
-
-On Liferay PaaS/SaaS the platform builds the image, runs the container and mounts the LXC metadata.
-A local bundle does none of that. `.serviceAddress: localhost:3002` is the local contract: Liferay
-points the browser at port 3002, and putting something there is your job.
-
-### 4a. Register the OAuth2 application
-
-```bash
-cd liferay-workspace && blade gw deploy
-```
-
-**Control Panel → Security → OAuth2 Administration.** Find the `object-aggregator-oaua`
-application and note:
-
-- its **external reference code** — if it isn't literally `object-aggregator-oaua`, update
-  `OAUTH_USER_AGENT_ERC` in `object-aggregator/src/constants.ts`
-- its **client id**
-
-### 4b. Check the scopes cover your Objects
-
-`client-extension.yaml` declares these statically:
-
-```yaml
-scopes:
-    - c_salesorder.everything.read
-    - c_supportcase.everything.read
-```
-
-**Lowercase, and that is not cosmetic.** The Object is stored as `C_SalesOrder`, but its entry API
-registers under `ObjectDefinitionImpl.getOSGiJaxRsName()`, which is
-`StringUtil.toLowerCase(getName())` → `c_salesorder`. A scope naming an application that does not
-exist is **ignored in silence**: no log warning, no `OAUTH2SCOPEGRANT` row, and the first symptom is
-a 403 at runtime. Verified here — the capitalised spelling produced zero grants; lowercase produced
-two.
-
-**Object entry scopes can't be wildcarded.** Charting a third Object *server-side* needs another
-line here and a redeploy. The client-side strategy has no such limit — it rides your session.
-
-### 4c. Run the service
+A local bundle has nothing to run a service container, so this part is yours:
 
 ```bash
 cd liferay-workspace/client-extensions/object-aggregator
 npm install
-npm test        # build + parity check + planScan regression tests
-```
-
-Configuration normally arrives as LXC metadata that the platform mounts. Locally, source the helper —
-it reads the client id live from Liferay, so nothing is copied by hand:
-
-```bash
-. ./local-env.sh     # source it, don't run it
+. ./local-env.sh       # source it: reads the OAuth2 client id from the running portal
 npm start
-curl -s localhost:3002/ready      # {"groups":["liveness","readiness"],"status":"UP"}
+curl -s localhost:3002/ready
 ```
 
-> ⚠️ **Re-source after EVERY `blade gw deploy`.** A redeploy does not update the existing OAuth2
-> application — it creates a **new** one, with a new client id, and moves the scope grants to it.
-> A stale id makes `auth.ts` reject every call with 401 "Invalid authorization", which looks like a
-> token bug and is not. Observed twice on this install.
+Re-source `local-env.sh` and restart after every aggregator deploy.
 
-Wrong ERC fails at startup with a message **listing the ERCs Liferay actually injected** — paste the
-right one into `constants.ts`.
+**5. Open the pages**
 
-> ✅ **Verified against a live portal (2026-09-16).** The service starts, `/ready` is UP, the auth
-> middleware rejects missing and junk tokens with 401, `fields` is honoured, and the entry response
-> carries `totalCount`, `pageSize` and `lastPage`.
-
-## 5. Build the page
-
-1. Create a Content Page, enter edit mode.
-2. Drop **Object Dashboard**: Sales Order → Region → Amount → Sum → Bar → **Aggregate: In the
-   browser**. Save.
-3. Drop a second: Support Case → Priority → Resolution Hours → Average → Bar.
-4. Publish and reload — both persist (`localStorage`, per widget instance).
-5. Edit chart 1 → **Aggregate: On the server**. The chart must **not move**; a footnote appears.
-   Reload: the footnote becomes `Served from your cache`.
-
-## 6. Verification checklist
-
-Every line here is something that has actually broken.
-
-- [ ] `curl -u test@liferay.com:pw 'http://localhost:8080/o/c/salesorders?pageSize=1'` returns a
-      `totalCount` matching what you seeded
-- [ ] Widget appears in the editor and opens on the config panel
-- [ ] Switching the Object repopulates the dimension/measure dropdowns *(the 11:00 reveal)*
-- [ ] A bar chart renders with sensible values
-- [ ] `curl localhost:3002/ready` → `UP`
-- [x] Switching a chart to **On the server** renders **identical bars** *(verified 2026-09-16, at
-      single-page volume)*
-- [ ] The footnote's row and request counts match your seed (48,000 rows ⇒ ~96 requests at the
-      default 500 page-size cap)
-- [ ] Reloading shows `Served from your cache`
-- [ ] Two widgets on one page both persist across a reload
-
----
-
-## Troubleshooting
-
-| Symptom | Likely cause |
-|---|---|
-| Widget missing from the editor | `npm run build` not run, or `dist/` empty — `blade gw deploy` ships `dashboard-widget/dist` |
-| Dropdowns empty, "Could not list Objects" | Not signed in, or `/o/object-admin/v1.0/object-definitions` returned 403 |
-| Chart says "No data" | Object published but unseeded — re-run `seed.py` |
-| Seed reports `FAILED` with a per-item report | A field name or type mismatch; the report names the offending rows. `MODE=single` gives a per-entry error instead |
-| Seed hangs on "batch N" | The import task never left `STARTED` — check the portal log; `MODE=single` sidesteps the batch engine entirely |
-| `/ready` refuses connection | Service not running, or it died at startup — read the console; the ERC error is explicit |
-| `TypeError` at startup | Should not happen any more; if it does, the LXC metadata env vars aren't set at all |
-| Server-side chart 403s | That Object isn't in the aggregator's `scopes` (step 4b) |
-| **Server bars differ from client bars** | **Stop.** This is the pagination bug class — the scan silently stopped early. `planScan()` has tests for it; check `totalCount` is present in the entry response |
-| Footnote says 500 rows when you seeded 48,000 | Same cause: no `totalCount` in the response, so the scan stopped after page 1 |
-| Footnote always says `cached` | Expected within the 60s TTL; the cache is per user |
+- `/web/object-dashboards/analytics` — Sales Order and Support Case, both strategies side by side
+- `/web/object-dashboards/build` — an empty page to drop the widget on
+- `/web/outfitter/operations` — the Outfitter dashboard
 
 ## Development
 
@@ -267,18 +112,51 @@ Every line here is something that has actually broken.
 # widget
 cd liferay-workspace/client-extensions/object-dashboard/dashboard-widget
 npm run dev            # standalone Vite harness with mock Objects, no portal needed
-npm test               # 12 tests incl. the avg-vs-wavg trap
+npm test
 
 # aggregator
 cd liferay-workspace/client-extensions/object-aggregator
-npm run check:parity   # are the three shared files still identical to the widget's?
-npm test               # build + parity + planScan regressions
+npm test               # build, parity check, and the scan-planning tests
 ```
 
-**If you edit `aggregate.ts`, `classify.ts` or `types.ts`, copy them to the aggregator** — the build
-fails otherwise, on purpose:
+**If you edit `aggregate.ts`, `classify.ts` or `types.ts`, copy them to the aggregator.** The build
+fails until you do, on purpose:
 
 ```bash
 cd liferay-workspace/client-extensions
 cp object-dashboard/dashboard-widget/src/{types,classify,aggregate}.ts object-aggregator/src/
 ```
+
+## Troubleshooting
+
+| Symptom | Likely cause |
+|---|---|
+| Widget missing from the page editor | `dist/` is empty or stale — run `npm run build` in `dashboard-widget/` and redeploy |
+| "Could not list Objects" | Not signed in, or `/o/object-admin/v1.0/object-definitions` returned 403 |
+| An Object is missing from the dropdown | It is still a draft. The widget lists active Objects only |
+| Server-side chart: 401 "Invalid authorization" | The aggregator holds a stale client id. Re-source `local-env.sh` and restart it |
+| Server-side chart: 403 | That Object is not in the aggregator's OAuth2 `scopes`. Scopes are per Object and lowercase: `c_salesorder.everything.read` |
+| A chart: 409 "Conflict with getObjectEntriesPage" | The Object is site-scoped, so its path needs `/scopes/<siteId>` |
+| **Server bars differ from browser bars** | **Stop.** The scan stopped early — check that the entry response carries `totalCount` |
+| Footnote always says "Served from your cache" | Expected for 10 minutes; the cache is per user |
+
+More of these, all found the hard way, are in [`outfitter/README.md`](outfitter/README.md#things-that-fail-silently).
+
+## What's next
+
+- **A precomputed cube Object.** An Object Action keeps a small aggregate Object up to date on
+  every write — region × category × month, with sum *and* count columns, never a stored average.
+  The cube is just another Object, so the widget charts it unchanged, and it is small enough for
+  the browser strategy to read whole. The widget already has the weighted average this needs.
+- **Filter before aggregating.** Push date ranges and value filters into the Headless query, so a
+  chart reads only what it needs.
+- **Shareable chart configs.** Saved charts live in `localStorage`; a config Object would make
+  them server-side and shareable.
+- **Server-side reach.** OAuth2 scopes are declared per Object at build time, so the server
+  strategy reaches only the Objects listed in `client-extension.yaml`. The browser strategy has no
+  such limit. A 403 could fall back to the browser with a visible notice.
+
+## Credits
+
+The Outfitter site's photographs are from Unsplash — see
+[`IMAGE-CREDITS.md`](liferay-workspace/client-extensions/outfitter-site/site-initializer/IMAGE-CREDITS.md).

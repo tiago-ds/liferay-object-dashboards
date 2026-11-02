@@ -5,6 +5,7 @@
   "pluralLabel": { "en_US": "Support Cases" },
   "name": "SupportCase",
   "scope": "company",
+  "panelCategoryKey": "control_panel.object",
   "active": true,
   "objectFields": [
     {

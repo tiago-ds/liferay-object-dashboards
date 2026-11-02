@@ -95,8 +95,8 @@
 				"definition": {
 					"gutters": true,
 					"indexed": true,
-					"modulesPerRow": 1,
-					"numberOfColumns": 1,
+					"modulesPerRow": 2,
+					"numberOfColumns": 2,
 					"reverseOrder": false,
 					"rowViewports": [
 						{
@@ -143,9 +143,33 @@
 									"id": "tablet"
 								}
 							],
-							"size": 12
+							"size": 6
 						},
 						"id": "58b0924e-9fbe-50fb-8502-95c0c86bbc94",
+						"type": "Column",
+						"pageElements": []
+					},
+					{
+						"definition": {
+							"columnViewports": [
+								{
+									"columnViewportDefinition": {
+										"size": 12
+									},
+									"id": "landscapeMobile"
+								},
+								{
+									"columnViewportDefinition": {},
+									"id": "portraitMobile"
+								},
+								{
+									"columnViewportDefinition": {},
+									"id": "tablet"
+								}
+							],
+							"size": 6
+						},
+						"id": "0383acd1-f2ab-5b63-8407-d05d80bd4275",
 						"type": "Column",
 						"pageElements": []
 					}

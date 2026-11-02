@@ -15,12 +15,16 @@
   padding: 16px;
 }
 
+/* Stacked above the chart so Edit stays reachable whatever the chart draws —
+   a chart the viewer cannot get out of is a dead end on a live page. */
 .od-header {
   align-items: flex-start;
   display: flex;
   gap: 12px;
   justify-content: space-between;
   margin-bottom: 12px;
+  position: relative;
+  z-index: 1;
 }
 
 .od-title {
@@ -39,6 +43,7 @@
    its parent, and a flex child with no height would collapse to zero. */
 .od-chart {
   height: 320px;
+  overflow: hidden;
   width: 100%;
 }
 

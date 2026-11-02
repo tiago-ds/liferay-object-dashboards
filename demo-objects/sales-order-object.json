@@ -5,6 +5,7 @@
   "pluralLabel": { "en_US": "Sales Orders" },
   "name": "SalesOrder",
   "scope": "company",
+  "panelCategoryKey": "control_panel.object",
   "active": true,
   "objectFields": [
     {

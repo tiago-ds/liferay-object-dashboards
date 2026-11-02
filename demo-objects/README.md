@@ -9,9 +9,9 @@ that creates, publishes, and fills them via the object-admin REST API.
 | **Sales Order** | `SALESORDER` | `/o/c/salesorders` | region, productCategory, channel, status, orderDate | amount, quantity, *Count* |
 | **Support Case** | `SUPPORTTICKET` | `/o/c/supportcases` | priority, status, channel, category, createdDate | resolutionHours, satisfactionScore, *Count* |
 
-> Named **Support Case** (not "Support Ticket") on purpose: a weaker `SupportTicket`
-> Object already exists in this instance from the *Talk to Your Forms* demo, and
-> `name` must be unique. The label shown in the widget is "Support Case".
+> Named **Support Case**, while its ERC is still `SUPPORTTICKET`: an Object's
+> `name` must be unique per instance, and the one this was built on already had a
+> `SupportTicket`. The label shown in the widget is "Support Case".
 >
 > `status` is a reserved Object field name in Liferay, so the field is `orderStatus`
 > / `ticketStatus` with the display label "Status".
@@ -20,7 +20,7 @@ that creates, publishes, and fills them via the object-admin REST API.
 
 ```bash
 cd ObjectDashboards/demo-objects
-BASE_URL=http://localhost:8082 LR_USER=test@liferay.com LR_PASS=a python3 seed.py
+BASE_URL=http://localhost:8080 LR_USER=test@liferay.com LR_PASS=pw python3 seed.py
 ```
 
 The seeder is **idempotent**: it skips creating a definition whose ERC already
@@ -40,9 +40,8 @@ which the seeder polls at `/o/headless-batch-engine/v1.0/import-task/{id}` until
 request carries the whole dataset. `MODE=single` falls back to one POST per entry
 across `WORKERS` threads.
 
-> Connection defaults are `http://localhost:8082`, `test@liferay.com` / `a` from
-> an older local setup. A clean bundle is `http://localhost:8080` with password
-> `test` — pass `BASE_URL` / `LR_PASS` explicitly.
+> Connection defaults are `http://localhost:8080`, `test@liferay.com` / `pw`.
+> Pass `BASE_URL`, `LR_USER` and `LR_PASS` if yours differ.
 
 ## Good demo charts these produce
 

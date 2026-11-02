@@ -26,13 +26,29 @@ dist/
 __pycache__/
 *.pyc
 
-# Slide decks and presentation artefacts: the DevCon template is a 31 MB org
-# asset you re-download, and the built deck plus its render intermediates are
-# generated. Binaries like these bloat history fast. The generator and the
-# content mapping ARE tracked, so the deck is reproducible from the repo.
+# The talk's own material — the deck, its script and notes, the CFP and early
+# planning — stays on the presenter's machine. This repo is the code it shows.
 *.pptx
 *.potx
 *.ppt
 *.pdf
-deck/build/
-deck/template/
+deck/
+deck.html
+CFP-submission.md
+OVERNIGHT-PLAN.md
+TALK-OUTLINE.md
+TALK-SCRIPT.md
+idea-object-dashboards.md
+FOLLOW-UPS.md
+outfitter/record.py
+outfitter/shoot.py
+
+# The Liferay workspace template's AI-assistant rule files: generic guidance,
+# not about this project, and at odds with RUNBOOK.md (blade gw deploy, the
+# default password). Kept locally, not published.
+liferay-workspace/.claude/
+liferay-workspace/.cursor/
+liferay-workspace/.gemini/
+liferay-workspace/.github/
+liferay-workspace/.windsurf/
+liferay-workspace/.workspace-rules/

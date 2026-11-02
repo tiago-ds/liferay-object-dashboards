@@ -78,12 +78,14 @@ function pickLabel(label: unknown, fallback: string): string {
 }
 
 // Map Liferay's businessType onto the coarse kind the config UI groups by.
-function mapBusinessType(bt: string): FieldType {
+// These are business types, not DB types: the UI's "Decimal" field reports
+// businessType "Decimal" (its DBType is Double), and listing the DB names here
+// instead left it in the group-by list and out of the measures.
+export function mapBusinessType(bt: string): FieldType {
   switch (bt) {
     case "Integer":
     case "LongInteger":
-    case "Double":
-    case "BigDecimal":
+    case "Decimal":
     case "PrecisionDecimal":
       return "number";
     case "Date":

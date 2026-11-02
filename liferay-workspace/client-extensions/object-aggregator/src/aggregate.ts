@@ -10,8 +10,7 @@ const EMPTY_BUCKET = "(none)";
  * count / sum / average the chosen measure per group.
  *
  * Pure and synchronous so it is trivially unit-testable and so the talk can
- * show exactly where the aggregation happens (and honestly name where this
- * client-side approach stops scaling).
+ * show exactly where the aggregation happens
  */
 export function aggregate(
   rows: Record<string, unknown>[],

@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { scopedRestPath } from "./liferay";
+import { mapBusinessType, scopedRestPath } from "./liferay";
 
 // The company form of the path is what Liferay reports for EVERY Object,
 // including the site-scoped ones — which is why this rule has to exist.
@@ -30,5 +30,13 @@ describe("scopedRestPath", () => {
     // Standalone dev harness: inventing a group id would 404 instead of 409,
     // which is a worse error to debug.
     expect(scopedRestPath(GEAR, "site", null)).toBe(GEAR);
+  });
+});
+
+describe("mapBusinessType", () => {
+  it("treats every numeric business type as a number, Decimal included", () => {
+    for (const bt of ["Integer", "LongInteger", "Decimal", "PrecisionDecimal"]) {
+      expect(mapBusinessType(bt)).toBe("number");
+    }
   });
 });

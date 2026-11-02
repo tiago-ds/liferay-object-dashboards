@@ -4,9 +4,9 @@
 Skips creating a definition whose externalReferenceCode already exists, and
 skips seeding an Object that already holds entries (unless FORCE=1).
 
-    BASE_URL   (default http://localhost:8082)
+    BASE_URL   (default http://localhost:8080)
     LR_USER    (default test@liferay.com)
-    LR_PASS    (default a)
+    LR_PASS    (default pw)
     SO_COUNT   Sales Order rows     (default 48)
     TK_COUNT   Support Case rows    (default 56)
     MODE       batch (default) | single
@@ -47,9 +47,9 @@ import time
 import urllib.error
 import urllib.request
 
-BASE_URL = os.environ.get("BASE_URL", "http://localhost:8082").rstrip("/")
+BASE_URL = os.environ.get("BASE_URL", "http://localhost:8080").rstrip("/")
 USER = os.environ.get("LR_USER", "test@liferay.com")
-PASS = os.environ.get("LR_PASS", "a")
+PASS = os.environ.get("LR_PASS", "pw")
 SO_COUNT = int(os.environ.get("SO_COUNT", "48"))
 TK_COUNT = int(os.environ.get("TK_COUNT", "56"))
 MODE = os.environ.get("MODE", "batch")

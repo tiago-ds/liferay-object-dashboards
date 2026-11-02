@@ -1,6 +1,3 @@
-// REWRITTEN after the original was lost — behaviour reconstructed from how
-// Dashboard.tsx consumes instanceId and from FOLLOW-UPS.md #3, which records
-// that an attribute-less widget falls back to a per-page-load counter.
 import { createRoot, type Root } from "react-dom/client";
 import { Dashboard } from "./Dashboard";
 import { readDeclaredConfig, readDeclaredTitle } from "./declared";
@@ -13,7 +10,7 @@ import styles from "./styles.css?inline";
 // stable id. Without one, two widgets on a page would share a localStorage key.
 // An explicit instance-id attribute (e.g. from a fragment wrapper) is stable
 // across reloads; the counter fallback is only unique within one page load,
-// which is why FOLLOW-UPS #3 wants real server-side persistence.
+// which is why saved charts belong server-side eventually (README, What's next).
 let autoInstance = 0;
 
 // Injected once per page, not per widget instance.

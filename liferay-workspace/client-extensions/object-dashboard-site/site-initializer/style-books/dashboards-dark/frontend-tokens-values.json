@@ -30,21 +30,5 @@
 	"indigoColor": {
 		"cssVariableMapping": "indigo",
 		"value": "#4f46e5"
-	},
-	"bodyBgColor": {
-		"cssVariableMapping": "body-bg",
-		"value": "#0a0d1f"
-	},
-	"bodyColor": {
-		"cssVariableMapping": "body-color",
-		"value": "#e8eaf4"
-	},
-	"gray300Color": {
-		"cssVariableMapping": "gray-300",
-		"value": "#262b45"
-	},
-	"secondaryColor": {
-		"cssVariableMapping": "secondary",
-		"value": "#9aa3c0"
 	}
 }
