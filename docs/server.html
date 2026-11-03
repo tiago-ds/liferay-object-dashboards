@@ -1,0 +1,142 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Aggregating on the Server</title>
+<meta name="description" content="Rung 3: a Node Client Extension scans all 97 pages of a Liferay Object as the signed-in user and returns only the chart's points.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700&family=Source+Sans+3:wght@400;600&family=JetBrains+Mono:wght@400;600&display=swap">
+<link rel="stylesheet" href="assets/site.css">
+</head>
+<body>
+<div class="wrap">
+  <div class="top">
+    <a class="home" href="index.html">← Where to Aggregate</a>
+    <nav class="rungs" aria-label="Rungs">
+      <a href="browser.html"><span>Rung 1</span><b>Browser</b></a>
+      <a href="filter.html"><span>Rung 2</span><b>Filter</b></a>
+      <a href="server.html" aria-current="page"><span>Rung 3</span><b>Server</b></a>
+      <a href="cube.html"><span>Rung 4</span><b>Cube</b></a>
+    </nav>
+  </div>
+
+  <header class="page">
+    <span class="eyebrow">Rung 3</span>
+    <h1>Aggregating on the Server</h1>
+    <p class="lede"><code>object-aggregator</code> is a Node Client Extension. It takes the same chart config as the widget, reads every page of the Object next to the portal, runs the same <code>aggregate()</code>, and sends back only the points. The client ships rows to the function; the server ships the function to the rows.</p>
+  </header>
+
+  <section aria-labelledby="flow-h">
+    <h2 id="flow-h">What happens</h2>
+    <div class="flowrow four">
+      <div class="node"><span class="eyebrow">Widget</span><span class="n">GET /aggregate</span><span class="s">Chart config plus the user's OAuth2 token</span></div>
+      <div class="arr" aria-hidden="true">→</div>
+      <div class="node key"><span class="eyebrow">object-aggregator</span><span class="n">Scans every page</span><span class="s">97 requests, 8 in flight, as the signed-in user</span></div>
+      <div class="arr" aria-hidden="true">→</div>
+      <div class="node"><span class="eyebrow">Same function</span><span class="n">aggregate()</span><span class="s">Byte-identical to the widget's copy</span></div>
+      <div class="arr" aria-hidden="true">→</div>
+      <div class="node"><span class="eyebrow">Back to the page</span><span class="n">4 points</span><span class="s">158 bytes, cached 10 minutes per user</span></div>
+    </div>
+  </section>
+
+  <section aria-labelledby="scan-h">
+    <h2 id="scan-h">The scan</h2>
+    <p>Each square is one page of 500 Sales Orders. The browser on rung 1 only ever gets the first one.</p>
+    <div class="panel">
+      <div class="grid97" id="grid" aria-label="97 pages, all read"></div>
+      <div class="legend">
+        <span><i style="background: var(--dim)"></i>page 1: all the browser sees</span>
+        <span><i style="background: var(--accent)"></i>read by the server</span>
+      </div>
+      <div class="result">
+        <span class="total" id="clock">9.9 s</span>
+        <span class="formula" id="status">97 of 97 pages · 48,048 rows</span>
+      </div>
+      <button class="btn" type="button" id="replay">Replay the scan at real speed</button>
+    </div>
+  </section>
+
+  <section aria-labelledby="cost-h">
+    <h2 id="cost-h">What it costs</h2>
+    <div class="figs">
+      <div class="fig"><span class="v">97</span><span class="l">requests, <code>ceil(48,048 / 500)</code></span></div>
+      <div class="fig"><span class="v">9.9 s</span><span class="l">for the first load, 8 pages in flight</span></div>
+      <div class="fig"><span class="v">2.8 MB</span><span class="l">read server-side, with <code>fields=region,amount</code></span></div>
+      <div class="fig good"><span class="v">158 B</span><span class="l">sent to the browser</span></div>
+    </div>
+    <p class="foot">The cache is what makes this affordable. The scan is paid once per user every 10 minutes, not once per page view.</p>
+  </section>
+
+  <section aria-labelledby="par-h">
+    <h2 id="par-h">Same bars, right totals</h2>
+    <div class="pair">
+      <div class="panel">
+        <h3>Support Case · 400 rows</h3>
+        <span class="note">Under one page, so both strategies already agree, to the decimal. Same function, same rows.</span>
+        <div class="bars" id="sc"></div>
+      </div>
+      <div class="panel">
+        <h3>Sales Order · 48,048 rows</h3>
+        <span class="note">The full scan. The ranking matches rung 1; the totals are about 90 times larger.</span>
+        <div class="bars" id="so"></div>
+      </div>
+    </div>
+  </section>
+
+  <section aria-labelledby="perm-h">
+    <h2 id="perm-h">It reads as you</h2>
+    <p>The service holds no credential of its own. It forwards the caller's token, so every page is read with that user's permissions. Reading as itself would let anyone chart rows they can't see.</p>
+  </section>
+
+  <section aria-labelledby="lim-h">
+    <h2 id="lim-h">Where it stops</h2>
+    <div class="limits">
+      <div class="limit"><b>Per-user cache</b><span>Twenty viewers pay for twenty scans. Correct permissions cost cache hits.</span></div>
+      <div class="limit"><b>Scopes are static</b><span>OAuth2 scopes are declared per Object at build time, e.g. <code>c_salesorder.everything.read</code>. A new Object needs a redeploy.</span></div>
+      <div class="limit"><b>Linear in rows</b><span>Ten times the rows is ten times the scan. It stops reading at 100,000 rows and says so.</span></div>
+    </div>
+  </section>
+
+  <nav class="next" aria-label="Next">
+    <a href="filter.html"><small>Rung 2</small>← Filter, then aggregate</a>
+    <a class="r" href="cube.html"><small>Rung 4</small>A precomputed cube →</a>
+  </nav>
+</div>
+<script>
+const fmt0 = new Intl.NumberFormat("en-US");
+const PAGES = 97, SECONDS = 9.9, IN_FLIGHT = 8, TOTAL = 48048;
+const grid = document.getElementById("grid");
+grid.innerHTML = Array.from({ length: PAGES }, (_, i) => `<i class="${i === 0 ? "first" : "on"}"></i>`).join("");
+const cells = [...grid.children];
+const clock = document.getElementById("clock"), status = document.getElementById("status"), btn = document.getElementById("replay");
+function show(done, t) {
+  cells.forEach((c, i) => { c.className = i === 0 ? "first" : i < done ? "on" : ""; });
+  clock.textContent = t.toFixed(1) + " s";
+  status.textContent = `${done} of ${PAGES} pages · ${fmt0.format(Math.min(TOTAL, done * 500))} rows`;
+}
+btn.addEventListener("click", () => {
+  if (matchMedia("(prefers-reduced-motion: reduce)").matches) { show(PAGES, SECONDS); return; }
+  btn.disabled = true;
+  const start = performance.now();
+  const perPage = SECONDS / Math.ceil(PAGES / IN_FLIGHT) ; // one wave of 8 pages per step
+  (function tick(now) {
+    const t = Math.min(SECONDS, (now - start) / 1000);
+    const done = t >= SECONDS ? PAGES : Math.min(PAGES, 1 + Math.floor(t / perPage) * IN_FLIGHT);
+    show(done, t);
+    if (t < SECONDS) requestAnimationFrame(tick); else btn.disabled = false;
+  })(start);
+});
+
+const money = v => v >= 1e6 ? "$" + (v / 1e6).toFixed(1) + "M" : "$" + fmt0.format(Math.round(v));
+function bars(id, rows, showV) {
+  const max = Math.max(...rows.map(r => r[1]));
+  document.getElementById(id).innerHTML = rows.map(([k, v]) =>
+    `<div class="bar"><span>${k}</span><span class="track"><i style="width:${(v / max * 100).toFixed(1)}%"></i></span><span class="v">${showV(v)}</span></div>`).join("");
+}
+bars("sc", [["Low", 4.61], ["Medium", 8.88], ["High", 16.65], ["Critical", 25.89]], v => v.toFixed(2) + " h");
+bars("so", [["North America", 179798266.71], ["EMEA", 143824071.29], ["APAC", 108917013.16], ["LATAM", 71767823.26]], money);
+</script>
+</body>
+</html>

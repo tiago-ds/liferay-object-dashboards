@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Where to Aggregate</title>
+<meta name="description" content="Four places to group Liferay Object data for a chart, measured on 48,048 real rows: the browser, a filtered query, a server-side scan, and a precomputed cube.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700&family=Source+Sans+3:wght@400;600&family=JetBrains+Mono:wght@400;600&display=swap">
+<link rel="stylesheet" href="assets/site.css">
+<style>
+.cards { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
+@media (max-width: 680px) { .cards { grid-template-columns: 1fr; } }
+.card {
+  display: grid; gap: 8px; align-content: start; padding: 18px; border-radius: 6px; text-decoration: none; color: var(--fg);
+  background: var(--surface); border: 1px solid var(--line); min-width: 0;
+}
+.card:hover { border-color: var(--accent); }
+.card .eyebrow { color: var(--accent); }
+.card h2 { font-size: 20px; }
+.card p { color: var(--muted); font-size: 15px; }
+.card .stat { font-family: var(--font-mono); font-size: 13px; color: var(--fg); }
+.loop { display: grid; gap: 6px; padding: 14px 18px; border: 1px dashed var(--accent); border-radius: 6px; }
+.loop b { font-family: var(--font-display); font-weight: 600; }
+.yes { color: var(--dim); font-weight: 600; }
+.no { color: var(--warn); font-weight: 600; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="page">
+    <span class="eyebrow">Point It at an Object, Get a Dashboard · Liferay DevCon</span>
+    <h1>Where to Aggregate</h1>
+    <p class="lede">Liferay's Object endpoints filter, sort and paginate, but they don't group. So a chart has to group the rows somewhere. These pages walk through the four places it can happen. Every number was measured on a demo portal holding 48,048 Sales Orders.</p>
+  </header>
+
+  <section aria-labelledby="rungs-h">
+    <h2 id="rungs-h">The four rungs</h2>
+    <div class="cards">
+      <a class="card" href="browser.html">
+        <span class="eyebrow">Rung 1</span>
+        <h2>In the browser</h2>
+        <p>Fetch one page of entries, group them in JavaScript. Works on any Object, and is exact while the Object fits in one page.</p>
+        <span class="stat">1 request · sees 500 of 48,048 rows</span>
+      </a>
+      <a class="card" href="filter.html">
+        <span class="eyebrow">Rung 2</span>
+        <h2>Filter, then aggregate</h2>
+        <p>Push the filter and the field list into the Headless query, so you fetch fewer rows and fewer columns.</p>
+        <span class="stat">EMEA in June: 2,258 rows · 5 requests</span>
+      </a>
+      <a class="card" href="server.html">
+        <span class="eyebrow">Rung 3</span>
+        <h2>On the server</h2>
+        <p>A Node Client Extension scans every page as the signed-in user and sends back only the chart's points.</p>
+        <span class="stat">97 requests · 158 bytes to the browser</span>
+      </a>
+      <a class="card" href="cube.html">
+        <span class="eyebrow">Rung 4</span>
+        <h2>A precomputed cube</h2>
+        <p>An Object Action keeps a small aggregate Object current on every write. It stores the grain, not the answer.</p>
+        <span class="stat">96 rows · read with rung 1 again</span>
+      </a>
+    </div>
+    <div class="loop">
+      <b>It's a loop, not a ladder</b>
+      <span>The cube is just another Object, small enough for one page. So rung 4 is read with rung 1, and every question inside the grain is ad-hoc again.</span>
+    </div>
+  </section>
+
+  <section aria-labelledby="cmp-h">
+    <h2 id="cmp-h">Same chart, four ways</h2>
+    <p>Sum of order amount by region, over the whole Sales Order Object.</p>
+    <div class="tablebox">
+      <table>
+        <thead><tr><th>Rung</th><th>Where the group-by runs</th><th class="num">Requests</th><th class="num">To the browser</th><th>Right totals</th><th>Any Object</th></tr></thead>
+        <tbody>
+          <tr><td><a href="browser.html">1 · Browser</a></td><td>The page</td><td class="num">1</td><td class="num">29 KB</td><td><span class="no">No, 1% of rows</span></td><td><span class="yes">Yes</span></td></tr>
+          <tr><td><a href="filter.html">2 · Filter</a></td><td>The page, over fewer rows</td><td class="num">1</td><td class="num">29 KB</td><td><span class="no">No, a filter can't shrink an all-rows question</span></td><td><span class="yes">Yes</span></td></tr>
+          <tr><td><a href="server.html">3 · Server</a></td><td>object-aggregator</td><td class="num">97 server-side</td><td class="num">158 B</td><td><span class="yes">Yes</span></td><td>Only those in its OAuth2 scopes</td></tr>
+          <tr><td><a href="cube.html">4 · Cube</a></td><td>The page, over the cube</td><td class="num">1</td><td class="num">96 rows</td><td><span class="yes">Yes</span></td><td>Only cubes someone built</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="foot">The group-by itself never changes. <code>aggregate.ts</code> is byte-identical in the widget and the aggregator, and the build fails if they drift. Moving up a rung moves the function, not the logic.</p>
+  </section>
+
+  <footer class="foot">
+    Code: <a href="https://github.com/tiago-ds/liferay-object-dashboards">github.com/tiago-ds/liferay-object-dashboards</a>. Measured on Liferay DXP 2026.Q2, November 2026.
+  </footer>
+</div>
+</body>
+</html>

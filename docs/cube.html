@@ -1,0 +1,231 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Sales Order Cube</title>
+<meta name="description" content="Rung 4: a precomputed region × category × month cube Object, kept current by an Object Action and read back in the browser.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700&family=Source+Sans+3:wght@400;600&family=JetBrains+Mono:wght@400;600&display=swap">
+<link rel="stylesheet" href="assets/site.css">
+</head>
+<body>
+<div class="wrap">
+  <div class="top">
+    <a class="home" href="index.html">← Where to Aggregate</a>
+    <nav class="rungs" aria-label="Rungs">
+      <a href="browser.html"><span>Rung 1</span><b>Browser</b></a>
+      <a href="filter.html"><span>Rung 2</span><b>Filter</b></a>
+      <a href="server.html"><span>Rung 3</span><b>Server</b></a>
+      <a href="cube.html" aria-current="page"><span>Rung 4</span><b>Cube</b></a>
+    </nav>
+  </div>
+  <header class="page">
+    <span class="eyebrow">Rung 4 · Object Dashboards</span>
+    <h1>Sales Order Cube</h1>
+    <p class="lede">An Object that stores the grain, not the answer: one row per region × category × month, holding a count and two sums. An Object Action keeps it current on every write to Sales Order, and the widget reads it with the browser strategy in a single request.</p>
+  </header>
+
+  <section aria-labelledby="flow-h">
+    <h2 id="flow-h">Write path and read path</h2>
+    <div class="flowrow four">
+      <div class="node">
+        <span class="eyebrow">Source Object</span>
+        <span class="n">Sales Order</span>
+        <span class="big">48,048</span>
+        <span class="s">rows · 97 requests to scan</span>
+      </div>
+      <div class="arr" aria-hidden="true">→</div>
+      <div class="node">
+        <span class="eyebrow">Object Action</span>
+        <span class="n">On add, update, delete</span>
+        <span class="s">Function executor calls a microservice CX, which adjusts one or two cube cells</span>
+      </div>
+      <div class="arr" aria-hidden="true">→</div>
+      <div class="node key">
+        <span class="eyebrow">Cube Object</span>
+        <span class="n">Sales Order Cube</span>
+        <span class="big">96</span>
+        <span class="s">rows · under the 500-row page cap</span>
+      </div>
+      <div class="arr" aria-hidden="true">→</div>
+      <div class="node">
+        <span class="eyebrow">Widget</span>
+        <span class="n">object-dashboard</span>
+        <span class="s">Browser strategy, 1 request. No widget code changes: the cube is just another Object.</span>
+      </div>
+    </div>
+  </section>
+
+  <section aria-labelledby="schema-h">
+    <h2 id="schema-h">Schema</h2>
+    <p>ERC <code>SALESORDERCUBE</code> · company scope · REST path <code>/o/c/salesordercubes</code>. The widget's <code>classify.ts</code> reads these field types and offers the dimensions and measures below with no configuration.</p>
+    <div class="tablebox">
+      <table>
+        <thead><tr><th>Field</th><th>Type</th><th>Role</th><th>What it holds</th></tr></thead>
+        <tbody>
+          <tr><td class="f">externalReferenceCode</td><td class="t">system</td><td><span class="role k">cell key</span></td><td>The grain itself, e.g. <code>APAC|Hardware|2026-01</code>. The Action upserts with <code>PUT …/by-external-reference-code/{erc}</code>, so each cell exists exactly once.</td></tr>
+          <tr><td class="f">region</td><td class="t">Text · String</td><td><span class="role d">dimension</span></td><td>Copied from Sales Order. 4 values.</td></tr>
+          <tr><td class="f">productCategory</td><td class="t">Text · String</td><td><span class="role d">dimension</span></td><td>Copied from Sales Order. 4 values.</td></tr>
+          <tr><td class="f">month</td><td class="t">Date · Date</td><td><span class="role d">time dimension</span></td><td>First day of the order's month, e.g. <code>2026-01-01</code>. A Date, so the widget can still bucket it by month or quarter. 6 values.</td></tr>
+          <tr><td class="f">orderCount</td><td class="t">Integer · Integer</td><td><span class="role m">measure</span></td><td>Orders in the cell. Also the weight for any average.</td></tr>
+          <tr><td class="f">amountSum</td><td class="t">PrecisionDecimal · BigDecimal</td><td><span class="role m">measure</span></td><td>Sum of <code>amount</code>. Same type as the source field, so cents survive the roll-up.</td></tr>
+          <tr><td class="f">quantitySum</td><td class="t">Integer · Integer</td><td><span class="role m">measure</span></td><td>Sum of <code>quantity</code>.</td></tr>
+          <tr class="absent"><td class="f">amountAvg</td><td class="t">never stored</td><td><span class="role x">left out</span></td><td>An average of averages is wrong unless every cell has the same count. Compute it at read time from <code>amountSum</code> and <code>orderCount</code>.</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section aria-labelledby="action-h">
+    <h2 id="action-h">How the Action keeps it current</h2>
+    <div class="tablebox">
+      <table>
+        <thead><tr><th>Sales Order event</th><th>Cube change</th></tr></thead>
+        <tbody>
+          <tr><td>Added</td><td>Cell for the new order: <code>orderCount + 1</code>, <code>amountSum + amount</code>, <code>quantitySum + quantity</code>. Create the cell if it is new.</td></tr>
+          <tr><td>Deleted</td><td>Same cell, the same three values subtracted.</td></tr>
+          <tr><td>Updated</td><td>Subtract the old values from the old cell, add the new values to the new cell. If region, category or month changed, those are two different cells.</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="foot">Two writes landing on one cell at once can lose an increment. Run the update as read-then-PUT with a retry, or rebuild the cube from scratch on a schedule as a safety net.</p>
+  </section>
+
+  <section aria-labelledby="rows-h">
+    <h2 id="rows-h">Real rows from this portal</h2>
+    <p>Built from all 48,048 Sales Orders on the demo portal. The first eight of 96:</p>
+    <div class="tablebox">
+      <table>
+        <thead><tr><th>externalReferenceCode</th><th>region</th><th>productCategory</th><th>month</th><th class="num">orderCount</th><th class="num">amountSum</th><th class="num">quantitySum</th></tr></thead>
+        <tbody id="sample"></tbody>
+      </table>
+    </div>
+  </section>
+
+  <section aria-labelledby="grain-h">
+    <h2 id="grain-h">Grain decides the size</h2>
+    <p>Row count is the product of the cardinalities. Pick the dimensions to keep and see whether the cube still fits in one page.</p>
+    <div class="panel">
+      <div class="chips" id="chips" role="group" aria-label="Cube dimensions"></div>
+      <div class="result">
+        <span class="total" id="total">96</span>
+        <span class="formula" id="formula">4 × 4 × 6</span>
+        <span class="verdict ok" id="verdict">fits in one page</span>
+      </div>
+      <div>
+        <div class="meter" id="meter"><i id="meterfill"></i></div>
+        <div class="meter-labels"><span>0</span><span>500-row page cap</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section aria-labelledby="rollup-h">
+    <h2 id="rollup-h">Questions the cube still answers</h2>
+    <p>Each answer below is computed in this page from the 96 rows, the same way the widget's <code>aggregate()</code> would. Nothing here was precomputed per question.</p>
+    <div class="rollup">
+      <div class="qs" id="qs"></div>
+      <div class="answer">
+        <div class="bars" id="bars"></div>
+        <div class="code" id="how"></div>
+      </div>
+    </div>
+  </section>
+
+  <section aria-labelledby="limits-h">
+    <h2 id="limits-h">What the cube gives up</h2>
+    <div class="limits">
+      <div class="limit"><b>Dimensions not in it</b><span>Channel and status are gone unless you add them on write. Adding channel makes 288 rows.</span></div>
+      <div class="limit"><b>Finer grain</b><span>A monthly cube cannot answer by day or week.</span></div>
+      <div class="limit"><b>High cardinality</b><span>A dimension with hundreds of values multiplies the cube past one page. Rung 3 over the cube is still cheap then.</span></div>
+    </div>
+  </section>
+  <nav class="next" aria-label="Next">
+    <a href="server.html"><small>Rung 3</small>← On the server</a>
+    <a class="r" href="browser.html"><small>Back to rung 1</small>Read the cube in the browser ↺</a>
+  </nav>
+</div>
+
+<script>
+const ROWS = [["APAC","Hardware","2026-01",417,6588406.22,8199],["APAC","Hardware","2026-02",438,7113121.66,8918],["APAC","Hardware","2026-03",460,7438388.16,9129],["APAC","Hardware","2026-04",459,7218128.23,9250],["APAC","Hardware","2026-05",417,6785471.87,8783],["APAC","Hardware","2026-06",465,7504547.17,9543],["APAC","Services","2026-01",435,5231344.44,8368],["APAC","Services","2026-02",415,5022778.61,8722],["APAC","Services","2026-03",399,4863704.04,8162],["APAC","Services","2026-04",430,5213416.92,8797],["APAC","Services","2026-05",449,5320392.87,9575],["APAC","Services","2026-06",439,5415037.85,9034],["APAC","Software","2026-01",581,5090984.52,11903],["APAC","Software","2026-02",587,4870549.18,11774],["APAC","Software","2026-03",536,4613563.78,11472],["APAC","Software","2026-04",554,4686988.74,11229],["APAC","Software","2026-05",536,4703098.42,10645],["APAC","Software","2026-06",559,4706330.57,11789],["APAC","Training","2026-01",297,1125066.28,6068],["APAC","Training","2026-02",296,1138753.26,6052],["APAC","Training","2026-03",288,1068855.47,5905],["APAC","Training","2026-04",296,1094060.08,5918],["APAC","Training","2026-05",284,1075500.94,5852],["APAC","Training","2026-06",277,1028523.88,6082],["EMEA","Hardware","2026-01",573,9228027.3,11262],["EMEA","Hardware","2026-02",568,9059516.63,11820],["EMEA","Hardware","2026-03",625,10009037.74,12900],["EMEA","Hardware","2026-04",564,8864008.27,11204],["EMEA","Hardware","2026-05",626,10033953.08,12956],["EMEA","Hardware","2026-06",548,8923580.7,11586],["EMEA","Services","2026-01",559,6800537.12,11213],["EMEA","Services","2026-02",539,6519973.68,10858],["EMEA","Services","2026-03",594,6969065.47,11738],["EMEA","Services","2026-04",570,6788044.1,12286],["EMEA","Services","2026-05",569,7012366.93,11525],["EMEA","Services","2026-06",560,6532272.96,11271],["EMEA","Software","2026-01",725,6174943.87,14931],["EMEA","Software","2026-02",753,6345010.3,15683],["EMEA","Software","2026-03",804,6797481.08,16374],["EMEA","Software","2026-04",756,6421176.08,15614],["EMEA","Software","2026-05",741,6378763.21,14978],["EMEA","Software","2026-06",760,6325532.96,15856],["EMEA","Training","2026-01",413,1533341.15,8970],["EMEA","Training","2026-02",373,1421047.53,8019],["EMEA","Training","2026-03",371,1426723.64,7106],["EMEA","Training","2026-04",385,1427315.0,7627],["EMEA","Training","2026-05",364,1358517.72,7840],["EMEA","Training","2026-06",390,1473834.77,7519],["LATAM","Hardware","2026-01",273,4323343.89,5685],["LATAM","Hardware","2026-02",267,4333688.2,5350],["LATAM","Hardware","2026-03",280,4580519.76,5461],["LATAM","Hardware","2026-04",280,4575426.79,5706],["LATAM","Hardware","2026-05",267,4361542.0,5617],["LATAM","Hardware","2026-06",270,4427232.57,5301],["LATAM","Services","2026-01",302,3632604.54,6006],["LATAM","Services","2026-02",294,3530093.62,6401],["LATAM","Services","2026-03",280,3309845.03,5387],["LATAM","Services","2026-04",297,3651226.01,6235],["LATAM","Services","2026-05",279,3437025.56,5307],["LATAM","Services","2026-06",315,3889446.51,6199],["LATAM","Software","2026-01",391,3412410.89,7764],["LATAM","Software","2026-02",405,3417778.22,8642],["LATAM","Software","2026-03",402,3390184.58,8070],["LATAM","Software","2026-04",378,3097896.29,7836],["LATAM","Software","2026-05",371,3174669.89,7628],["LATAM","Software","2026-06",362,3073216.83,7122],["LATAM","Training","2026-01",161,557537.9,3214],["LATAM","Training","2026-02",196,722202.1,4159],["LATAM","Training","2026-03",189,713045.33,3971],["LATAM","Training","2026-04",210,786998.3,4094],["LATAM","Training","2026-05",192,694764.86,3660],["LATAM","Training","2026-06",186,675123.59,4089],["North America","Hardware","2026-01",715,11673206.55,14877],["North America","Hardware","2026-02",730,11715258.23,14452],["North America","Hardware","2026-03",695,11104141.43,14380],["North America","Hardware","2026-04",708,11430112.79,14724],["North America","Hardware","2026-05",730,11582234.92,14678],["North America","Hardware","2026-06",737,11892083.1,15516],["North America","Services","2026-01",654,7710909.59,14016],["North America","Services","2026-02",712,8571416.0,14171],["North America","Services","2026-03",726,8749646.16,14597],["North America","Services","2026-04",662,8024465.16,13706],["North America","Services","2026-05",710,8699693.76,14674],["North America","Services","2026-06",754,9187274.84,15717],["North America","Software","2026-01",950,7952256.68,19650],["North America","Software","2026-02",970,8173270.84,20033],["North America","Software","2026-03",930,8129344.22,19008],["North America","Software","2026-04",963,8046165.0,19274],["North America","Software","2026-05",977,8303322.45,19055],["North America","Software","2026-06",972,8166260.29,20431],["North America","Training","2026-01",456,1699385.97,9712],["North America","Training","2026-02",511,1873345.44,10538],["North America","Training","2026-03",439,1683419.36,8960],["North America","Training","2026-04",487,1807840.44,9918],["North America","Training","2026-05",520,1962222.0,10879],["North America","Training","2026-06",449,1660991.49,9038]]; // [region, productCategory, month, orderCount, amountSum, quantitySum]
+const fmt0 = new Intl.NumberFormat("en-US");
+const fmt2 = new Intl.NumberFormat("en-US", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+const money = v => v >= 1e6 ? "$" + (v / 1e6).toFixed(1) + "M" : "$" + fmt0.format(Math.round(v));
+
+document.getElementById("sample").innerHTML = ROWS.slice(0, 8).map(r =>
+  `<tr><td class="mono">${r[0]}|${r[1]}|${r[2]}</td><td>${r[0]}</td><td>${r[1]}</td><td class="mono">${r[2]}-01</td>` +
+  `<td class="num">${fmt0.format(r[3])}</td><td class="num">${fmt2.format(r[4])}</td><td class="num">${fmt0.format(r[5])}</td></tr>`
+).join("");
+
+// Grain calculator
+const DIMS = [
+  { id: "region", label: "region", n: 4, on: true },
+  { id: "productCategory", label: "productCategory", n: 4, on: true },
+  { id: "month", label: "month", n: 6, on: true },
+  { id: "channel", label: "channel", n: 3, on: false },
+  { id: "orderStatus", label: "orderStatus", n: 3, on: false },
+];
+const chips = document.getElementById("chips");
+chips.innerHTML = DIMS.map(d =>
+  `<span class="chip"><input type="checkbox" id="g-${d.id}" ${d.on ? "checked" : ""}><label for="g-${d.id}">${d.label} <b>${d.n}</b></label></span>`
+).join("");
+function grain() {
+  const on = DIMS.filter(d => document.getElementById("g-" + d.id).checked);
+  const total = on.reduce((a, d) => a * d.n, on.length ? 1 : 0);
+  document.getElementById("total").textContent = fmt0.format(total);
+  document.getElementById("formula").textContent = on.length ? on.map(d => d.n).join(" × ") : "no dimensions";
+  const over = total > 500;
+  const v = document.getElementById("verdict");
+  v.textContent = !on.length ? "pick at least one" : over ? "past the cap: read it with the server strategy" : "fits in one page";
+  v.className = "verdict " + (over ? "over" : "ok");
+  document.getElementById("meter").className = "meter" + (over ? " over" : "");
+  document.getElementById("meterfill").style.width = Math.min(100, total / 500 * 100) + "%";
+}
+chips.addEventListener("change", grain);
+grain();
+
+// Roll-ups
+const Q = [
+  { t: "Revenue by region", s: "sum(amountSum) by region", key: r => r[0],
+    val: g => g.amount, show: money,
+    how: "group by region\nsum(amountSum)" },
+  { t: "Orders by month", s: "sum(orderCount) by month", key: r => r[2],
+    val: g => g.count, show: v => fmt0.format(v), keep: true,
+    how: "group by month\nsum(orderCount)" },
+  { t: "Average order value by category", s: "wavg(amountSum, orderCount)", key: r => r[1],
+    val: g => g.amount / g.count, show: v => "$" + fmt2.format(v),
+    how: "group by productCategory\nsum(amountSum) / sum(orderCount)   ← weighted average" },
+  { t: "Units by category", s: "sum(quantitySum) by category", key: r => r[1],
+    val: g => g.qty, show: v => fmt0.format(v),
+    how: "group by productCategory\nsum(quantitySum)" },
+];
+function roll(keyFn) {
+  const m = new Map();
+  for (const r of ROWS) {
+    const k = keyFn(r);
+    const g = m.get(k) || { count: 0, amount: 0, qty: 0 };
+    g.count += r[3]; g.amount += r[4]; g.qty += r[5];
+    m.set(k, g);
+  }
+  return m;
+}
+const qs = document.getElementById("qs");
+qs.innerHTML = Q.map((q, i) => `<button class="q" type="button" id="q-${i}" aria-pressed="${i === 0}">${q.t}<small>${q.s}</small></button>`).join("");
+function answer(i) {
+  const q = Q[i];
+  Q.forEach((_, j) => document.getElementById("q-" + j).setAttribute("aria-pressed", String(i === j)));
+  let rows = [...roll(q.key)].map(([k, g]) => [k, q.val(g)]);
+  if (q.keep) rows.sort((a, b) => a[0].localeCompare(b[0])); else rows.sort((a, b) => b[1] - a[1]);
+  const max = Math.max(...rows.map(r => r[1]));
+  document.getElementById("bars").innerHTML = rows.map(([k, v]) =>
+    `<div class="bar"><span>${k}</span><span class="track"><i style="width:${(v / max * 100).toFixed(1)}%"></i></span><span class="v">${q.show(v)}</span></div>`
+  ).join("");
+  document.getElementById("how").textContent = `over 96 cube rows, not 48,048 orders\n${q.how}`;
+}
+qs.addEventListener("click", e => { const b = e.target.closest(".q"); if (b) answer(+b.id.slice(2)); });
+answer(0);
+</script>
+
+</body>
+</html>

@@ -1,0 +1,150 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Filter, Then Aggregate</title>
+<meta name="description" content="Rung 2: push OData filters and a field list into the Liferay Headless query so the browser pulls fewer rows and fewer columns.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700&family=Source+Sans+3:wght@400;600&family=JetBrains+Mono:wght@400;600&display=swap">
+<link rel="stylesheet" href="assets/site.css">
+</head>
+<body>
+<div class="wrap">
+  <div class="top">
+    <a class="home" href="index.html">← Where to Aggregate</a>
+    <nav class="rungs" aria-label="Rungs">
+      <a href="browser.html"><span>Rung 1</span><b>Browser</b></a>
+      <a href="filter.html" aria-current="page"><span>Rung 2</span><b>Filter</b></a>
+      <a href="server.html"><span>Rung 3</span><b>Server</b></a>
+      <a href="cube.html"><span>Rung 4</span><b>Cube</b></a>
+    </nav>
+  </div>
+
+  <header class="page">
+    <span class="eyebrow">Rung 2</span>
+    <h1>Filter, Then Aggregate</h1>
+    <p class="lede">The endpoint can't group, but it can filter and it can drop columns. Push both into the query and the browser pulls less before it groups anything. The group-by still runs in the page, unchanged.</p>
+  </header>
+
+  <section aria-labelledby="two-h">
+    <h2 id="two-h">Pull less in two directions</h2>
+    <div class="pair">
+      <div class="panel">
+        <h3>Fewer rows · <code>filter</code></h3>
+        <span class="note">OData on the Object endpoint. Text equality, <code>in</code>, date ranges, <code>and</code>, <code>or</code> and parentheses all work on 2026.Q2.</span>
+        <div class="code">filter=region eq 'EMEA'
+  and orderDate ge 2026-06-01</div>
+        <span class="note">48,048 rows → 2,258</span>
+      </div>
+      <div class="panel">
+        <h3>Fewer columns · <code>fields</code></h3>
+        <span class="note">Ask only for the dimension and the measure the chart uses. The widget already does this.</span>
+        <div class="code">fields=region,amount</div>
+        <span class="note">One page of 500: 979 KB → 29 KB</span>
+      </div>
+    </div>
+  </section>
+
+  <section aria-labelledby="try-h">
+    <h2 id="try-h">Try a filter</h2>
+    <p>Pick the regions and months a chart needs. The counts come from the real Sales Order data, and every filter form this builds was checked against the portal.</p>
+    <div class="panel">
+      <div class="chiprow"><span>region</span><div class="chips" id="regions" role="group" aria-label="Regions"></div></div>
+      <div class="chiprow"><span>month</span><div class="chips" id="months" role="group" aria-label="Months"></div></div>
+      <div class="code" id="odata"></div>
+      <div class="result">
+        <span class="total" id="rows">2,258</span>
+        <span class="formula" id="reqs">rows · 5 requests</span>
+        <span class="verdict" id="verdict"></span>
+      </div>
+      <div>
+        <div class="meter" id="meter"><i id="meterfill"></i></div>
+        <div class="meter-labels"><span>0</span><span>500-row page cap</span></div>
+      </div>
+    </div>
+    <p class="foot">Even one region in one month is 2,258 rows, more than four pages. A filter makes the question smaller. It doesn't make it fit.</p>
+  </section>
+
+  <section aria-labelledby="ver-h">
+    <h2 id="ver-h">Checked against the portal</h2>
+    <div class="tablebox">
+      <table>
+        <thead><tr><th>filter</th><th class="num">totalCount</th><th class="num">Requests at 500</th></tr></thead>
+        <tbody>
+          <tr><td class="mono">(none)</td><td class="num">48,048</td><td class="num">97</td></tr>
+          <tr><td class="mono">region eq 'EMEA'</td><td class="num">13,730</td><td class="num">28</td></tr>
+          <tr><td class="mono">orderDate ge 2026-04-01 and orderDate lt 2026-07-01</td><td class="num">24,074</td><td class="num">49</td></tr>
+          <tr><td class="mono">orderDate ge 2026-06-01</td><td class="num">8,043</td><td class="num">17</td></tr>
+          <tr><td class="mono">region in ('EMEA','APAC')</td><td class="num">24,044</td><td class="num">49</td></tr>
+          <tr><td class="mono">region eq 'EMEA' and orderDate ge 2026-06-01</td><td class="num">2,258</td><td class="num">5</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="foot">Each count matches the same total computed independently from all 48,048 rows.</p>
+  </section>
+
+  <section aria-labelledby="lim-h">
+    <h2 id="lim-h">Where it stops</h2>
+    <div class="limits">
+      <div class="limit"><b>A smaller question</b><span>A filter answers "EMEA in June", not "all regions". Questions over the whole Object get no help.</span></div>
+      <div class="limit"><b>Still one page</b><span>The browser still reads at most 500 rows per request. A filtered set past that is incomplete again.</span></div>
+      <div class="limit"><b>Not in the widget yet</b><span>The fetch accepts <code>filter</code> and <code>fields</code>. There's no filter control in the config panel.</span></div>
+    </div>
+  </section>
+
+  <nav class="next" aria-label="Next">
+    <a href="browser.html"><small>Rung 1</small>← In the browser</a>
+    <a class="r" href="server.html"><small>Rung 3</small>On the server →</a>
+  </nav>
+</div>
+<script>
+const D = {"regions":["North America","EMEA","APAC","LATAM"],"months":["2026-01","2026-02","2026-03","2026-04","2026-05","2026-06"],"n":[[2775,2923,2790,2820,2937,2912],[2270,2233,2394,2275,2300,2258],[1730,1736,1683,1739,1686,1740],[1127,1162,1151,1165,1109,1133]]};
+const fmt0 = new Intl.NumberFormat("en-US");
+const MON = ["Jan", "Feb", "Mar", "Apr", "May", "Jun"];
+const chip = (group, id, label, n, on) =>
+  `<span class="chip"><input type="checkbox" id="${group}-${id}" ${on ? "checked" : ""}><label for="${group}-${id}">${label} <b>${n}</b></label></span>`;
+const rowTotal = i => D.n[i].reduce((a, b) => a + b, 0);
+const colTotal = j => D.n.reduce((a, r) => a + r[j], 0);
+document.getElementById("regions").innerHTML = D.regions.map((r, i) => chip("r", i, r, fmt0.format(rowTotal(i)), r === "EMEA")).join("");
+document.getElementById("months").innerHTML = D.months.map((m, j) => chip("m", j, MON[j], fmt0.format(colTotal(j)), j === 5)).join("");
+
+function nextMonth(m) { const [y, mo] = m.split("-").map(Number); return mo === 12 ? `${y + 1}-01` : `${y}-${String(mo + 1).padStart(2, "0")}`; }
+function buildFilter(rs, ms) {
+  const parts = [];
+  if (rs.length && rs.length < D.regions.length) {
+    parts.push(rs.length === 1 ? `region eq '${D.regions[rs[0]]}'` : `region in (${rs.map(i => `'${D.regions[i]}'`).join(",")})`);
+  }
+  if (ms.length && ms.length < D.months.length) {
+    const runs = [];
+    for (const j of ms) { const last = runs[runs.length - 1]; if (last && last[1] === j - 1) last[1] = j; else runs.push([j, j]); }
+    const ranges = runs.map(([a, b]) => `orderDate ge ${D.months[a]}-01 and orderDate lt ${nextMonth(D.months[b])}-01`);
+    parts.push(ranges.length === 1 ? ranges[0] : ranges.map(r => `(${r})`).join(" or "));
+  }
+  if (parts.length === 2 && parts[1].includes(" or ")) parts[1] = `(${parts[1]})`;
+  return parts.length ? "filter=" + parts.join("\n  and ") : "(no filter: every row)";
+}
+function update() {
+  const rs = D.regions.map((_, i) => i).filter(i => document.getElementById("r-" + i).checked);
+  const ms = D.months.map((_, j) => j).filter(j => document.getElementById("m-" + j).checked);
+  const useR = rs.length ? rs : D.regions.map((_, i) => i);
+  const useM = ms.length ? ms : D.months.map((_, j) => j);
+  let rows = 0; for (const i of useR) for (const j of useM) rows += D.n[i][j];
+  const reqs = Math.ceil(rows / 500);
+  document.getElementById("odata").textContent = buildFilter(rs, ms) + "\n&fields=region,amount&pageSize=500";
+  document.getElementById("rows").textContent = fmt0.format(rows);
+  document.getElementById("reqs").textContent = `rows · ${reqs} request${reqs === 1 ? "" : "s"} · ${fmt0.format(Math.round(rows * 58.2 / 1024))} KB`;
+  const over = rows > 500;
+  const v = document.getElementById("verdict");
+  v.textContent = over ? `the browser would see ${(500 / rows * 100).toFixed(1)}% of them` : "fits in one page: the browser is exact";
+  v.className = "verdict " + (over ? "over" : "ok");
+  document.getElementById("meter").className = "meter" + (over ? " over" : "");
+  document.getElementById("meterfill").style.width = Math.min(100, rows / 500 * 100) + "%";
+}
+document.getElementById("regions").addEventListener("change", update);
+document.getElementById("months").addEventListener("change", update);
+update();
+</script>
+</body>
+</html>

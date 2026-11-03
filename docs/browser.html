@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Aggregating in the Browser</title>
+<meta name="description" content="Rung 1: group one page of Liferay Object entries in the browser. Exact under 500 rows, about 1% of the truth at 48,048.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700&family=Source+Sans+3:wght@400;600&family=JetBrains+Mono:wght@400;600&display=swap">
+<link rel="stylesheet" href="assets/site.css">
+</head>
+<body>
+<div class="wrap">
+  <div class="top">
+    <a class="home" href="index.html">← Where to Aggregate</a>
+    <nav class="rungs" aria-label="Rungs">
+      <a href="browser.html" aria-current="page"><span>Rung 1</span><b>Browser</b></a>
+      <a href="filter.html"><span>Rung 2</span><b>Filter</b></a>
+      <a href="server.html"><span>Rung 3</span><b>Server</b></a>
+      <a href="cube.html"><span>Rung 4</span><b>Cube</b></a>
+    </nav>
+  </div>
+
+  <header class="page">
+    <span class="eyebrow">Rung 1</span>
+    <h1>Aggregating in the Browser</h1>
+    <p class="lede">The widget fetches one page of entries from the Object's Headless endpoint and groups them with <code>aggregate()</code>, a pure function that knows nothing about Liferay. It works on any Object the moment it's published. It's exact as long as the Object fits in one page.</p>
+  </header>
+
+  <section aria-labelledby="flow-h">
+    <h2 id="flow-h">What happens</h2>
+    <div class="flowrow four">
+      <div class="node"><span class="eyebrow">Widget</span><span class="n">Reads the definition</span><span class="s">Text and picklists become dimensions, numbers become measures</span></div>
+      <div class="arr" aria-hidden="true">→</div>
+      <div class="node key"><span class="eyebrow">One request</span><span class="n">GET /o/c/salesorders</span><span class="s"><code>pageSize=500&amp;fields=region,amount</code></span></div>
+      <div class="arr" aria-hidden="true">→</div>
+      <div class="node"><span class="eyebrow">In the page</span><span class="n">aggregate()</span><span class="s">Group by region, sum amount</span></div>
+      <div class="arr" aria-hidden="true">→</div>
+      <div class="node"><span class="eyebrow">Chart</span><span class="n">DataPoint[]</span><span class="s">Plus a footnote saying how many rows it saw</span></div>
+    </div>
+  </section>
+
+  <section aria-labelledby="cap-h">
+    <h2 id="cap-h">The ceiling isn't yours to choose</h2>
+    <div class="figs">
+      <div class="fig"><span class="v">500</span><span class="l">rows per page, maximum. Liferay clamps <code>pageSize</code> to the company's <code>pageSizeLimit</code>.</span></div>
+      <div class="fig"><span class="v">5,000 → 500</span><span class="l">Asking for more gets you the limit, without an error.</span></div>
+      <div class="fig good"><span class="v">29 KB</span><span class="l">one page with <code>fields=region,amount</code></span></div>
+      <div class="fig bad"><span class="v">979 KB</span><span class="l">the same page with every field</span></div>
+    </div>
+  </section>
+
+  <section aria-labelledby="two-h">
+    <h2 id="two-h">Two Objects, two outcomes</h2>
+    <div class="pair">
+      <div class="panel">
+        <h3>Support Case · 400 rows</h3>
+        <span class="note">Average resolution hours by priority. All 400 rows fit in one page, so the browser saw everything.</span>
+        <div class="bars" id="sc"></div>
+        <span class="note">Footnote: <span class="mono">all 400 rows</span>. Exact, and identical to the server-side result.</span>
+      </div>
+      <div class="panel">
+        <h3>Sales Order · 48,048 rows</h3>
+        <span class="note">Sum of amount by region, from the first page only.</span>
+        <div class="bars warn" id="so"></div>
+        <span class="note warn">Footnote: <span class="mono">Showing the first 500 of 48,048 rows (&lt;1%)</span>.</span>
+      </div>
+    </div>
+  </section>
+
+  <section aria-labelledby="wrong-h">
+    <h2 id="wrong-h">Right shape, wrong totals</h2>
+    <p>The ranking from the first page happens to match the real one. The totals are off by a factor of almost a hundred. The browser was right about the rows it saw. It was wrong about how many there were.</p>
+    <div class="tablebox">
+      <table>
+        <thead><tr><th>Region</th><th class="num">First page (500 rows)</th><th class="num">All 48,048 rows</th><th class="num">Share seen</th></tr></thead>
+        <tbody id="cmp"></tbody>
+      </table>
+    </div>
+    <p class="foot">An average over the same 500 rows would land within a few percent of the truth. A sum or a count is off in proportion to the rows it never saw. That's why the widget always states its denominator.</p>
+  </section>
+
+  <section aria-labelledby="lim-h">
+    <h2 id="lim-h">Where it stops</h2>
+    <div class="limits">
+      <div class="limit"><b>Past 500 rows</b><span>Sums and counts are only as complete as the one page. More pages from the browser means shipping rows just to throw them away.</span></div>
+      <div class="limit"><b>Payload and memory</b><span>Every row crosses the network and sits in the tab before it's grouped.</span></div>
+      <div class="limit"><b>What it's good for</b><span>Small Objects, any Object, and the read path for a cube on rung 4.</span></div>
+    </div>
+  </section>
+
+  <nav class="next" aria-label="Next">
+    <a href="index.html"><small>Overview</small>Where to Aggregate</a>
+    <a class="r" href="filter.html"><small>Rung 2</small>Filter, then aggregate →</a>
+  </nav>
+</div>
+<script>
+const fmt0 = new Intl.NumberFormat("en-US");
+const SC = [["Low", 4.61], ["Medium", 8.88], ["High", 16.65], ["Critical", 25.89]];
+const FIRST = { "North America": 2030819.62, "EMEA": 1366016.19, "APAC": 1142860.44, "LATAM": 709555.26 };
+const REAL = { "North America": 179798266.71, "EMEA": 143824071.29, "APAC": 108917013.16, "LATAM": 71767823.26 };
+const money = v => v >= 1e6 ? "$" + (v / 1e6).toFixed(1) + "M" : "$" + fmt0.format(Math.round(v));
+function bars(id, rows, show) {
+  const max = Math.max(...rows.map(r => r[1]));
+  document.getElementById(id).innerHTML = rows.map(([k, v]) =>
+    `<div class="bar"><span>${k}</span><span class="track"><i style="width:${(v / max * 100).toFixed(1)}%"></i></span><span class="v">${show(v)}</span></div>`).join("");
+}
+bars("sc", SC, v => v.toFixed(2) + " h");
+bars("so", Object.entries(FIRST), money);
+document.getElementById("cmp").innerHTML = Object.keys(REAL).map(k =>
+  `<tr><td>${k}</td><td class="num">$${fmt0.format(Math.round(FIRST[k]))}</td><td class="num">$${fmt0.format(Math.round(REAL[k]))}</td><td class="num">${(FIRST[k] / REAL[k] * 100).toFixed(2)}%</td></tr>`).join("");
+</script>
+</body>
+</html>
