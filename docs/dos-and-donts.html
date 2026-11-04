@@ -1,0 +1,164 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Dos and Don'ts</title>
+<meta name="description" content="Where a schema-driven Object chart works and where it stops, with the high-cardinality case shown in detail: grouping 400 support tickets by ticket number.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700&family=Source+Sans+3:wght@400;600&family=JetBrains+Mono:wght@400;600&display=swap">
+<link rel="stylesheet" href="assets/site.css">
+<style>
+.lines { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }
+@media (max-width: 760px) { .lines { grid-template-columns: 1fr; } }
+.lines ul { margin: 0; padding: 0; list-style: none; display: grid; gap: 12px; }
+.lines li { display: grid; gap: 2px; padding-left: 14px; border-left: 3px solid var(--line); }
+.lines .do li { border-left-color: var(--dim); }
+.lines .dont li { border-left-color: var(--warn); }
+.lines li b { font-weight: 600; }
+.lines li span { color: var(--muted); font-size: 15px; }
+.lines h3 { margin: 0 0 4px; font-family: var(--font-display); font-size: 18px; font-weight: 600; }
+.lines .do h3 { color: var(--dim); }
+.lines .dont h3 { color: var(--warn); }
+figure { margin: 0; display: grid; gap: 8px; min-width: 0; }
+figure img { width: 100%; height: auto; display: block; border: 1px solid var(--line); border-radius: 6px; background: #fff; }
+figcaption { font-size: 14px; color: var(--muted); }
+figcaption b { color: var(--fg); font-weight: 600; }
+.solo { max-width: calc(50% - 8px); }
+@media (max-width: 760px) { .solo { max-width: none; } }
+.shots { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }
+@media (max-width: 760px) { .shots { grid-template-columns: 1fr; } }
+.tag { display: inline-block; font-family: var(--font-mono); font-size: 12px; padding: 2px 8px; border-radius: 99px; }
+.tag.bad { background: var(--warn-soft); color: var(--warn); }
+.tag.ok { background: var(--dim-soft); color: var(--dim); }
+.ratio { display: grid; grid-template-columns: minmax(0, 1fr) 64px; gap: 10px; align-items: center; }
+.ratio .track { height: 10px; background: var(--line); border-radius: 99px; overflow: hidden; }
+.ratio .track i { display: block; height: 100%; background: var(--dim); }
+.ratio.bad .track i { background: var(--warn); }
+.ratio .v { font-family: var(--font-mono); font-size: 13px; text-align: right; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="top">
+    <a class="home" href="index.html">← Where to Aggregate</a>
+    <nav class="rungs" aria-label="Rungs">
+      <a href="browser.html"><span>Rung 1</span><b>Browser</b></a>
+      <a href="filter.html"><span>Rung 2</span><b>Filter</b></a>
+      <a href="server.html"><span>Rung 3</span><b>Server</b></a>
+      <a href="cube.html"><span>Rung 4</span><b>Cube</b></a>
+    </nav>
+  </div>
+
+  <header class="page">
+    <span class="eyebrow">Where it works, where it stops</span>
+    <h1>Dos and Don'ts</h1>
+    <p class="lede">A widget that turns any Object into a chart from config is fast, and that speed has edges. Both columns, then the one edge that's easier to show than to describe.</p>
+  </header>
+
+  <section aria-labelledby="lines-h">
+    <h2 id="lines-h">The lines</h2>
+    <div class="lines">
+      <div class="panel do">
+        <h3>Do</h3>
+        <ul>
+          <li><b>Internal ops dashboards over Objects</b><span>Sales, tickets, inventory, headcount.</span></li>
+          <li><b>Non-developer self-serve</b><span>A product owner composes a dashboard in the page builder, no engineering ticket.</span></li>
+          <li><b>Charts next to the data they describe</b><span>Embedded, in context, on the page people already use.</span></li>
+          <li><b>Fast prototypes</b><span>Stand up a view in the meeting, throw it away after.</span></li>
+          <li><b>Group by fields with a handful of values</b><span>Categories, statuses, regions, and dates bucketed by month.</span></li>
+          <li><b>Read whole Objects in the browser</b><span>Under 500 rows, rung 1 is exact. Past that, move up a rung.</span></li>
+        </ul>
+      </div>
+      <div class="panel dont">
+        <h3>Don't</h3>
+        <ul>
+          <li><b>Analytics across Objects</b><span>Objects aren't a star schema. Joins belong in a warehouse.</span></li>
+          <li><b>Regulated or pixel-perfect reporting</b><span>This isn't a system of record for compliance.</span></li>
+          <li><b>Real-time refresh</b><span>It's a snapshot chart, not a streaming dashboard.</span></li>
+          <li><b>Group by an ID</b><span>One group per record is a list, not a chart. Shown below.</span></li>
+          <li><b>Trust a browser chart past one page</b><span>A date chart over the first 500 rows looks perfectly shaped and is about 1% of the real scale.</span></li>
+          <li><b>Chart a fixed number on a parent</b><span>An Account's open tickets is an Aggregation field on the Object, not a widget.</span></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section aria-labelledby="id-h">
+    <h2 id="id-h">Don't group by an ID</h2>
+    <p>Support Case, 400 rows, count of records grouped by <code>ticketNumber</code>. Every ticket number is unique, so every group holds exactly one ticket. These are screenshots of the real widget on the demo portal.</p>
+    <div class="shots">
+      <figure>
+        <img src="assets/img/ticket-number-pie.png" width="938" height="491" alt="A pie chart of 400 equal slivers that blur into a moiré disc with no readable slices or legend.">
+        <figcaption><span class="tag bad">400 points</span> <b>Pie.</b> 400 equal slices. They blur into a moiré disc, and the legend is dropped because there are more slices than colours.</figcaption>
+      </figure>
+      <figure>
+        <img src="assets/img/ticket-number-bar.png" width="938" height="491" alt="A bar chart of 400 bars, every one exactly 1 tall, labelled TK-2001 to TK-2399.">
+        <figcaption><span class="tag bad">400 points</span> <b>Bar.</b> 400 bars, every one exactly 1 tall. It's a flat block that says each ticket is one ticket.</figcaption>
+      </figure>
+    </div>
+    <figure class="solo">
+      <img src="assets/img/category-pie.png" width="938" height="491" alt="A pie chart of support cases by category: Question 153, Bug 132, Billing 62, Feature Request 53.">
+      <figcaption><span class="tag ok">4 points</span> <b>The same 400 rows by <code>category</code>.</b> Question 153, Bug 132, Billing 62, Feature Request 53. Same widget, same data, one dropdown changed.</figcaption>
+    </figure>
+  </section>
+
+  <section aria-labelledby="why-h">
+    <h2 id="why-h">Why the widget offers it</h2>
+    <p>The widget reads the Object's definition and makes every Text field a dimension. From the schema alone, <code>ticketNumber</code> and <code>category</code> are the same kind of field. What tells them apart is the data: how many distinct values there are per row.</p>
+    <div class="tablebox">
+      <table>
+        <thead><tr><th>Support Case field</th><th>Type</th><th class="num">Distinct values</th><th>Per 400 rows</th><th>As a dimension</th></tr></thead>
+        <tbody id="card"></tbody>
+      </table>
+    </div>
+    <p class="foot">A date is high-cardinality by day and fine by month. The widget's day/month bucket control exists for exactly this.</p>
+  </section>
+
+  <section aria-labelledby="srv-h">
+    <h2 id="srv-h">On the server it gets more expensive</h2>
+    <p>Group all 48,048 Sales Orders by <code>orderNumber</code> on rung 3 and the scan still reads 97 pages. The difference is what comes back.</p>
+    <div class="figs">
+      <div class="fig good"><span class="v">4</span><span class="l">points for revenue by region</span></div>
+      <div class="fig good"><span class="v">158 B</span><span class="l">sent to the browser</span></div>
+      <div class="fig bad"><span class="v">48,000</span><span class="l">points for count by order number</span></div>
+      <div class="fig bad"><span class="v">1.4 MB</span><span class="l">sent to the browser, then cached per user</span></div>
+    </div>
+    <p class="foot">The point of rung 3 is that rows stay on the server and only the answer crosses the wire. Grouping by an ID makes the answer as big as the rows.</p>
+  </section>
+
+  <section aria-labelledby="inst-h">
+    <h2 id="inst-h">What to do instead</h2>
+    <div class="limits">
+      <div class="limit"><b>Pick a field with few values</b><span>Category, priority, status or channel: four values each on Support Case.</span></div>
+      <div class="limit"><b>Bucket it</b><span>Dates by month, not by day. 154 days become 6 months.</span></div>
+      <div class="limit"><b>Use a table for records</b><span>If the question is "which tickets", the answer is the Object's list view, not a chart.</span></div>
+    </div>
+  </section>
+
+  <nav class="next" aria-label="Next">
+    <a href="cube.html"><small>Rung 4</small>← A precomputed cube</a>
+    <a class="r" href="index.html"><small>Overview</small>Where to Aggregate →</a>
+  </nav>
+</div>
+<script>
+const F = [
+  ["ticketNumber", "Text", 400],
+  ["createdDate (by day)", "Date", 154],
+  ["createdDate (by month)", "Date", 6],
+  ["priority", "Text", 4],
+  ["ticketStatus", "Text", 4],
+  ["channel", "Text", 4],
+  ["category", "Text", 4],
+];
+document.getElementById("card").innerHTML = F.map(([f, t, n]) => {
+  const bad = n > 12;
+  const pct = n / 400 * 100;
+  return `<tr><td class="f">${f}</td><td class="t">${t}</td><td class="num">${n}</td>` +
+    `<td><div class="ratio${bad ? " bad" : ""}"><span class="track"><i style="width:${Math.max(1, pct)}%"></i></span><span class="v">${pct < 10 ? pct.toFixed(1) : Math.round(pct)}%</span></div></td>` +
+    `<td><span class="tag ${bad ? "bad" : "ok"}">${bad ? "a list, not a chart" : "a readable chart"}</span></td></tr>`;
+}).join("");
+</script>
+</body>
+</html>
